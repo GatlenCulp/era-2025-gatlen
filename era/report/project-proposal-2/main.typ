@@ -1,28 +1,60 @@
-#import "@preview/clear-iclr:0.7.0": iclr2025
+#import "./icml-gatlen/icml.typ": (
+  icml2025,
+  lemmify,
+  vruler,
+  // Constants and definitions.
+  font,
+  // Table rulers.
+  toprule,
+  midrule,
+  bottomrule,
+  // Theorem typesetting.
+  assumption,
+  corollary,
+  definition,
+  lemma,
+  proof,
+  proposition,
+  remark,
+  theorem,
+)
 #import "./logo.typ": LaTeX, LaTeXe
 
-#let author-note = footnote[
-  ERA:AI Research Fellowship. Correspondence: yep
-]
+#let affls = (
+  era: ("ERA:AI Research Fellowship",),
+  fli: ("Future of Life Institute",),
+)
 
-/**
- * Authors should be specified as a list of entries. Each entry enumerates
- * authors with the same affiliation and address. Field `names` is mandatory.
- */
 #let authors = (
   (
-    names: ([Gatlen Culp#author-note],),
-    affiliation: [
-      ERA:AI Research Fellowship
-    ],
-    address: [Future of Life Institute],
-    email: "gatlen@example.com",
+    name: "Gatlen Culp",
+    affl: ("era",),
+    email: "GatlenCulp@gmail.com",
+    equal: true,
+  ),
+  (
+    name: "Hamza Chaudhry",
+    affl: ("fli",),
+    email: "hamza@futureoflife.org",
+    equal: false,
+  ),
+  (
+    name: "Herbie Bradley",
+    affl: ("era",),
+    email: "mail@herbiebradley.com",
+    equal: false,
+  ),
+  (
+    name: "Nandini Shiralkar",
+    affl: ("era",),
+    email: "nandini@erafellowship.org",
+    equal: false,
   ),
 )
 
-#show: iclr2025.with(
+#show: icml2025.with(
   title: [Quantifying AI-Induced Civilizational Vulnerability:\ Tracking Humanity's Succession of Control to and Susceptibility to Influence from AI Systems],
-  authors: authors,
+  authors: (authors, affls),
   keywords: (
     "AI safety",
     "existential risk",
@@ -41,6 +73,7 @@
     *Impact.* Like climate scientists making atmospheric changes visible through CO2 measurements, this project makes civilizational vulnerability measurable for policymakers. By establishing thresholds and trends, we transform abstract alignment concerns into urgent national security imperatives, enabling international coordination to prevent races to the bottom, and providing metrics for AI labs' safety cases and responsible scaling policies.
   ],
   bibliography: bibliography("literature-review.bib"),
+  header: [Quantifying AI-Induced Civilizational Vulnerability],
   appendix: [
     = Appendix
 
@@ -48,6 +81,10 @@
   ],
   accepted: none,
 )
+
+#show: lemmify // Theorems, propositions, definitions, etc.
+
+#vruler(offset: -1.7in)
 
 #let url(uri) = link(uri, raw(uri))
 
