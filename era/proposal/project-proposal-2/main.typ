@@ -74,11 +74,11 @@
   ],
   bibliography: bibliography("literature-review.bib"),
   header: [Quantifying AI-Induced Civilizational Vulnerability],
-  appendix: [
-    = Appendix
+  // appendix: [
+  //   = Appendix
 
-    Additional metrics and measurement frameworks will be developed during the research period.
-  ],
+  //   Additional metrics and measurement frameworks will be developed during the research period.
+  // ],
   accepted: none,
 )
 
@@ -91,16 +91,19 @@
 = Introduction and Motivation
 
 The integration of AI into society presents unprecedented challenges distinct from previous technological transitions.
+// TODO: Talk about the overlap of threat models that my research attends to. Ie: Attends to Deceptively Aligned AI, AI-Enabled Coups, and Gradual Disempowerment.
+// Does not apply to hard/immediate AI takeover risks or risks arising from misuse or anything outside of the normal institutions. It's focusing more on mostly-consensual complex forces. Ex: Not terrorist groups. Want to have a low bar for what capabilities count here.
+// Danger of a (singular technology + singular loyalty) or (multiple technologies + singular loyalty)
 
-*Existential Risks without AI Takeover or General Intelligence* Current AI safety research focuses on acute risks: misuse for bioweapons, deceptive behavior, and sudden capability jumps. However, systemic vulnerability requires fewer assumptions about AI capabilities--arising at the level of narrow AI systems creating rogue institutions and ballooning in risk as we approach powerful super-human AI models. I term this "AI-induced civilizational vulnerability"--where institutions become so AI-dependent that society loses ability to operate independently or change course, creating conditions for value lock-in @finnveden_agi_2023, sudden takeover, or rogue AI-automated institutions pursuing objectives with indifference to human welfare @kulveit_gradual_2025.
+*Existential Risks without AI Takeover or General Intelligence* Current AI safety research focuses on acute risks: misuse for bioweapons, deceptive behavior, and sudden capability jumps. However, systemic vulnerability requires fewer assumptions about AI capabilities--arising at the level of narrow AI systems creating rogue institutions and ballooning in risk as we approach powerful super-human AI models. I term this "AI-induced civilizational vulnerability"--where institutions become so AI-dependent that society loses ability to operate independently or change course, creating conditions for value lock-in #cite(<finnveden_agi_2023>), sudden takeover, or rogue AI-automated institutions pursuing objectives with indifference to human welfare #cite(<kulveit_gradual_2025>).
 
-The Gradual Disempowerment paper @kulveit_gradual_2025 argues human influence depends on both explicit mechanisms (voting) and implicit requirements (human participation). When AI performs labor, creates culture, and provides governance more efficiently, institutional incentive structures don't just weaken--they may reverse. We lack methods to determine AI values or alter them reliably.
+The Gradual Disempowerment paper #cite(<kulveit_gradual_2025>) argues human influence depends on both explicit mechanisms (voting) and implicit requirements (human participation). When AI performs labor, creates culture, and provides governance more efficiently, institutional incentive structures don't just weaken--they may reverse. We lack methods to determine AI values or alter them reliably.
 
 *AGI, Power Concentration & Implicit Trust*. While past tools augmented specific capabilities, large language models serve as general-purpose intermediaries across all human activity. This concentration creates cascading risks and coordinated failures: when one technology mediates the control of information, economic and political decision-making, and learning. When integrating a monolithic AI, we are implicitly trusting not only current models but their creators, future owners, and successor systems with immense power. This enables coordinated failures where single updates or actors could compromise multiple societal systems simultaneously.
 
 *Emerging Societal Vulnerabilities* This vulnerability manifests across domains. Economically, companies face elimination without AI automation--creating a race where humans become obsolete in both jobs and decision-making power. Culturally, AI-generated content subtly converges human values toward system biases. Educationally, fundamental skills atrophy, creating collective forgetting. Politically, AI-mediated governance exceeds human comprehension, making democratic oversight ceremonial. In AI research itself, we risk closed loops where AI systems design successors, cutting humans from steering development.
 
-*Vulnerability Evidence* Early evidence validates concerns. Anthropic's "Values in the Wild" @anthropic_values_nodate shows frequent deference to AI for life guidance. ChatGPT users show reduced brain activity, homogeneous writing, and decreased ownership of work @kosmyna_your_2025. As consumers use AI to create media, filter information, and produce communications, human thought becomes optional in our own civilization.
+*Vulnerability Evidence* Early evidence validates concerns. Anthropic's "Values in the Wild" #cite(<anthropic_values_nodate>) shows frequent deference to AI for life guidance. ChatGPT users show reduced brain activity, homogeneous writing, and decreased ownership of work #cite(<kosmyna_your_2025>). As consumers use AI to create media, filter information, and produce communications, human thought becomes optional in our own civilization.
 
 *Project Aim* This project addresses our measurement gap. Like climate scientists developing CO2 tracking, we need tools for systemic vulnerability. These metrics serve roles analogous to capability evaluations in Responsible Scaling Policies, oversight frameworks, and liability assessments—measuring deployment effects rather than just lab capabilities.
 
@@ -260,6 +263,6 @@ The window is closing rapidly. As integration accelerates, baselines vanish and 
 
 This research establishes baselines while possible, providing tools to navigate AI transition while preserving agency. By making vulnerability measurable, we make it governable—transforming alignment from abstract problems into concrete national security imperatives. These metrics could determine whether we remain masters of society or become powerless guests in worlds run by intelligences we invited but cannot control.
 
-= Acknowledgments
+// = Acknowledgments
 
-The author thanks Hamza Chaudhry (Future of Life Institute) for mentorship, Herbie Bradley (University of Cambridge) and Nandini Shiralkar (ERA) for advisory support, and the ERA:AI Research Fellowship program for funding this research.
+// The author thanks Hamza Chaudhry (Future of Life Institute) for mentorship, Herbie Bradley (University of Cambridge) and Nandini Shiralkar (ERA) for advisory support, and the ERA:AI Research Fellowship program for funding this research.
