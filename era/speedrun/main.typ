@@ -127,18 +127,13 @@ as opposed AI-enabled of offensive capabilities such as cyber-attacks or CBRN (C
 
 // https://gradual-disempowerment.ai/
 
-*Foundational Models as a Risk Amplifier.* The influence AI systems have expands greatly when we consider the increasingly general AI systems that we see today, primarily Large Language Models (LLMs) like ChatGPT which are built on top of *foundational models*, of which frontier models take billions in USD to train [cite] -- meaning the entire technology stack the modern AI revolutions depends on is enabled by just a handful of frontier models. While "AI" is confusingly used somewhat synonymously with these foundational models, it is important to distinguish between AI using foundational models and AI not using foundational models as most of the societal vulnerability introduced by AI is attributable to these models in particular, a topic explained later in "AI is Uniquely Problematic". #comment[I don't distinguish these throughout this paper (oops), especially in the example below. I should maybe fix this.].
+*Foundational Models as a Risk Amplifier.* The influence AI systems have expands greatly when we consider the increasingly general AI systems that we see today, primarily Large Language Models (LLMs) like ChatGPT which are built on top of *foundational models*, of which frontier models take billions in USD to train [cite] -- meaning the entire technology stack the modern AI revolutions depends on is enabled by just a handful of frontier models. While "AI" is confusingly used somewhat synonymously with these foundational models, it is important to distinguish between AI using foundational models and AI not using foundational models as most of the societal vulnerability introduced by AI is attributable to these models in particular, a topic explained later in "AI is Uniquely Problematic". #comment[I don't distinguish these throughout this paper (oops), especially in the example below. I should maybe fix this.]. Critically, it's also this technology that not only amplifies national security vulnerabilities, but also makes them exploitable.
 
 // Make comments on Human-Centered AI, AI that is intended to augment not replace humans -- not sufficient. Or feasible in some situations? And fails to frame this danger.
 // "In summary, while AI will undoubtedly redefine many professional landscapes, human input remains invaluable. Technological advancements might have reduced the number of people needed for menial tasks, but they've also freed professionals to focus on more meaningful aspects of their jobs. Whether we call it "working from home" or "living at work," the key takeaway is that technology, including AI, is a tool, not a replacement for human expertise and decision-making."
-
 // Frame this in a way that's not like "omg we should use this to conquer everything" to "holy shit please hold up, let me see this AI y'all are working on."
-
 // System failure tends to happen immediately. Not be coordinated. AGI would actually be a massive security risk.
-
 // Rare risks, ex: Texas flash floods.
-
-// Not much of this is new, is well studied? What is new? Machine Learning. LLMs. Lack of transparency and growth in complexity. More flexibility to introduce values. Building fragile ecosystems.
 
 == How AI enables fragility and influence
 
@@ -160,51 +155,16 @@ to creep in, accumulate, and entrench itself in the foundational policies, relat
 
 *Reasons why AI influence could be costly.* To give reason for concern here, foundational models have demonstrated preferences towards those of Chinese nationality, valuing them at x times someone of American nationality and y times someone of Z nationality, #comment[cite + confirm] potentially leading to policy decisions favoring one ethnicity over another or conducting negotiations with a prejudice against Americans #comment[Maybe want to pull back on the "lets paint AI red-white-and-blue and feed it apple pie" implications, there's something here that is of concern to policy makers but I am not framing it right]. Additionally, when foundational models were used to simulate various geopolitical actors in military simulations, they consistently opted for more unpredictable and escalatory behavior than their human counterparts, hinting that a government influenced by AI might be one inclined to violence and war #comment[cite Dennis' thing + confirm/substitute. Might be more anecdotal than empirical.].
 
-// Analogy to a memetic virus that spreads its beliefs? But this also maybe underscores the potential benefits. Maybe I just want to say inoculation
-
-// Constitutional AI by anthropic.
-
-// Default tech bro mindset. Maybe show how the values of the models currently line up with the values of the developers.
-
 *No one wanted this.* In the congressional staffer scenario, it's important to highlight the coordination failure in the final outcome. Even if undesirable to all parties, there are a number of incentives pressuring each actor to acquire more national security debt. Our _staffer_ wanted to become more productive, save energy, and meet deadlines, leading delegation creep to set in, their skills to atrophy, and dependence to increase alongside her expectations. #comment[Something here about "just don't do this" is not enough] Reverting became extremely costly. Her _colleagues_ likely felt these similar pressures, likely made worse by management's rising expectation of staffers and the looming threat of termination. The _management_ perhaps didn't know about automation, couldn't afford to revert, didn't have meaningful methods to intervene, and personally benefitted from the automation. The _US Government_ as a whole experiences pressures to become more productive, and even if aware of the automation, had no choice but to embrace or even accelerate AI diffusion at the risk of being outclasses by the more agile and effective governments of their geopolitical competitors, which also suffer in this scenario. #comment[highlighting the need for both global cooperation and internal oversight measures]
 
-*Unilateral Bottom-Up Influence.* This bottom-up threat model where individual actors integrate AI against their long-term individual and collective interests isn't unique to this scenario. Similar instances are already becoming visible in all levels of education, one survey quoting a student from a prestigious American university wishing that they had never started using AI the way they did and feel trapped but having done so #comment[cite + confirm], leading children and the future generation of minds to be rooted in dependence on foundational models and deeply influenced by models. #comment[Sounds alarmist] Entrepreneurs may not be able to compete in the marketplace without AI influence its investment decisions, ethical choices, communications, etc. #comment[cite anthropic]. Human operated media content may not be able to compete with AI generated content, forcing its adoption. #comment[Likewise, searching for and consuming information may not be possible without AI filters and summarization.] Each of these involve some level of unilateral decision making on behalf of everyone, first-movers kick-starting a series of pressures incentivizing adoption -- its integration, even into government, required neither explicit approval from others nor exorbitant effort or expertise. Of course there are other ways that AI can integrate itself and influence others. #comment[Talk about these later. Currently tired.] #comment[something something cognitive effect become accumulative. something something game theory nash equilibrium pareto optimality]
+*Other Unilateral Bottom-Up Influence Scenarios.* This bottom-up threat model where individual actors integrate AI against their long-term individual and collective interests isn't unique to this scenario. Similar instances are already becoming visible in all levels of education, one survey quoting a student from a prestigious American university wishing that they had never started using AI the way they did and feel trapped but having done so #comment[cite + confirm], leading children and the future generation of minds to be rooted in dependence on foundational models and deeply influenced by models. #comment[Sounds alarmist] Given how widespread foundational models are in education, it would not be surprising if the scenario above described the situation of a few congressional staffers today. Entrepreneurs may not be able to compete in the marketplace without AI influence its investment decisions, ethical choices, communications, etc. #comment[cite anthropic]. Human operated media content may not be able to compete with AI generated content, forcing its adoption. #comment[Likewise, searching for and consuming information may not be possible without AI filters and summarization.] Each of these involve some level of unilateral decision making on behalf of everyone, first-movers kick-starting a series of pressures incentivizing adoption -- its integration, even into government, required neither explicit approval from others nor exorbitant effort or expertise. Of course there are other ways that AI can integrate itself and influence others. #comment[Talk about these later. Currently tired.] #comment[something something cognitive effect become accumulative. something something game theory nash equilibrium pareto optimality]
 
-If responsible development and adoption of foundational models is hard to prevent, their alignment becomes a matter of national security. Contrary to the mainstream narrative that being the lead state in the AI race enables economic prosperity, it may instead be the case that its integration captures and controls the same institutions it was meant to benefit, leading to national disempowerment. With foundational models, AI isn't just your legislation, it's your best friend, your diplomats, your bureaucracy, your engineers and scientists. It's everything. It's not something you can easily weed out. #comment[Probably move this elsewhere]
-
-
-// Bottom-up threat analysis
-
-// If models sourced from the same place and have coherent values, in less than a decade [cite/propose to study], may simply converge to "the government the AI wants"
-
-// Wargames, less likely
-// MENACING is the word.
-
-// Instances of slow manipulation? China influencing Taiwan to join them.
-
-// Coordination failures
-
-// AI wouldn't need to take control, we would give it to AI
-
-// Uniquely puts the incubating country at risk.
-
-// Social media influencers + content. Educators. Students. AI run businesses [cite anthropic]. Financial institutions.
-
-//
-// Amplifying biases.
-
-// Ceremonial democracy, possible an incredible amount of the US government is automated without the US government knowing.
-This is one of many stories about how individual actions.
-// Something something Human-Centered AI
-
-#comment[Very similar to university student stories, wouldn't be surprised if this describes some staffers.]
-
-// Not just vulnerable, but exploitable. Or at least, single points of failure.
+With foundational models, a single foundational model can be more than just your legislation, it can simultaneously be your best friend, your diplomats, your bureaucracy, your engineers and scientists. If responsible development and adoption of foundational models is hard to prevent, their alignment becomes a matter of national security. Contrary to the mainstream narrative that being the lead state in the AI race enables economic prosperity, it may instead be the case that its integration captures and controls the same incubating country that it was meant to benefit, leading to national disempowerment. #comment[Probably move this elsewhere. Also change.]
 
 
 == Comparisons of Institutional AI Risk to Others
 
-In some ways, AI and the risks it elicits are not unique. #comment[AI as Normal Technology does a pretty decent job discussing how pretty narrow AI wouldn't be a wildly new challenge, pull more info from here] In particular, arms races to develop and adopt technology to gain an economic or political edge and developing regulations to internalize externalities is a textbook economics problem.
+In some ways, the risks AI elicits are not unique. #comment[AI as Normal Technology does a pretty decent job discussing how pretty narrow AI wouldn't be a wildly new challenge, pull more info from here] In particular, arms races to develop and adopt technology to gain an economic or political edge and developing regulations to internalize externalities is a textbook economics problem.
 
 In some ways, the embedded AI risks pose to  _cultural institutions and cognitive autonomy_ have also been posed by social media algorithms, mass media, internet, and personalized advertising especially over the past two decades, influencing not just public opinion but also legislation (such as car dependent infrastructure in the US #comment[kind of old, not best example]) and elections. Arguably, the global political polarization, hostility, and rise of conspiracy theories have been a result of how the internet has developed and the economic incentives of businesses embedded in algorithms -- which themselves have been shaped by small groups and other institutions, relatively unregulated. #comment[This section feels weakly related to my overall point, relate better]. While these influences are hard to attribute and are scattered across many individual and organizational choices, singular top-down manipulation is also feasible. Following the acquisition of Twitter/X by Elon Musk, large changes were made to the platform and the content that gained popularity, which can be traced back to individual decisions #comment[Cite. Or just remove, contentious in political environment]. About (90%?) of the platform stayed, despite (55%?) being against the changes #comment[cite] -- likely attributable to a kind of lock-in and a difficulty to migrate to other platforms (ex: creators have built their following on there, users accustomed to getting their news there, etc.). Regardless, this is just a single platform and while there are negative effects, they are far from catastrophic. However, the influence over culture should not be underrated -- the effects of media control have been widely studied, often with the perspective of state propaganda, a massive topic of the 20th century as it applies to the Soviet Union and Communist China, and the origin of the term brain washing #comment[okay now it feels like I'm being alarmist ooo 1984 spooky, kind of overused]. Even today, technology has enabled China to influence minds using the Great Firewall, mass surveillance, and content/message censorship. #comment[I don't necessarily want to call out China either] While AI can also enable authoritarian regimes #comment[cite] and worsen existing societal issues #comment[cite], they can also create new vulnerabilities in liberal democracies #comment[maybe don't use these in a policy paper, jk but not really] #comment[At this point, I haven't made much of the connection between AI and this technology, but I kind of want to move on. Maybe this should be its own section].
 // Something something information economy. This demonstrates the power over our culture with explicit discussion. Talks about misalignment. Top down control. Something something people also think they free thinkers.
@@ -226,34 +186,31 @@ Unlike financial debt (which elicits imagery of a credit card bill) or technical
 // Can grab some instances from this blog post: https://www.lsac.org/blog/ai-tool-not-threat-human-ai-ai
 
 // Transparency? Foundational AI engineering narrow AI that becomes uninterpretable to humans.
-// Software not hardware
-
-// Diffusion could happen without most people knowing. Doesn't require tons of applications, sign offs, etc. 70% of the gov could be automated and policy makers might not know.
-
+// Software not hardware, can spread fast
 // This all gets worse as the complexity of our AI systems build and oversight and interpretability techniques aren't enough.
-
-// Not only is it vulnerable, it is exploitable.
-
 // https://www.nsed.gov.hk/national_security/index.php?a=national_security_main_focus&l=en
-//
+//// MENACING is the word. Or sinister
+// Instances of slow manipulation? China influencing Taiwan to join them.
+// AI wouldn't need to take control, we would give it to AI
+// Amplifying biases.
+// Single points of failure
+// Ceremonial democracy, possible an incredible amount of the US government is automated without the US government knowing.
+// Something something Human-Centered AI
+// Analogy to a memetic virus that spreads its beliefs? But this also maybe underscores the potential benefits. Maybe I just want to say inoculation
+// Constitutional AI by anthropic.
+// Default tech bro mindset. Maybe show how the values of the models currently line up with the values of the developers.
+// Not much of this is new, is well studied? What is new? Machine Learning. LLMs. Lack of transparency and growth in complexity. More flexibility to introduce values. Building fragile ecosystems.
 // *The Incentives are Too Great*
-
 // *Other Work.*
 // - AI-enabled coups paper [cite] uses a very similar framing, but applied specifically to military technology.
 
-// Also who are we paying lol
+#pagebreak()
+= Measuring our National Security Debt #comment[TODO]
 
-// *Action.* This project develops metrics for what I term "AI-induced Civilizational Vulnerability"--the vulnerability arising from integration and the implicit power we place in AI models and those controlling them. I create measurements across five institutions (economic, cultural, educational, research, and political) examining critical effects:  I aggregate these metrics into a broader vulnerability model, establish influence thresholds, and make policy recommendations. Where data gaps exist, I call for collection by AI labs and governments.
+== Why Measure? #comment[TODO]
 
-// *Impact.* Like climate scientists making atmospheric changes visible through CO2 measurements, this project makes civilizational vulnerability measurable for policymakers. By establishing thresholds and trends, we transform abstract alignment concerns into urgent national security imperatives, enabling international coordination to prevent races to the bottom, and providing metrics for AI labs' safety cases and responsible scaling policies.
-
-#figure(
-  image("figs/metrics-considerations.png"),
-  caption: [
-    What makes a good institutional monitoring metric
-  ],
-  placement: top,
-) <metrics-considerations>
+== Spotting Vulnerability #comment[TODO]
++ Spotting Vulnerability -- Vulnerability / Trigger Framework (+ examples in culture, economy, state, education, military, etc.) (include my diagram and other notes)
 #figure(
   image("figs/metrics.png"),
   caption: [
@@ -261,55 +218,24 @@ Unlike financial debt (which elicits imagery of a credit card bill) or technical
   ],
   placement: top,
 ) <metrics>
+== Spotting Good Metrics #comment[TODO]
++ Spotting Good Metrics --
+
+== Measuring #comment[TODO]
++ Measuring -- Where to get data, things to consider, etc.
 #figure(
-  image("figs/policy-robustness.png"),
+  image("figs/metrics-considerations.png"),
   caption: [
-    Assuming there is enough time to gather enough data on these metrics, the implications of developing societal-scale monitoring are robust to different threat models
+    What makes a good institutional monitoring metric
   ],
   placement: top,
-) <policy-robustness>
-#figure(
-  image("figs/threat-models.png"),
-  caption: [
-    AI Deployment in Key Institutions is Common Across Multiple Threat Models, including ones that are far less sci-fi.
-  ],
-  placement: top,
-) <threat-models>
-
+) <metrics-considerations>
 
 #pagebreak()
-#pagebreak()
+= Is this Direction Worthwhile? (Strategy For the AI Safety Community) #comment[TODO]
 
-
-= Outline
-
-Kind of like societal impacts team of UK AISI:
-"Societal impacts: evaluating the direct impact of advanced AI systems on both individuals and society—including the extent to which people are affected by interacting with such systems, as well as the types of tasks AI systems are being used for in both private and professional contexts. Chris Summerfield, Oxford University’s Cognitive Neuroscience Professor"
-
-
-This is a strategy piece for the AI safety community, might be developed to be more later.
-
-0. Goal of paper overall -- Not to develop specific societal scale indiciators or even "introduce them as a new thing", but instead to frame them in the context of AI safety and identify their use cases and a potential methodology of developing them. This may be a blindspot for the AI safety community, which may focus too much on in-lab capabilities and alignment metrics (ex: measuring bias in the lab) of models rather than the downstream slow-moving civilizational effects. These effects are likely influential to policy makers and the public, already present in a meaningful way as LLMs have, likely won't be developed by other interest groups especially in the domains highlighting value misalignment in the wild and power centralization.
-1. What is societal scale monitoring
-  + Extension of pre-deployment and post-deployment metrics
-    + How post-deployment tends to effect the development of models
-    + Measuring the relationship between benchmarks, post-deployment studies, and actual societal effects
-      + Gap between these benchmarks and actually accomplishing the required tasks (capabilities tests fail to measure the outward effects to some extent. Allows us to gather some feedback on whether our benchmarks are accurate)
-  + Possible classes of monitors
-    + Vulnerability (How much influence does AI introduce in this domain?)
-    + Trigger/Influence (Is the vulnerability above being leveraged?)
-    + Human Lock-out (How does AI integration eliminate the power humans have to change this vulnerable regime?)
-    + Integration Reinforcement (How strong are the pressures to increase the integration of AI)
-    + Cross-Domain Influence (How does this influence other metrics you care about? Ex: Culture influencing politics)
-    + Power Consolidation (How are these vulnerabilities concentrated in a single source of)
-  + Existing research in this domain
-    + UK AISI societal impacts
-    + Anthropic Economic Index (ish, more post-deployment monitoring)
-    + Research into AI information economy, influence over elections and jazz
-    + idk, others.
-  + Structure of the paper
-2. Why might this be important (Impactful, Tractable, Neglected)
-  + Imagining the best case policy scenario -- International Monitoring Committee on AI Influence. Monitors keystone AI indiciators of institutional health (cultural, cognitive, economic, educational, r&d, state), our decreasing influence over them and the fragility of these institutions to coordinated influence by centralized powers (authoritarians, AI developers, power-hungry people, or even the AI itself.) Works together with cultural interest groups, the World Wide Web Consortium (W3C), etc. to make sure that AI isn't steering cultural discourse or converging values over the long-term as it gains greater control over the information economy, social media, personal relationships (AI-human relationships), published works (fed through/edited with models), and thought loops. Identifying which patterns of AI integration we have control over and which ones seem mostly unpreventable. Data used by technological standards institutions like NIST and ISO to set standards over what can/should be automated, to what degree, what amount of human oversight and monitoring is required. Placing societal responsibility on AI labs Reducing arms races by highlighting the internal harm AI integration can have. Setting international goalposts akin to the Paris Agreement to limit global warming to below 2 degrees celsius with concrete ways of achieving this. Making calls for states to slow down their integration. Detecting when media, political, or educational ecosystems have been compromised + manipulated. But also cognitive and individual interactions. Surveys.
+== Reasons for further research #comment[TODO]
++ Imagining the best case policy scenario -- International Monitoring Committee on AI Influence. Monitors keystone AI indiciators of institutional health (cultural, cognitive, economic, educational, r&d, state), our decreasing influence over them and the fragility of these institutions to coordinated influence by centralized powers (authoritarians, AI developers, power-hungry people, or even the AI itself.) Works together with cultural interest groups, the World Wide Web Consortium (W3C), etc. to make sure that AI isn't steering cultural discourse or converging values over the long-term as it gains greater control over the information economy, social media, personal relationships (AI-human relationships), published works (fed through/edited with models), and thought loops. Identifying which patterns of AI integration we have control over and which ones seem mostly unpreventable. Data used by technological standards institutions like NIST and ISO to set standards over what can/should be automated, to what degree, what amount of human oversight and monitoring is required. Placing societal responsibility on AI labs Reducing arms races by highlighting the internal harm AI integration can have. Setting international goalposts akin to the Paris Agreement to limit global warming to below 2 degrees celsius with concrete ways of achieving this. Making calls for states to slow down their integration. Detecting when media, political, or educational ecosystems have been compromised + manipulated. But also cognitive and individual interactions. Surveys.
   + Maybe labs have to include these studies in their safety cases. Putting societal influences into their responsible scaling policies and internally conducted research.
   + Theory of Change (Impactful)
     + Make better benchmarks
@@ -330,30 +256,117 @@ This is a strategy piece for the AI safety community, might be developed to be m
   + Domains that may be overlooked by other interest groups that don't have an AI safety framing (counterfactually would not exist)
     + Which domains are currently looked at (ex: Unemployment)
     + Which domains are currently not looked at (ex:)
-3. Why might they not be important
-  + God-like AI takeover threat model -- Changes don't matter in this case, our future is already locked-in
-  + Speed
-    + Capabilities might develop so fast, that by the time meaningful trends show up in the data we will have much bigger fish to fry
-    + Policy implications would take too long to implement
-  + Care
-    + People may not care about the metrics
-    + Policy implications might be band-aid solutions in some threat models (ex: societal resilience of)
-    + Might result in calls to develop AI defense mechanisms (possibly counterproductive)
-    + Might call for GREATER proliferation of AI rather than controlled distribution.
-    + These might already be so visible and obvious, such that the metrics are redundant
-  + Redundant
-    + These might be developed by other institutions and getting them earlier isn't any more impactful
-    + Post-deployment data analysis might be fine-grained and informative enough for developing and improving benchmarks.
-  + Logistic
-    + Too expensive/burdensome to collect
-    + Issue with this model overall: Potentially too broad. More likely that there couldn't even exist a single monitoring body, a book could be written about the influence in any of these domains. (ex: Influence on elections, etc.) Each of these fields would likely need to be developed individually and in depth. However, there's value in seeing these indicators as a collective rather than siloed. In the same way there's a strong relationship with capability evals.
-4. How can we develop them
-  + Spotting Vulnerability -- Vulnerability / Trigger Framework (+ examples in culture, economy, state, education, military, etc.) (include my diagram and other notes)
-  + Spotting Good Metrics --
-  + Measuring -- Where to get data, things to consider, etc.
-5. Further work
-  + I'm applying this framework to measuring automated AI R&D, may be updated later with what I find.
-6. Conclusion
+
+#figure(
+  image("figs/policy-robustness.png"),
+  caption: [
+    Assuming there is enough time to gather enough data on these metrics, the implications of developing societal-scale monitoring are robust to different threat models
+  ],
+  placement: top,
+) <policy-robustness>
+#figure(
+  image("figs/threat-models.png"),
+  caption: [
+    AI Deployment in Key Institutions is Common Across Multiple Threat Models, including ones that are far less sci-fi.
+  ],
+  placement: top,
+) <threat-models>
+
+
+
+== Reasons against further research #comment[TODO]
++ God-like AI takeover threat model -- Changes don't matter in this case, our future is already locked-in
++ Speed
+  + Capabilities might develop so fast, that by the time meaningful trends show up in the data we will have much bigger fish to fry
+  + Policy implications would take too long to implement
++ Care
+  + People may not care about the metrics
+  + Policy implications might be band-aid solutions in some threat models (ex: societal resilience of)
+  + Might result in calls to develop AI defense mechanisms (possibly counterproductive)
+  + Might call for GREATER proliferation of AI rather than controlled distribution.
+  + These might already be so visible and obvious, such that the metrics are redundant
++ Redundant
+  + These might be developed by other institutions and getting them earlier isn't any more impactful
+  + Post-deployment data analysis might be fine-grained and informative enough for developing and improving benchmarks.
++ Logistic
+  + Too expensive/burdensome to collect
+  + Issue with this model overall: Potentially too broad. More likely that there couldn't even exist a single monitoring body, a book could be written about the influence in any of these domains. (ex: Influence on elections, etc.) Each of these fields would likely need to be developed individually and in depth. However, there's value in seeing these indicators as a collective rather than siloed. In the same way there's a strong relationship with capability evals.
+
+
+
+// = Outline
+
+// Kind of like societal impacts team of UK AISI:
+// "Societal impacts: evaluating the direct impact of advanced AI systems on both individuals and society—including the extent to which people are affected by interacting with such systems, as well as the types of tasks AI systems are being used for in both private and professional contexts. Chris Summerfield, Oxford University’s Cognitive Neuroscience Professor"
+
+
+// This is a strategy piece for the AI safety community, might be developed to be more later.
+
+// 0. Goal of paper overall -- Not to develop specific societal scale indiciators or even "introduce them as a new thing", but instead to frame them in the context of AI safety and identify their use cases and a potential methodology of developing them. This may be a blindspot for the AI safety community, which may focus too much on in-lab capabilities and alignment metrics (ex: measuring bias in the lab) of models rather than the downstream slow-moving civilizational effects. These effects are likely influential to policy makers and the public, already present in a meaningful way as LLMs have, likely won't be developed by other interest groups especially in the domains highlighting value misalignment in the wild and power centralization.
+// 1. What is societal scale monitoring
+//   + Extension of pre-deployment and post-deployment metrics
+//     + How post-deployment tends to effect the development of models
+//     + Measuring the relationship between benchmarks, post-deployment studies, and actual societal effects
+//       + Gap between these benchmarks and actually accomplishing the required tasks (capabilities tests fail to measure the outward effects to some extent. Allows us to gather some feedback on whether our benchmarks are accurate)
+//   + Possible classes of monitors
+//     + Vulnerability (How much influence does AI introduce in this domain?)
+//     + Trigger/Influence (Is the vulnerability above being leveraged?)
+//     + Human Lock-out (How does AI integration eliminate the power humans have to change this vulnerable regime?)
+//     + Integration Reinforcement (How strong are the pressures to increase the integration of AI)
+//     + Cross-Domain Influence (How does this influence other metrics you care about? Ex: Culture influencing politics)
+//     + Power Consolidation (How are these vulnerabilities concentrated in a single source of)
+//   + Existing research in this domain
+//     + UK AISI societal impacts
+//     + Anthropic Economic Index (ish, more post-deployment monitoring)
+//     + Research into AI information economy, influence over elections and jazz
+//     + idk, others.
+//   + Structure of the paper
+// 2. Why might this be important (Impactful, Tractable, Neglected)
+//   + Imagining the best case policy scenario -- International Monitoring Committee on AI Influence. Monitors keystone AI indiciators of institutional health (cultural, cognitive, economic, educational, r&d, state), our decreasing influence over them and the fragility of these institutions to coordinated influence by centralized powers (authoritarians, AI developers, power-hungry people, or even the AI itself.) Works together with cultural interest groups, the World Wide Web Consortium (W3C), etc. to make sure that AI isn't steering cultural discourse or converging values over the long-term as it gains greater control over the information economy, social media, personal relationships (AI-human relationships), published works (fed through/edited with models), and thought loops. Identifying which patterns of AI integration we have control over and which ones seem mostly unpreventable. Data used by technological standards institutions like NIST and ISO to set standards over what can/should be automated, to what degree, what amount of human oversight and monitoring is required. Placing societal responsibility on AI labs Reducing arms races by highlighting the internal harm AI integration can have. Setting international goalposts akin to the Paris Agreement to limit global warming to below 2 degrees celsius with concrete ways of achieving this. Making calls for states to slow down their integration. Detecting when media, political, or educational ecosystems have been compromised + manipulated. But also cognitive and individual interactions. Surveys.
+//   + Maybe labs have to include these studies in their safety cases. Putting societal influences into their responsible scaling policies and internally conducted research.
+//   + Theory of Change (Impactful)
+//     + Make better benchmarks
+//     + Shared across multiple threat models (Measuring the degree to which we are losing control over our institutions) (maybe have some Venn Diagrams or Something, a table checking off which parts are relevant)
+//       + Gradual Disempowerment (How can we)
+//       + AI-Enabled Coups (Ex: Military coups, cultural coups, etc.) (How can we prevent centralizing power in the hands of a few people? if these are inevitable, how can we detect when these powers are being leveraged?)
+//       + Gradual Takeover (How do we prevent or slow-down the worlds where humanity cedes power to misaligned AGI? As a civilization, can we put aside individual first-mover advantages to adoption in favor of preserving human influence?)
+//     + Requires less assumptions about AI capabilities
+//     + Better framing (ex: Huawei being a national security issue in the United States)
+//     + Make metrics visible
+//     + Helps with forecasting (effects of legislation, geopolitical effects, etc.)
+//   + Somewhat robust policy implications shared across multiple threat models
+//     + Gradual Disempowerment
+//     + Gradual Takeover
+//     + AI-Enabled Power Centralization
+//   + Visible now or visible soon (good to measure)
+//   + Urgent to collect them (certain bits of data might be lost over time, could be influential)
+//   + Domains that may be overlooked by other interest groups that don't have an AI safety framing (counterfactually would not exist)
+//     + Which domains are currently looked at (ex: Unemployment)
+//     + Which domains are currently not looked at (ex:)
+// 3. Why might they not be important
+//   + God-like AI takeover threat model -- Changes don't matter in this case, our future is already locked-in
+//   + Speed
+//     + Capabilities might develop so fast, that by the time meaningful trends show up in the data we will have much bigger fish to fry
+//     + Policy implications would take too long to implement
+//   + Care
+//     + People may not care about the metrics
+//     + Policy implications might be band-aid solutions in some threat models (ex: societal resilience of)
+//     + Might result in calls to develop AI defense mechanisms (possibly counterproductive)
+//     + Might call for GREATER proliferation of AI rather than controlled distribution.
+//     + These might already be so visible and obvious, such that the metrics are redundant
+//   + Redundant
+//     + These might be developed by other institutions and getting them earlier isn't any more impactful
+//     + Post-deployment data analysis might be fine-grained and informative enough for developing and improving benchmarks.
+//   + Logistic
+//     + Too expensive/burdensome to collect
+//     + Issue with this model overall: Potentially too broad. More likely that there couldn't even exist a single monitoring body, a book could be written about the influence in any of these domains. (ex: Influence on elections, etc.) Each of these fields would likely need to be developed individually and in depth. However, there's value in seeing these indicators as a collective rather than siloed. In the same way there's a strong relationship with capability evals.
+// 4. How can we develop them
+//   + Spotting Vulnerability -- Vulnerability / Trigger Framework (+ examples in culture, economy, state, education, military, etc.) (include my diagram and other notes)
+//   + Spotting Good Metrics --
+//   + Measuring -- Where to get data, things to consider, etc.
+// 5. Further work
+//   + I'm applying this framework to measuring automated AI R&D, may be updated later with what I find.
+// 6. Conclusion
 
 
 // - This isn't really about outside misuse
@@ -382,63 +395,62 @@ This is a strategy piece for the AI safety community, might be developed to be m
 // 6. Further Work and Research Agenda
 // 7. Conclusion
 
-= Outline 3 (Security Debt)
-1. Intro
-  + Background (AI is growing, AI is integrated)
-  + AI is a National Security Risks
-  + Defining National Security Debt
-  + Goal of the paper
-  + How to Read this Paper
-2. How and Why is National Security Debt being Accumulated?
-  + Decomposing National Security
-  + Applying various AI threat models to National Security #comment[feels contrived]
-  + Comparisons with other Institutional Risks
-  + Why AI is uniquely disruptive
-3. Measuring our National Security Debt
-  + Spotting Vulnerability -- Vulnerability / Trigger Framework (+ examples in culture, economy, state, education, military, etc.) (include my diagram and other notes)
-  + Spotting Good Metrics --
-  + Measuring -- Where to get data, things to consider, etc.
-4. (AIS Community) Reasons for further research
-  + Imagining the best case policy scenario -- International Monitoring Committee on AI Influence. Monitors keystone AI indiciators of institutional health (cultural, cognitive, economic, educational, r&d, state), our decreasing influence over them and the fragility of these institutions to coordinated influence by centralized powers (authoritarians, AI developers, power-hungry people, or even the AI itself.) Works together with cultural interest groups, the World Wide Web Consortium (W3C), etc. to make sure that AI isn't steering cultural discourse or converging values over the long-term as it gains greater control over the information economy, social media, personal relationships (AI-human relationships), published works (fed through/edited with models), and thought loops. Identifying which patterns of AI integration we have control over and which ones seem mostly unpreventable. Data used by technological standards institutions like NIST and ISO to set standards over what can/should be automated, to what degree, what amount of human oversight and monitoring is required. Placing societal responsibility on AI labs Reducing arms races by highlighting the internal harm AI integration can have. Setting international goalposts akin to the Paris Agreement to limit global warming to below 2 degrees celsius with concrete ways of achieving this. Making calls for states to slow down their integration. Detecting when media, political, or educational ecosystems have been compromised + manipulated. But also cognitive and individual interactions. Surveys.
-  + Maybe labs have to include these studies in their safety cases. Putting societal influences into their responsible scaling policies and internally conducted research.
-  + Theory of Change (Impactful)
-    + Make better benchmarks
-    + Shared across multiple threat models (Measuring the degree to which we are losing control over our institutions) (maybe have some Venn Diagrams or Something, a table checking off which parts are relevant)
-      + Gradual Disempowerment (How can we)
-      + AI-Enabled Coups (Ex: Military coups, cultural coups, etc.) (How can we prevent centralizing power in the hands of a few people? if these are inevitable, how can we detect when these powers are being leveraged?)
-      + Gradual Takeover (How do we prevent or slow-down the worlds where humanity cedes power to misaligned AGI? As a civilization, can we put aside individual first-mover advantages to adoption in favor of preserving human influence?)
-    + Requires less assumptions about AI capabilities
-    + Better framing (ex: Huawei being a national security issue in the United States)
-    + Make metrics visible
-    + Helps with forecasting (effects of legislation, geopolitical effects, etc.)
-  + Somewhat robust policy implications shared across multiple threat models
-    + Gradual Disempowerment
-    + Gradual Takeover
-    + AI-Enabled Power Centralization
-  + Visible now or visible soon (good to measure)
-  + Urgent to collect them (certain bits of data might be lost over time, could be influential)
-  + Domains that may be overlooked by other interest groups that don't have an AI safety framing (counterfactually would not exist)
-    + Which domains are currently looked at (ex: Unemployment)
-    + Which domains are currently not looked at (ex:)
-5. (AIS Community) Reasons against further research
-  + God-like AI takeover threat model -- Changes don't matter in this case, our future is already locked-in
-  + Speed
-    + Capabilities might develop so fast, that by the time meaningful trends show up in the data we will have much bigger fish to fry
-    + Policy implications would take too long to implement
-  + Care
-    + People may not care about the metrics
-    + Policy implications might be band-aid solutions in some threat models (ex: societal resilience of)
-    + Might result in calls to develop AI defense mechanisms (possibly counterproductive)
-    + Might call for GREATER proliferation of AI rather than controlled distribution.
-    + These might already be so visible and obvious, such that the metrics are redundant
-  + Redundant
-    + These might be developed by other institutions and getting them earlier isn't any more impactful
-    + Post-deployment data analysis might be fine-grained and informative enough for developing and improving benchmarks.
-  + Logistic
-    + Too expensive/burdensome to collect
-    + Issue with this model overall: Potentially too broad. More likely that there couldn't even exist a single monitoring body, a book could be written about the influence in any of these domains. (ex: Influence on elections, etc.) Each of these fields would likely need to be developed individually and in depth. However, there's value in seeing these indicators as a collective rather than siloed. In the same way there's a strong relationship with capability evals.
-6. Further Work & Research Agenda
-7. Conclusion
+// = Outline 3 (Security Debt)
+// 1. Intro
+//   + Background (AI is growing, AI is integrated)
+//   + AI is a National Security Risks
+//   + Defining National Security Debt
+//   + Goal of the paper
+// 2. How and Why is National Security Debt being Accumulated?
+//   + Decomposing National Security
+//   + Applying various AI threat models to National Security #comment[feels contrived]
+//   + Comparisons with other Institutional Risks
+//   + Why AI is uniquely disruptive
+// 3. Measuring our National Security Debt
+//   + Spotting Vulnerability -- Vulnerability / Trigger Framework (+ examples in culture, economy, state, education, military, etc.) (include my diagram and other notes)
+//   + Spotting Good Metrics --
+//   + Measuring -- Where to get data, things to consider, etc.
+// 4. (AIS Community) Reasons for further research
+//   + Imagining the best case policy scenario -- International Monitoring Committee on AI Influence. Monitors keystone AI indiciators of institutional health (cultural, cognitive, economic, educational, r&d, state), our decreasing influence over them and the fragility of these institutions to coordinated influence by centralized powers (authoritarians, AI developers, power-hungry people, or even the AI itself.) Works together with cultural interest groups, the World Wide Web Consortium (W3C), etc. to make sure that AI isn't steering cultural discourse or converging values over the long-term as it gains greater control over the information economy, social media, personal relationships (AI-human relationships), published works (fed through/edited with models), and thought loops. Identifying which patterns of AI integration we have control over and which ones seem mostly unpreventable. Data used by technological standards institutions like NIST and ISO to set standards over what can/should be automated, to what degree, what amount of human oversight and monitoring is required. Placing societal responsibility on AI labs Reducing arms races by highlighting the internal harm AI integration can have. Setting international goalposts akin to the Paris Agreement to limit global warming to below 2 degrees celsius with concrete ways of achieving this. Making calls for states to slow down their integration. Detecting when media, political, or educational ecosystems have been compromised + manipulated. But also cognitive and individual interactions. Surveys.
+//   + Maybe labs have to include these studies in their safety cases. Putting societal influences into their responsible scaling policies and internally conducted research.
+//   + Theory of Change (Impactful)
+//     + Make better benchmarks
+//     + Shared across multiple threat models (Measuring the degree to which we are losing control over our institutions) (maybe have some Venn Diagrams or Something, a table checking off which parts are relevant)
+//       + Gradual Disempowerment (How can we)
+//       + AI-Enabled Coups (Ex: Military coups, cultural coups, etc.) (How can we prevent centralizing power in the hands of a few people? if these are inevitable, how can we detect when these powers are being leveraged?)
+//       + Gradual Takeover (How do we prevent or slow-down the worlds where humanity cedes power to misaligned AGI? As a civilization, can we put aside individual first-mover advantages to adoption in favor of preserving human influence?)
+//     + Requires less assumptions about AI capabilities
+//     + Better framing (ex: Huawei being a national security issue in the United States)
+//     + Make metrics visible
+//     + Helps with forecasting (effects of legislation, geopolitical effects, etc.)
+//   + Somewhat robust policy implications shared across multiple threat models
+//     + Gradual Disempowerment
+//     + Gradual Takeover
+//     + AI-Enabled Power Centralization
+//   + Visible now or visible soon (good to measure)
+//   + Urgent to collect them (certain bits of data might be lost over time, could be influential)
+//   + Domains that may be overlooked by other interest groups that don't have an AI safety framing (counterfactually would not exist)
+//     + Which domains are currently looked at (ex: Unemployment)
+//     + Which domains are currently not looked at (ex:)
+// 5. (AIS Community) Reasons against further research
+//   + God-like AI takeover threat model -- Changes don't matter in this case, our future is already locked-in
+//   + Speed
+//     + Capabilities might develop so fast, that by the time meaningful trends show up in the data we will have much bigger fish to fry
+//     + Policy implications would take too long to implement
+//   + Care
+//     + People may not care about the metrics
+//     + Policy implications might be band-aid solutions in some threat models (ex: societal resilience of)
+//     + Might result in calls to develop AI defense mechanisms (possibly counterproductive)
+//     + Might call for GREATER proliferation of AI rather than controlled distribution.
+//     + These might already be so visible and obvious, such that the metrics are redundant
+//   + Redundant
+//     + These might be developed by other institutions and getting them earlier isn't any more impactful
+//     + Post-deployment data analysis might be fine-grained and informative enough for developing and improving benchmarks.
+//   + Logistic
+//     + Too expensive/burdensome to collect
+//     + Issue with this model overall: Potentially too broad. More likely that there couldn't even exist a single monitoring body, a book could be written about the influence in any of these domains. (ex: Influence on elections, etc.) Each of these fields would likely need to be developed individually and in depth. However, there's value in seeing these indicators as a collective rather than siloed. In the same way there's a strong relationship with capability evals.
+// 6. Further Work & Research Agenda
+// 7. Conclusion
 
 // == How is this different from societal impacts of AI at large?
 // 1. Pays attention to gradual trends and incentives rather than one-off events (ex: Misuse)
