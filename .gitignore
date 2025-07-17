@@ -270,3 +270,4 @@ data/external/*
 **/*.synctex.gz*
 **/*.toc
 **/_minted*
+/data
