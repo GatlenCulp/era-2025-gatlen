@@ -76,7 +76,7 @@
     *Policy Implications.* By identifying these power-transfer mechanisms, I provide a unified lens for understanding AI risks that transcends assumptions about specific capabilities or timelines. This work aims to inform policy interventions before AI-enabled power dynamics become entrenched.
   ],
   bibliography: bibliography("literature-review.bib"),
-  header: [Towards Monitoring our Growing National Security Debt with AI],
+  header: [AI Power Destabilization: Mechanisms Enabling Dangerous Power Dynamics],
   // appendix: [
   //   = Appendix
 
@@ -107,10 +107,36 @@
 }
 
 
+#let theorem(title, body) = {
+  block(fill: rgb("#f0f0f0"), inset: 10pt, radius: 4pt, [
+    *Theorem #title.* #body
+  ])
+}
+
+#let definition(title, body) = {
+  block(fill: rgb("#e8f4f8"), inset: 10pt, radius: 4pt, [
+    *Definition #title.* #body
+  ])
+}
+
+#let claim(body) = {
+  block(inset: (left: 20pt), [
+    *Claim.* #body
+  ])
+}
+
+*KEY*
+
+#comment[This is a comment]
+
+#todo[This is a task]
+
+#line(length: 100%)
+
 #comment[Document Length: #total-words words]
 
 #comment[
-  Most of this paper will be re-written for the final draft. After pivoting my project position in the week before this deadline, I had to do some last-minute edits to rearrange and alter my draft for the old project. In source, I note a lot of comments of specific claims I make that need to be cited. These have been excluded for readability and thus some information may be inaccurate
+  Most of this paper will be re-written for the final draft. After pivoting my project position in the week before this deadline, I had to do some last-minute edits to rearrange and alter my draft for the old project. In source, I note a lot of comments of specific claims I make that need to be cited. These have been excluded for readability and thus some information may be inaccurate.
 ]
 
 = Introduction
@@ -175,20 +201,18 @@ and worsen existing societal issues
 
 == Goal of the Paper
 
-#todo[
-  Reveals assumptions in original threat models
-  Reveal free-variables that could dramatically change the situations
-  Reveal holes in threat models
-  Remains logically consistent
-  Explanatory and predictive power (do the conclusions of these threat models align with the modeling of power?)
-  Formal framing of these scenarios
-  We fail if: Can’t get coherent definitions, this doesn’t tell us anything more about the scenarios we are modeling.
+#todo[Write Goals
+  - Reveals assumptions in original threat models
+  - Reveal free-variables that could dramatically change the situations
+  - Reveal holes in threat models
+  - Remains logically consistent
+  - Explanatory and predictive power (do the conclusions of these threat models align with the modeling of power?)
+  - Formal framing of these scenarios
+  - We fail if: Can’t get coherent definitions, this doesn’t tell us anything more about the scenarios we are modeling.
 
-  Economists engage w/ AI risk mitigation & mechanism design
-
-  AIS community able to identify, analyze, and mitigate risks more effectively
-
-  Government incorporates power analysis in their AI policies, preventing unforeseen power concentration
+  - Economists engage w/ AI risk mitigation & mechanism design
+  - AIS community able to identify, analyze, and mitigate risks more effectively
+  - Government incorporates power analysis in their AI policies, preventing unforeseen power concentration
 ]
 
 == Structure of the Paper
@@ -261,14 +285,14 @@ While AI shares many similarities to other technologies, a few properties make A
 
 *Foundational Models as a Risk Amplifier.* The influence AI systems have expands greatly when we consider the increasingly general AI systems that we see today, primarily Large Language Models (LLMs) like ChatGPT which are built on top of *foundational models*, of which frontier models take upwards of \$100 million to train
 #cite(<cottierHowMuchDoes2024>)
--- meaning the entire technology stack the modern AI revolutions depends on is enabled by just a handful of frontier models. While "AI" is confusingly used somewhat synonymously with these foundational models, it is important to distinguish between AI using foundational models and AI not using foundational models as most of the societal vulnerability introduced by AI is attributable to these models in particular, a topic explained later in "AI is Uniquely Problematic".
+-- meaning the entire technology stack the modern AI revolutions depends on is enabled by just a handful of frontier models. While "AI" is confusingly used somewhat synonymously with these foundational models, it is important to distinguish between AI using foundational models and AI not using foundational models as most of the societal vulnerability introduced by AI is attributable to these models in particular.
 // #comment[I don't distinguish these throughout this paper (oops), especially in the example below. I should maybe fix this.].
 Critically, it's also this technology that not only amplifies national security vulnerabilities, but also makes them exploitable.
 
 === Opacity and Unaccountability
 #todo[Add content about black box decision-making, plausible deniability, difficulty in attributing manipulation]
 
-"The nature of neural networks used in AI makes understanding how AI comes to its conclusion highly challenging. I recently read a 19 page research article that figured out how a single word was predicted."
+#comment["The nature of neural networks used in AI makes understanding how AI comes to its conclusion highly challenging. I recently read a 19 page research article that figured out how a single word was predicted."]
 
 === Rapid, Quiet Diffusion
 
@@ -278,6 +302,7 @@ Critically, it's also this technology that not only amplifies national security 
 // #comment[Also recent SWE uplift study by METR #cite(<MeasuringImpactEarly20252025>) showing that AI enabled tooling actually makes developers slower. Also idk if worth mentioning intelligence explosion or "country of geniuses in a data center" Amodei. But even the PERCEPTION of it being helpful (even if harmful/incapable) is enough for it to diffuse. Diffusion is the right question here and development only helps so much in that it enables diffusion.]
 There is trillions of dollars in investment going towards the development of this technology and lots of international attention.
 // #comment[find source]
+// ALSO IMO gold
 
 Of course there are reasons for doubt -- _benchmarks don't necessarily track the actual economic tasks_ we are interested in and while capabilities have seemed to rocket ahead, adoption of this technology has been quick, but not proportional. #cite(<AINormalTechnology>) Nonetheless, it's reasonable to believe that adoption could lag behind capabilities as many institutions are slow to integrate even decades old technology from the start of the information age.
 While progress may eventually plateau, for the moment foundational models linger near human-level performance in many domains and it appears there is no slowing of cheap tricks that even junior researchers can pull to make improvements indicate that there may be enough low hanging fruit to sustain progress beyond human capabilities in most domains.
@@ -321,7 +346,7 @@ It's also the reason why, top-down oversight and control over our institutions b
 
 
 === Centralized Development, Distributed Impact
-#todo[Add content about handful of foundational models, billions in development costs creating natural monopolies, winner-take-all dynamics]
+#todo[Add content about handful of foundational models, millions in development costs creating natural monopolies, winner-take-all dynamics, soft/hard nationalization]
 
 #pagebreak()
 = A Power-Centric Model of Risk
@@ -361,10 +386,187 @@ It's also the reason why, top-down oversight and control over our institutions b
 #pagebreak()
 = Formalizing a Power-Centric Model
 
+#todo[Overall, review, update, and fix these formal models with my updated thoughts.]
+
+== Sociological Definition of Power
+
+#todo[Insert inspirations]
+
+Overall structure: Start from basic models of power and continue breaking things to demonstrate the mathematical properties a model of power must have.
+
+_Note: State space may disappear and instead become the "behavior" of the environment which itself can be influenced via evolutionary game theory. This will come up later._
+
+== Why Absolute Power Fails to Model Power Dynamics
+
+=== The Modeling Asymmetry Thesis
+
+#claim[Models of relative power ($cal(R)$) form a proper superset of models of absolute power ($cal(A)$), establishing that $cal(R) supset cal(A)$ in modeling capacity.]
+
+=== Formal Statement
+
+#definition[(Power Model Spaces)][
+  Let:
+  - $cal(A) = {M :\ M "models power as properties of agents"}$
+  - $cal(R) = {M :\ M "models power as relational"\ "properties between agents"}$
+
+  Then: $cal(A) subset cal(R)$ (proper subset relation)
+]
+
+=== Supporting Arguments
+
+*Absolute Power as Special Case of Relative Power ($cal(A) subset.eq cal(R)$)*
+
+#theorem[(Reduction Principle)][
+  Any absolute power model can be reformulated as a relative power model by introducing an environmental baseline.
+]
+
+*Formal Construction.* Given absolute power $P_"abs": "Agent" -> RR^+$, we can define:
+$ P_"rel"(a, e) = P_"abs"(a) - P_"abs"(e) $
+where $P_"abs"(e)$ serves as a zero-point reference for environment $e$.
+
+#todo[Replace with an actual proof from graph theory]
+
+*Physical Analogy.* This construction mirrors potential energy in physics, where absolute potential $V$ is meaningless without a reference frame:
+$ V_"rel" = V_"abs" - V_"ground" $
+
+*Incompleteness of Absolute Power Models ($cal(A) subset.neq cal(R)$).*
+
+#theorem[(Limitation Theorem)][
+  Absolute power models cannot capture essential relational dynamics without introducing factors outside their framework.
+]
+
+#todo[Demonstrate some examples like in my original, such as distance as one factor and just other seemingly complex set of environmental interaction factors that seem almost impossible to resolve absolute powers between entities to relative powers in a sensible way. In physics potential can be mapped to potential energy using distance, unlikely we have anything nearly as similar.]
+
+*Core Problem.* The power relationship between agents $A$ and $B$ cannot be logically derived from their absolute powers alone. Power lacks transitivity -- if $A$ dominates $B$ and $B$ dominates $C$, this does not guarantee $A$ dominates $C$. This non-transitivity demonstrates that power cannot be reduced to a single absolute measure.
+
+*Example.* Consider a circular dominance structure (like rock-paper-scissors):
+- Rock defeats Scissors
+- Scissors defeats Paper
+- Paper defeats Rock
+
+No absolute power assignment $P_"abs"$ can capture these relationships.
+
+*Conclusion.* Since capturing these dynamics requires factors $in.not cal(A)$, we have $cal(A) != cal(R)$.
+
+#todo[improve]
+
+=== Proof of Proper Subset Relation
+
+From §1.2.1: $cal(A) subset.eq cal(R)$\
+From §1.2.2: $exists M in cal(R)$ such that $M in.not cal(A)$\
+Therefore: $cal(A) subset cal(R)$ (proper subset) $square$
+
+=== Power Over Environment as Logical Encapsulation of What is Meant By "Absolute Power"
+
+#todo[fin]
+
+=== Conclusion
+
+Absolute power alone is insufficient for modeling power. For the remainder of this work, we consider only relational power -- power over the environment or power over other agents.
+
+_Note: This does NOT tell us that relative power is sufficient, only that it may be._
+
+== Why Actions are Necessary for Power Analysis
+
+=== The Inseparability Thesis
+
+#claim[Power is meaningless without considering available actions -- these elements are fundamentally inseparable in any coherent power framework.]
+
+
+=== Behavioral Power
+
+*Insight 1.* Power is a function of available actions.
+
+*Insight 2.* Power is a function of optimal actions assuming rationality.
+
+#todo[Finish.]
+
+== Why Utility is Necessary for Power Analysis
+
+=== The Inseparability Thesis
+
+#claim[Power is meaningless without considering agent utilities -- these elements are fundamentally inseparable in any coherent power framework.]
+
+_NOTE: Will likely replace this utility statement._
+
+=== Utility Alignment
+
+*Core Insight.* Power is an incoherent concept under complete alignment of utilities.
+
+#definition[(Utility Alignment)][
+  Let:
+  - $U_A, U_B : cal(S) -> RR$ be utility functions for agents $A$ and $B$
+  - $cal(S)$ be the state space
+  - $P(A -> B)$ be the power of $A$ over $B$
+
+  If $U_A (s) prop U_B (s) space forall s in cal(S)$ (perfect alignment), then $P(A -> B)$ is behaviorally irrelevant.
+]
+
+*Illustrative Example.* Consider a human-loving agent who can travel to an island, harm anywhere from 1 to 1,000,000 innocent people, and then escape unnoticed. Does their power increase with the number they _could_ harm? This capacity is irrelevant:
+- The human-loving agent doesn't benefit from causing harm and would prefer not to
+- The potential victims have no desire to be harmed
+
+The mere existence of this action is meaningless without considering whether it would ever be exercised.
+
+#todo[Replace with better example.]
+
+#todo[Include behavioral misalignment, ie: power over]
+
+=== Agent Boundary Definition
+
+#theorem[(Aggregation Principle)][
+  Alignment relationships determine when individual power can be meaningfully aggregated into a single coherent agent:
+  $ [P_"collective" = sum_i P_i] <=> [U_i = U_j space forall i, j] $
+]
+
+*Application.* Humanity's collective power is discussable precisely because humans share sufficient utility alignment over key domains.
+
+=== Environmental Mediation
+
+*Extended Framework.* When modeling multi-agent systems with environmental interactions:
+- Environment $E$ can be treated as an agent with its own dynamics
+- Even without direct conflict between agents, they may compete for environmental resources
+- Agents may inflict harm indirectly through environmental manipulation
+
+Power becomes relevant when agents compete for control over shared environmental factors, even if their ultimate goals don't directly conflict.
+
+#todo[Also could say that their actions are some mixed strategy over a number of actions. Not sure if this is true but not a crucial point.]
+
+=== Agents in Shared State Space
+
+Agents of course, are themselves components of state spaces and they may have preferences over the state of themselves and others. Often times they have preferences for their survival which must be modeled in the utility function as well.
+
+=== Critique of Light-Cone Formulation
+
+*Orthogonality Scenario.* Consider alien civilization $Omega$ with utilities orthogonal to humanity $H$. Imagine $Omega$ cares only about arranging neutrinos into smiley faces -- an activity that has zero impact on human flourishing. Meanwhile, humans optimize matter and energy arrangements with no effect on neutrino patterns. (We can additionally imagine that neither agent meaningfully interferes with the other, perhaps humanity and these aliens never interact)
+
+Even if $Omega$ achieves perfect control over neutrino arrangements while humans have only partial control over matter/energy, it's meaningless to compare their "power over the environment." The concept of environmental control is incoherent without specifying _which aspects_ of the environment matter.
+
+*Key Insight.* Power must be defined over relevant state space -- control over factors that actually matter to the agents involved:
+$ P_"relevant"(A) = integral_(cal(S)_A) |nabla U_A (s)| space d s $
+where $cal(S)_A := {s in cal(S) : partial U_A \/ partial s != 0}$ represents the relevant state space.
+
+Note that this relevant state space is inherently chosen in reference to some agent and thus is incoherent outside of some utility reference frame.
+
+== Synthesis
+
+#theorem[(Completeness Requirement)][
+  A complete theory of power requires (although may be insufficient):
+  + Relational framework ($cal(R) supset cal(A)$)
+  + Behavioral specifications for all agents (possibly without explicit utilities)
+  + Action space definitions $cal(A)_i$
+  + Relevance constraints on state space $cal(S)_i subset cal(S)$
+]
+
+*Implication.* Power analysis without game-theoretic foundations is fundamentally incomplete. $square$
+
+#todo[Power of signaling. US vs Japan and communicating the existence of the nuclear bomb. US in some way doesn't have power over Japan if it doesn't benefit from either (A) Annihilating it or (B) Communicating its Annihilation.]
+
+
 == Importance of Formal Roots
 #todo[
   Importance of formal roots
-  Enables communication – Terms mean different things to different people. Some terms may be (a) reducible to others (b) nonsensical © inconsistently used, etc.
+  Enables communication – Terms mean different things to different people. Some terms may be (a) reducible to others (b) nonsensical (c) inconsistently used, etc.
   Simulations of Complexity
   Mechanism Design
   …
@@ -580,9 +782,9 @@ The influence of AI systems expands as we develop and apply them to accomplish e
 
 // #link("https://docs.google.com/presentation/d/1ikilDLpaIlueCwLxikK21sQj-TJdwwsGbwatKxqXVOc/edit?slide=id.g370fdf06599_0_83#slide=id.g370fdf06599_0_83")[Midpoint Presentation]
 
-#link("https://docs.google.com/document/d/1EFgcZyiU7ZY8NYnOL8Tvo7Ljb2zcb5UPI9ASYBIcF-c/edit?tab=t.0")[Instructions]
+// #link("https://docs.google.com/document/d/1EFgcZyiU7ZY8NYnOL8Tvo7Ljb2zcb5UPI9ASYBIcF-c/edit?tab=t.0")[Instructions]
 
-#link("https://airtable.com/appYL8bmzJXAUgYeP/pagQtjvvhFcfy9o23/form")[Submission Link]
+// #link("https://airtable.com/appYL8bmzJXAUgYeP/pagQtjvvhFcfy9o23/form")[Submission Link]
 
 
 #pagebreak()
