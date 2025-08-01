@@ -23,6 +23,9 @@
 #import "@preview/wordometer:0.1.4": total-words, word-count
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
 
+
+#set quote(block: true, quotes: true)
+
 #let comment-text = text.with(fill: blue.darken(20%).transparentize(40%))
 #let todo-text = text.with(fill: red.darken(20%).transparentize(40%))
 #let comment(content, hide: false) = {
@@ -201,27 +204,35 @@ Combining the above, we will say:
 #pagebreak()
 = Towards a Formal Model of Power
 
-There are many different definitions of "power", some of which describe slightly different concepts. This formalism doesn't attempt to make a definition of "power" that encompasses all of these things. Instead, it aims to create a concrete single of power from one of these perspectives and either (a) Formally relate other definitions of power into this definition, (b) Demonstrate these other definitions are not coherent, or (c) Demonstrate that the aspects this fails to model are not behaviorally relevant to the questions we want to answer and would be best left to the philosophers (akin to the philosophy of quantum mechanics.)
+*Motivation.* There are many definitions of power across sociological, economic, political, and anthropological literature. However, almost none of these definitions were formalized, each disagreeing with and pointing out flaws in the definitions of power offered by their predecessors, offering new ones in their place. However, many of these definitions of power can be related to one another. If we are able to distinguish between these different types of power and cut through the different assumptions their usages have, we can have a much clearer conversation on the topic, potentially clear the way towards empirically measuring the potential and manifest power at large in our society, and design mechanisms to avoid harmful power dynamics.#footnote[Existing theories of power are either loosely connected and non-rigorously defined OR rigorously mathematically defined in the context of a particular limited model -- for example, Cooperative Game Theory has multiple indices of power, but these cannot be easily extended outside the realm of these models. Leaving out details you don't care about is a feature not a bug. However, it can make your models brittle when moved outside the topic.]
 
-#quote[
-  Thus we are not likely to produce certainly not for some considerable time to come anything like a single, consistent, coherent “Theory of Power.” We are much more likely to produce a variety of theories of limited scope, each of which employs some definition of power that is useful in the context of the particular piece of research or theory but different in important respects from the definitions of other studies.
-  -- Dahl's Concept of power 1957
+// There's interest in studying this across RL (Jason), Game Theory, and Others.
+
+*Practicality.* Far from being just a philosophical exercise, there is interest in modelling power, values, and alignment between agents in other domains. Two examples: (a) In Reinforcement Learning, a core subdomain of AI research, there is interest in understanding whether two agents are pursuing the same goals even when pursuing different actions. (b) Researchers at the Centre for the Governance for AI are interested in formalizing how the social contract can break down when labor replacing AI is introduced in addition to interest in formalizing the conversion of economic power into political power and vice versa. While this work may not bring us quite that far, it at least lays the groundwork for what can hopefully be a larger framework.
+// Ex: Jason. Also did not relate strongly to power.
+
+*Scope.* Rather than create a universal "Theory of Power" encompassing all definitions, I begin by developing a concrete mathematical framework for one specific perspective on power. We will either:
+- (a) Formally relate other definitions to this framework
+- (b) Demonstrate their incoherence
+- (c) Identify behaviorally irrelevant aspects (philosophical rather than practical#footnote[Akin to philosophy of quantum mechanics])
+- (d) Show where our model reasonably approximates complex realities
+
+*Goal.* Although this aims to develop a general theory of power, the shape this will take will inevitably be influenced by context in which it was developed. This formalism was developed in the context of understanding and predicting dangerous power dynamics by describing and comparing power dynamics between populations with complex relationships -- without assuming rationality and sometimes without clear utility functions -- over a long period of time.
+
+#quote(attribution: "Dahl's Concept of Power 1957")[
+  Thus we are not likely to produce certainly not for some considerable time to come anything like a single, consistent, coherent 'Theory of Power.' We are much more likely to produce a variety of theories of limited scope, each of which employs some definition of power that is useful in the context of the particular piece of research or theory but different in important respects from the definitions of other studies.
 ]
 // I should look into behavioral game theory and evolutionary games.
 
+*Methodology.* I start with one of the original general formalisms of power in literature -- Dahl's influential essay on the Concept of Power from 1957. I attempt to generalize this even further, point out some of the issues of it, demonstrate the mathematical properties a model of power must have, and continue adding components until we are closer to modeling what we care about.
 
-Overall structure: Start from basic models of power and continue breaking things to demonstrate the mathematical properties a model of power must have.
+// _Note: State space may disappear and instead become the "behavior" of the environment which itself can be influenced via evolutionary game theory. This will come up later._
 
-_Note: State space may disappear and instead become the "behavior" of the environment which itself can be influenced via evolutionary game theory. This will come up later._
-
-Developments in game theory have typically been motivated by being able to model a particular concept, but have also been limited by its attempt to do so. Leaving out details you don't care about is a feature not a bug. However, it can make your models brittle when moved outside the topic.
-
-The motivation here is being able to describe and aggregate dangerous power dynamics between populations with complicated relationships including ones that can't quite be assigned a utility function over long periods of time where people perhaps aren't acting rationally.
 
 #pagebreak()
 = Generalized Dahl Framework
 
-== Defining Dahl's Power (Control)
+== Defining Dahlian Power
 #diagram(
   node-stroke: .1em,
   node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
@@ -230,44 +241,59 @@ The motivation here is being able to describe and aggregate dangerous power dyna
   edge([$W$], "-|>"),
   node((1, 0), [$B$], radius: 2em),
   edge([$x$], "-|>"),
-  // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
 )
 
-We will start from Dahl's concept of power. However, since we define power differently, we will call Dahl's power "*control*". Instead of defining "People", they will be called "Players" to fit in with the later game theory formulations.
+I start with Dahl's influential concept, which I term *Dahlian Power* to distinguish it from other power definitions we'll encounter.
 
-#quote[
-  Suppose I stand on a street corner and say to myself, “I command all automobile drivers on this street to drive on the right side of the road”; suppose further that all the drivers actually do as I “command” them to do; still, most people will regard me as mentally ill if I insist that I have enough [control] over automobile drivers to compel them to use the right side of the road. On the other hand, suppose a policeman is standing in the middle of an intersection a t which most traffic ordinarily moves ahead; he orders all traffic to turn right or left; the traffic moves as he orders it to do. Then it accords with what I conceive to be the bedrock idea of [control] to say that the policeman acting in this particular role evidently has the [control] to make automobile drivers turn right or left rather than go ahead. My intuitive idea of [control], then, is something like this: A has [control] over B to the extent that he can get B to do something that B would not otherwise do. -- Dahl 1957
-]
+// We will start from Dahl's concept of power. However, since we define power differently, we will call Dahl's power "*control*". Instead of defining "People", they will be called "Players" to fit in with the later game theory formulations.
 
-*Amount of control ($M$)*: $A$'s control over $B$ with respect to the response $x$ by means $w$:
+*Dahl's Intuition.* Consider two scenarios from the original essay #footnote[
+  The full quote:
+  #quote[
+    Suppose I stand on a street corner and say to myself, “I command all automobile drivers on this street to drive on the right side of the road”; suppose further that all the drivers actually do as I “command” them to do; still, most people will regard me as mentally ill if I insist that I have enough power over automobile drivers to compel them to use the right side of the road. On the other hand, suppose a policeman is standing in the middle of an intersection a t which most traffic ordinarily moves ahead; he orders all traffic to turn right or left; the traffic moves as he orders it to do. Then it accords with what I conceive to be the bedrock idea of power to say that the policeman acting in this particular role evidently has the power to make automobile drivers turn right or left rather than go ahead. My intuitive idea of power, then, is something like this: A has power over B to the extent that he can get B to do something that B would not otherwise do. -- Dahl 1957
+  ]]
+
+1. A person on a street corner "commanding" drivers to use the right side (which they already do)
+2. A police officer directing traffic to turn when it would normally go straight.
+
+Only the second demonstrates genuine power -- the ability to cause behavior that wouldn't otherwise occur.
+
+*Formal Definition*: Dahlian Power of agent $A$'s control over $B$ with respect to the response $x$ by means $w$:
 $
-  M(A/B : W, x) = Pr(B, x &| A, w) \
-                                   & - Pr(B, x | A, overline(w)) \
-                       = p_1 - p_2
+  M(A/B : W, x) := Pr(B, x &| A, w) \
+                                    & - Pr(B, x | A, overline(w))
 $
-Where $Pr(B, x &| A, w)$ is the probability that $B$ takes action $x$ given $A$ took action $w$. Dahl is careful to say that this definition is not dependent on the complicated trace of causality.
+Where:
+- $Pr(B, x &| A, w)$ is the probability that $B$ takes action $x$ given $A$ took action $w$.
+- $overline(w)$ is $A$ not taking action $w$
 
-Dahl's Model is made up of the following components
-1. 2+ players #todo[Might not be true], each of which have Binary Action spaces (the means and the response)
-2. The "connection" $cal(I)$ for which these models interact. This is assumed to be unknown.
-3. Probability distribution defined over: $ Pr : (("Agent", "Action"), ("Agent", "Action")) & \
-                                        -> [0, 1] $
-4. Does not require utility
+*Key Components.* Dahl's model is made up of the following components:
+1. *Agents.* At least two agents each of which have binary *actions* (e.g. take action $w$ or not)
+2. *Connection.* Some mechanism $cal(I)$ linking agents (unspecified)
+3. *Probability.* Distribution over agent-action pairs
 
-== Relaxing the Binary Action Space
+What this doesn't require:
+1. *Utility.* Doesn't say what either agent prefers.
+2. *Causal Relationship.* Dahl explicitly avoids requiring causal traces -- only observable behavioral differences matter. However, does note causality is required for real power, hence the means must precede the response temporally.
+3. *Practicality.* Doesn't say whether the controller actually would or would not take action $w$ in practice.
 
-In Dahl's formalization we define the means $W$, an action that is ($w$) or is not ($overline(w)$) taken ($W in {w, overline(w)}$ ). We can extend number of available actions that $A$ has from 2-means to n-means: $W in cal(W)$ where $cal(W) = {w_1, ..., w_n | n in NN^+}$:
 
+== Generalizing Beyond Binary Actions
+
+Dahl's binary framework (action taken or not) is limiting. Real agents choose from multiple options.
+
+*Extension to n actions.* Let $cal(W) := {w_1, ..., w_n | n in NN^+}$. Then:
 $
-  M(A/B : W, x) = max_(w^+ in cal(W)) & Pr(B, x | A, w^+) \
-                                      & - max_(w^- in cal(W)) Pr(B, x | A, w^-) \
-                          = p_1 - p_2
+  M(A/B : W, x) := max_(w^+ in cal(W)) & Pr(B, x | A, w^+) \
+                                       & - max_(w^- in cal(W)) Pr(B, x | A, w^-)
 $
+This measures $A$'s maximum influence over $B$'s likelihood of taking action $x$.
 
-In this case we are examining player $A$'s influence over $B$'s taking of action $x$. Note that if $n = 1$, representing the case where $A$ has no ability to choose actions, then control $M = 0$.
+*Boundary Case.* When $|cal(W)| = 1$ (no choice), Dahlian Power $M = 0$, fitting our intuition that power requires agency.
 
+== Beyond Two-Controller Dynamics
 
-== Relaxing the 2+ Player Condition
+Real power dynamics rarely involve just two controllers. Consider the example from Dahl's original paper where multiple legislators influence the outcome of a policy being passed or not:
 
 #diagram(
   node-stroke: .1em,
@@ -283,14 +309,19 @@ In this case we are examining player $A$'s influence over $B$'s taking of action
   // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
 )
 
-Dahl specifies how to compare control for 1+ controlling players ($A = {A_1, ..., A_n}$) in the original paper. #todo[Finish.  This comparative power was labeled $M''_i (A_i)$
+When multiple controllers ${A_1, ..., A_n}$ simultaneously influence the responder $B$, we need to extend our framework. Each agent $A_i$ can take actions from their action set $cal(W)_i$, creating a joint action profile $bold(w) = (w_1, ..., w_n)$.
 
+*Comparative Dahlian Power.* To assess individual contributions within multi-controller influence, Dahl introduced comparative measures (Referred to as $M''$ and did not formalize). For controller $A_i$ within controllers $A$:
 
+#todo[Finish, not super important.]
+$
+  M_i (A/B : cal(W), x) := max_(bold(w) in product cal(W)_j) ...
+$
 
-  $ M(A/B : W, x) = max_(w^+ in cal(W)) & Pr(B, x | A, w^+) \
-                                      & - max_(w^- in cal(W)) Pr(B, x | A, w^-) \
-                          = p_1 - p_2 $
-]
+*Combined Power.* We can aggregate any combination of these controllers into a virtual single controller coalition $A' subset.eq {A_1, ..., A_n}$ and define the power of the coalition in a similar way. This new coalition $A'$ will have an action space constructed from actions spaces of it's members $cal(W)' = cal(W)_1 times cal(W)_2 times ... times cal(W_m)$ where $A_1, ..., A_m$ are the controllers in the coalition.
+#todo[Better written def, (not necessarily referring to the indices of the original ordering)]
+
+== The Environment as a Black Box
 
 #diagram(
   node-stroke: .1em,
@@ -310,11 +341,19 @@ Dahl specifies how to compare control for 1+ controlling players ($A = {A_1, ...
   edge([x], "-|>"),
   // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
 )
+
+*Abstracting Away Agency.* Dahl's framework doesn't require the influenced party to be an agent. By treating $B$'s decision-making as a black box -- encoded entirely in the probability function $Pr$ -- we can extend Dahlian Power to environmental outcomes. Not only is this possible, but it may actually be more proper because Dahl doesn't model $B$ as an agent taking actions at all. Letting $E := "environment"$
+
+$
+  M(A/E : W, x) := max_(w^+ in cal(W)) & Pr(E = x | A, w^+) \
+                                       & - max_(w^- in cal(W)) Pr(E = x | A, w^-)
+$
+
 // Mentioned that comparisons can only be made when referring to a similar scope, etc.
 
 // I think it's also possible you can actually just model this as taking one of 2^n possible actions and comparing the control any two offer you or something.
 
-We certainly need at least one of these controlling players. However, Dahl's model of power can make due without the need for a responding player. Instead we can define control over some response from the environment instead.
+*Reverse Environmental Influence.*
 
 #diagram(
   node-stroke: .1em,
@@ -332,11 +371,25 @@ We certainly need at least one of these controlling players. However, Dahl's mod
   // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
 )
 
-You might also be able to place the Env here as A as well, although "taking actions" seems weird from an environmental perspective. But there is a useful analogue here. Kind of like how the weather controls whether you go on a picnic, in-some way you can model random decisions power on other outcomes. (Lots of issues with associating actions with the environment.)
+Can environments exert "power"? While environments don't take deliberate actions, environmental states do influence agent behavior:
+
+*Example.* Weather "determines" whether others will attend your picnic -- rain reduces attendance probability. While this stretches our definition of power depending on how you view the environment, it may still sensible to develop analogues:
+- Possible Environmental States = Action Space
+
+*The Agency Question.* Dahlian power doesn't require desires or utility functions -- only the ability to select from multiple actions. This creates a philosophical tension:
+- Deterministic view: If environments (or agents) have no genuine choice, then $∣ cal(W) | = 1$, yielding zero Dahlian power
+- Probabilistic view: We assign probabilities to environmental states due to our uncertainty, treating nature as if it "chooses" stochastically
+
+*Practical Resolution.* Whether discussing weather patterns or legislative decisions, we model both agents and environments probabilistically because:
+- Complete determinism is computationally intractable
+- Uncertainty is inherent to our observations
+- Probabilistic models yield useful predictions
+
+*This is a methodological choice, not an ontological claim about free will or determinism.* We use whichever representation -- agent or environment -- best serves our analytical goals.
 
 == Means-Response Chains
 
-THE BELOW DOESN'T WORK IN DAHL'S MODEL!!
+Means-response chains DON'T WORK IN DAHL'S MODEL!!
 
 #diagram(
   node-stroke: .1em,
@@ -406,7 +459,9 @@ THE BELOW DOESN'T WORK IN DAHL'S MODEL!!
 Lukes criticizes Dahl and the pluralists for being too empirical, only examining the political power of observable direct decision making, whereas there are plenty of soft-power leading up to that direct decision making that play a part in both (a) Shaping the preferences of voting and policies brought to the table prior to receiving the policy (bargaining power) (b) A more cultural notion of which ideas are even consciously considered (ideational power)  #todo[check + understand better]
 #todo[Perhaps fun to dig up Dahl's New Haven data and demonstrate some type of this modeling.] This categorization is extremely helpful for analyzing power and it will be returned to. However, can demonstrate mathematically what Luke's criticism is -- ie: Doesn't really tell you who has the final say.
 
-Even when modeling the potential actors that could be influencing the final legislator decisions
+Even when modeling the potential actors that could be influencing the final legislator decisions, you come to the point of having to model all downstream agents as just "part of the environment", not modeling any of the complexities and interactions of the underlying distribution. Additionally, modeling any of the upstream agents and asking how much power they have over the final decision requires modeling the rest of the agents as part of the environment. Regarding who your controller-in-power is.
+
+Additionally, you could model each of these actors as being individual controllers
 
 #comment[Immediately this has some connection with law, duress, consent, etc. It seems like the actual utility is an important question here, ex: no one expects positive rewards to hold up in court, but coercion does. This in some way connects with consent.]
 
