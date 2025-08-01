@@ -71,7 +71,7 @@
 
 // Humanity's Security?
 #show: icml2025.with(
-  title: [\[🚀 ERA Midpoint Draft\] AI Power Destabilization:\ Mechanisms Enabling Dangerous Power Dynamics],
+  title: [Power-Centric Model of Risk\ &\ Disambiguating Societal Power-Dynamics with\ Concrete Economic and Mathematical Models],
   authors: (authors, affls),
   keywords: (
     "AI safety",
@@ -84,10 +84,8 @@
     "AI alignment",
   ),
   abstract: [
-    *AI's Unique Power Dynamics.* This paper examines how AI uniquely enables dangerous power dynamics through mechanisms that bypass traditional checks and balances. Unlike previous technologies, AI can simultaneously control multiple domains (legislation, media, education, personal relationships) while operating with unprecedented opacity and speed of diffusion.\
-    *Power-Centric Framework.* I propose a power-centric framework for understanding AI risks, arguing that catastrophic outcomes -- from gradual disempowerment to authoritarian control -- stem from common power-transfer mechanisms rather than purely technical failures. Using evolutionary game theory, I formalize how AI creates self-reinforcing dynamics that: (1) incentivize initial participation, (2) generate collective harm, (3) erect high exit barriers, and (4) ossify power structures.\
-    *Cross-Cutting Threat Patterns.* This framework reveals critical patterns across diverse threat models: disempowerment scenarios where AI systems gain increasing control over human rewards and punishments; social contract decay where human institutions lose feedback mechanisms; and misuse scenarios enabling unilateral global control. My analysis demonstrates that AI's danger correlates directly with its capacity to destabilize power equilibria -- whether through concentration within AI systems, asymmetric control by individuals, or erosion of collective decision-making.\
-    *Policy Implications.* By identifying these power-transfer mechanisms, I provide a unified lens for understanding AI risks that transcends assumptions about specific capabilities or timelines. This work aims to inform policy interventions before AI-enabled power dynamics become entrenched.
+    *Power-Centric Framework of Risk.* I propose a power-centric framework for understanding AI risks, arguing that catastrophic outcomes -- from gradual disempowerment to authoritarian control -- stem from common power-transfer mechanisms rather than purely technical failures. Using evolutionary game theory, I formalize how AI creates self-reinforcing dynamics that: (1) incentivize initial participation, (2) generate collective harm, (3) erect high exit barriers, and (4) ossify power structures.\
+    *Formalization of Power.* The motivation here is being able to describe and aggregate dangerous power dynamics between populations with complicated relationships including ones that can't quite be assigned a utility function over long periods of time where people perhaps aren't acting rationally. Starting from basic models of power and continue breaking things to demonstrate the required mathematical properties a model of power must have.
   ],
   bibliography: bibliography("literature-review.bib"),
   header: [AI Power Destabilization: Mechanisms Enabling Dangerous Power Dynamics],
@@ -120,12 +118,9 @@
   }
 }
 
-
-#pagebreak()
-
 = Logic of Catastrophe
 
-Eh not even, are more but whatever.
+#todo[Not remotely started, need to build from scratch. Might be better to bring into scope after power.]
 
 // https://docs.google.com/document/d/1NwKtkjn2vFRpE3Qqt-dmG1bse5U00ekGyignlqV07aY/edit?tab=t.0#heading=h.yt8mh4gegk22
 == Modeling States/Actors/Environment
@@ -146,15 +141,6 @@ $
   forall s in S. e in s "(ie: Environment is in all states)"
 $
 
-== Power is a potential
-// As in physics, potentials have the following property (also works in graph theory)
-$
-  "Power", P : (X, X) -> RR
-$
-
-- Transitive tournament
--
-
 
 Logical Relationships & Progression of Claims
 Power Volume and Danger
@@ -166,11 +152,11 @@ Dynamics
 - Equilibrium $!=>$ no danger
 - Equilibrium $and$ something(?) $=>$ no danger
 
-== Types of Conflict
-- Person v Person
-- Person v Self
-- Person v Society
-- Person v Nature
+// == Types of Conflict
+// - Person v Person
+// - Person v Self
+// - Person v Society
+// - Person v Nature
 
 // https://en.wikipedia.org/wiki/Potential_theory
 
@@ -193,6 +179,9 @@ Dynamics
   ])
 }
 
+#let agent-fill = gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%)
+#let env-fill = gradient.radial(green.lighten(80%), green.lighten(40%), center: (30%, 20%), radius: 80%)
+
 #pagebreak()
 = Sociological Definition of Power
 
@@ -207,7 +196,7 @@ Dynamics
 Combining the above, we will say:
 - *Power* of $A$ over $B$ is the ability for $A$ to determine the rewards/punishments of $B$ (Independent of recognition which is dissimilar to French/Raven)
 
-#todo[Insert inspirations]
+#todo[Talk about in more detail. Just general background on power. This should perhaps come first in the paper.]
 
 #pagebreak()
 = Towards a Formal Model of Power
@@ -229,6 +218,7 @@ Developments in game theory have typically been motivated by being able to model
 
 The motivation here is being able to describe and aggregate dangerous power dynamics between populations with complicated relationships including ones that can't quite be assigned a utility function over long periods of time where people perhaps aren't acting rationally.
 
+#pagebreak()
 = Generalized Dahl Framework
 
 == Defining Dahl's Power (Control)
@@ -302,40 +292,203 @@ Dahl specifies how to compare control for 1+ controlling players ($A = {A_1, ...
                           = p_1 - p_2 $
 ]
 
-#todo[Read: A mathematical theory of power: #url("https://arxiv.org/abs/2401.16406#:~:text=This%20paper%20proposes%20a%20new,measure%20players'%20attitude%20to%20cooperate")]
-
 #diagram(
   node-stroke: .1em,
   node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
   spacing: 4em,
-  node((0, 0), [$A$], radius: 2em),
-  edge([$W$], "-|>"),
-  node((1, 0), [Env.], radius: 2em, fill: gradient.radial(
+  node((0, 1), [$A_n$], radius: 2em),
+  node((0, 0.5), [$dots.v$]),
+  edge((0, 1), (1, 0.5), [$W_n$], "-|>"),
+  node((0, 0), [$A_1$], radius: 2em),
+  edge([$W_1$], "-|>"),
+  node((1, 0.5), [Env.], radius: 2em, fill: gradient.radial(
     green.lighten(80%),
     green.lighten(40%),
     center: (30%, 20%),
     radius: 80%,
   )),
-  edge([$x$], "-|>"),
+  edge([x], "-|>"),
   // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
 )
 // Mentioned that comparisons can only be made when referring to a similar scope, etc.
 
+// I think it's also possible you can actually just model this as taking one of 2^n possible actions and comparing the control any two offer you or something.
+
 We certainly need at least one of these controlling players. However, Dahl's model of power can make due without the need for a responding player. Instead we can define control over some response from the environment instead.
 
-// You might also be able to place the Env here as A as well, although "taking actions" seems weird from an environmental perspective
+#diagram(
+  node-stroke: .1em,
+  node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
+  spacing: 4em,
+  node((0, 0), [Env.], radius: 2em, fill: gradient.radial(
+    green.lighten(80%),
+    green.lighten(40%),
+    center: (30%, 20%),
+    radius: 80%,
+  )),
+  edge([$W$], "-|>"),
+  node((1, 0), [$B$], radius: 2em),
+  edge([$x$], "-|>"),
+  // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
+)
 
-== Critiques of Dahl
+You might also be able to place the Env here as A as well, although "taking actions" seems weird from an environmental perspective. But there is a useful analogue here. Kind of like how the weather controls whether you go on a picnic, in-some way you can model random decisions power on other outcomes. (Lots of issues with associating actions with the environment.)
 
-Dahl was criticized by Lukes for a focus on direct control over the response. However, this can be remedied with means-response chains.
+== Means-Response Chains
+
+THE BELOW DOESN'T WORK IN DAHL'S MODEL!!
+
+#diagram(
+  node-stroke: .1em,
+  node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
+  spacing: 4em,
+  node((0, 0), [$A^((0))$], radius: 2em),
+  edge([$W^((0))$], "-|>"),
+  node((1, 0), [$...$]),
+  edge([$W^((N-1))$], "-|>"),
+  node((2, 0), [$A^((N))$], radius: 2em),
+  edge([$x$], "-|>"),
+  // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
+)
+
+#todo[Actually this seems like it might not be possible as the model does not account for the inability to choose an available action!!! Can bring in the need for a behavioral approach to control happening later on. Instantly connects with some version of game theory(?). Only works if this is the environment. Actually no, works for players as well. But takes this really weird nair    jve stance on power that assigns more agency to a person than they actually have. This is where we can say there is a separation between power and control. (Ex: Action to burn down the entire Senate.) Best called Material power?
+
+  Also this doesn't seem be doing some kind of attribution of control properly. Capability never disappears.
+]
+
+
+#[
+  #set text(size: 7pt)
+  #diagram(
+    node-stroke: .1em,
+    node-fill: agent-fill,
+    spacing: 4em,
+    node((0, 0), [Society], radius: 2.5em),
+    edge([Ideational\ Power], "-|>"),
+    node((1, 0), [Powerful\ Actors], radius: 2.5em),
+    edge([Bargaining\ Power], "-|>"),
+    node((2, 0), [Legislators], radius: 2.5em),
+    edge([Material\ Power], "-|>"),
+    // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
+    node((3, 0), [Env.], radius: 2.5em, fill: env-fill),
+    edge([Policy\ Passes\ or Not], "-|>"),
+  )
+  #diagram(
+    node-stroke: .1em,
+    node-fill: agent-fill,
+    spacing: 4em,
+    node((0, 0), [Society], radius: 2.5em),
+    edge([Ideational\ Power], "-|>"),
+    node((1, 0), [Powerful\ Actors], radius: 2.5em),
+    edge([Bargaining\ Power], "-|>"),
+    node((2, 0), [Legislators], radius: 2.5em, fill: env-fill),
+    edge([Material\ Power], "-|>"),
+    // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
+    node((3, 0), [Env.], radius: 2.5em, fill: env-fill),
+    edge([Policy\ Passes\ or Not], "-|>"),
+  )
+  #diagram(
+    node-stroke: .1em,
+    node-fill: agent-fill,
+    spacing: 4em,
+    node((0, 0), [Society], radius: 2.5em),
+    edge([Ideational\ Power], "-|>"),
+    node((1, 0), [Powerful\ Actors], radius: 2.5em, fill: env-fill),
+    edge([Bargaining\ Power], "-|>"),
+    node((2, 0), [Legislators], radius: 2.5em, fill: env-fill),
+    edge([Material\ Power], "-|>"),
+    // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
+    node((3, 0), [Env.], radius: 2.5em, fill: env-fill),
+    edge([Policy\ Passes\ or Not], "-|>"),
+  )
+]
+
+Lukes criticizes Dahl and the pluralists for being too empirical, only examining the political power of observable direct decision making, whereas there are plenty of soft-power leading up to that direct decision making that play a part in both (a) Shaping the preferences of voting and policies brought to the table prior to receiving the policy (bargaining power) (b) A more cultural notion of which ideas are even consciously considered (ideational power)  #todo[check + understand better]
+#todo[Perhaps fun to dig up Dahl's New Haven data and demonstrate some type of this modeling.] This categorization is extremely helpful for analyzing power and it will be returned to. However, can demonstrate mathematically what Luke's criticism is -- ie: Doesn't really tell you who has the final say.
+
+Even when modeling the potential actors that could be influencing the final legislator decisions
+
+#comment[Immediately this has some connection with law, duress, consent, etc. It seems like the actual utility is an important question here, ex: no one expects positive rewards to hold up in court, but coercion does. This in some way connects with consent.]
+
+Ideological power is somehow both an information asymmetry and an alteration to one's payoff functions.
+
+// *Legal Responsibility Assessment.* The legal concept you're describing involves several related doctrines that courts use to determine criminal liability when someone commits an act under external pressure or coercion.
+
+// *Duress Defense Framework.* The primary legal framework is the *duress* defense, which recognizes that individuals may not be fully culpable for criminal acts committed under sufficient threat or coercion. Courts apply an objective standard -- would a reasonable person of ordinary firmness have been unable to resist the coercion? Your examples illustrate this spectrum perfectly: a death threat would likely constitute sufficient duress for most crimes, while threatening to destroy a bobblehead would not meet the legal threshold.
+
+// *Mens Rea Analysis.* Courts also examine *mens rea* (criminal intent) to determine whether the defendant possessed the requisite mental state for the crime. Coercion can negate the voluntary nature of criminal intent, though this varies by jurisdiction and specific circumstances. The degree of coercion directly impacts whether the defendant formed the necessary criminal intent.
+
+// *Proportionality Assessment.* Legal systems typically require proportionality between the threatened harm and the criminal act. The threatened harm must be imminent, serious, and comparable to or greater than the harm caused by the criminal act. This explains why your death threat example would carry more legal weight than the bobblehead scenario.
+
+// *Culpability Gradation.* Rather than a binary guilty/not guilty determination, many jurisdictions allow for graduated culpability -- recognizing that coercion may reduce rather than eliminate criminal responsibility. This might result in lesser charges, reduced sentences, or mitigation during sentencing rather than complete exoneration.
+
+
+== Complexity of Dahl and Need For Compact Representations
+
+In this formalism of power, for $N$ controlling player and a max of $M$ actions for each, there are $N dot M$ action profiles $w = (w_1, ..., w_n)$. Each of which interact through some mechanism modeled by $Pr$ to affect the response $x$.
+
+== Generalizing Dahl to Markov Nets, HMMs, and MDPs
+
+// MDPs later
+
+#image("./figs/markov-net.png")
+#image("./figs/mdp.png")
+
+In broad strokes, Dahl's theory of power is similar to the rich literature of markov nets in computer science literature. With a few differences:
+- Taken from the perspective of actions that players take. (However these can be mapped onto priors in a markov net so long as there are no loops, which of course there are. Might not actually be an issue.)
+- Control must be causal. Since this is near-impossible to prove in-full, it suffices to say that it's certainly not causal if the response happens before the action.
+
+A few nice properties and intuitions can however can be carried over:
+- Markov blankets (You can isolate control by)
+- Can be mapped to time-series HMMs.
+
+Notoriously very difficult. #todo[Maybe also show some existing CS problem to apply control in a new context.] #todo[Also maybe see what other studies of power exist out there that looked at causal relationships in this way. Certainly not a new understanding of power, just one that wasn't looked at broadly.]
+
+Already we are at a point where we can define control in MDPs, one of the most fundamental structures in reinforcement learning and applicable to many scenarios. #todo[Can we apply this to some textbook MDP scenario?] #todo[Not sure I should transition to MDPs without bringing in utility as a pre-requisite of power.]
+
+// Might require multi-agent MDPs
 
 == Connecting Dahl to Game Theory
 
-#todo[Complete]
+What Dahl's theory of power does not say is HOW the players in this scenario determine their actions, keeping the probability function $Pr$ doing a lot of work here.
+
+== Criticisms of Dahl
+
+This is not to overly simplify these models, only to ground them. Much more complex relationship with loops going back on itself over time.
+
+// AKA: Overt, covert, and latent conflict or something
+
+// Dimensions of power: https://www.researchgate.net/publication/287120830_Reconceptualizing_hegemony_The_Circle_of_Hydro-Hegemony
+
+#todo[Complete.]
+
+#pagebreak()
+= Why Actions are Necessary for Power Analysis
+
+== The Inseparability Thesis
+
+#claim[Power is meaningless without considering available actions -- these elements are fundamentally inseparable in any coherent power framework.]
+
+
+=== Behavioral Power
+
+*Insight 1.* Power is a function of available actions.
+
+*Insight 2.* Power is a function of optimal actions assuming rationality.
+
+
+I might name this control.
+
+#todo[Finish.]
 
 = Why Absolute Power Fails to Model Power Dynamics
 
+#todo[Should this only be possible once utility is introduced?]
+
+#todo[From cooperative game theory, we have weighted graphs, rule-based representations, and weighted-voting games.]
+
 == The Modeling Asymmetry Thesis
+
 
 #claim[Models of relative power ($cal(R)$) form a proper superset of models of absolute power ($cal(A)$), establishing that $cal(R)$ is more expressive than $cal(A)$ in modeling capacity.]
 
@@ -405,23 +558,7 @@ Absolute power alone is insufficient for modeling power. For the remainder of th
 
 _Note: This does NOT tell us that relative power is sufficient, only that it may be._
 
-= Why Actions are Necessary for Power Analysis
-
-== The Inseparability Thesis
-
-#claim[Power is meaningless without considering available actions -- these elements are fundamentally inseparable in any coherent power framework.]
-
-
-=== Behavioral Power
-
-*Insight 1.* Power is a function of available actions.
-
-*Insight 2.* Power is a function of optimal actions assuming rationality.
-
-
-I might name this control.
-
-#todo[Finish.]
+#pagebreak()
 
 = Why Utility is Necessary for Power Analysis
 
@@ -506,3 +643,5 @@ Note that this relevant state space is inherently chosen in reference to some ag
 *Implication.* Power analysis without game-theoretic foundations is fundamentally incomplete. $square$
 
 #todo[Power of signaling. US vs Japan and communicating the existence of the nuclear bomb. US in some way doesn't have power over Japan if it doesn't benefit from either (A) Annihilating it or (B) Communicating its Annihilation.]
+
+#pagebreak()
