@@ -22,9 +22,103 @@
 // #import "@preview/drafting:0.2.2": margin-note, set-margin-note-defaults
 #import "@preview/wordometer:0.1.4": total-words, word-count
 #import "@preview/fletcher:0.5.8" as fletcher: diagram, edge, node
+#import "@preview/glossarium:0.5.8": Gls, Glspl, gls, glspl, make-glossary, print-glossary, register-glossary
+#show: make-glossary
 
+#let entry-list = (
+  (
+    key: "agent",
+    short: "agent",
+    description: [An entity capable of taking actions from a defined action space. In our framework, agents can serve as either controllers (exerting influence) or responders (being influenced).],
+  ),
+  (
+    key: "action-space",
+    short: "action space",
+    description: [The set of possible actions $cal(W) = {w_1, ..., w_n}$ available to an agent. Power requires $|cal(W)| > 1$ (genuine choice between alternatives).],
+  ),
+  (
+    key: "dahlian-power",
+    short: "Dahlian Power",
+    description: [Power as formalized by Dahl (1957): $M(A/B : W, x) := Pr(B, x | A, w) - Pr(B, x | A, overline(w))$. Measures the difference in probability of response $x$ when agent $A$ takes action $w$ versus not taking action $w$.],
+  ),
+  (
+    key: "controller",
+    short: "controller",
+    description: [An agent that attempts to influence the behavior of other agents (responders) through its actions. The agent $A$ in a Dahlian power relationship $A/B$.],
+  ),
+  (
+    key: "responder",
+    short: "responder",
+    description: [An agent whose behavior is potentially influenced by controllers. The agent $B$ in a Dahlian power relationship $A/B$. Can be modeled as either an agent or environmental black box.],
+  ),
+  (
+    key: "environment",
+    short: "environment",
+    description: [A non-agential entity that responds probabilistically to agent actions without deliberate decision-making. Represented by probability distributions $Pr(E = x | A, w)$ rather than utility-maximizing behavior.],
+  ),
+  (
+    key: "means-response-chain",
+    short: "means-response chain",
+    description: [A sequence of agents where each serves as both responder to upstream agents and controller of downstream agents: $A^((0)) -> A^((1)) -> ... -> A^((N))$. Cannot be modeled coherently within Dahlian framework.],
+  ),
+  (
+    key: "power",
+    short: "power",
+    description: [The intuitive notion of influence, control, or ability to affect outcomes. While this term encompasses many different conceptions across disciplines, we focus on developing rigorous mathematical foundations for analyzing power relationships between agents.],
+  ),
+  (
+    key: "absolute-power",
+    short: "absolute power",
+    description: [Power conceptualized as an intrinsic property of individual agents, independent of relationships. We prove this approach is insufficient for modeling power dynamics.],
+  ),
+  (
+    key: "relative-power",
+    short: "relative power",
+    description: [Power conceptualized as relational properties between agents. Forms a proper superset of absolute power models and is necessary for analyzing complex power dynamics.],
+  ),
+  (
+    key: "black-box-abstraction",
+    short: "black box abstraction",
+    description: "Modeling complex intermediate processes (like means-response chains) as environmental probability functions, losing structural information about how influence propagates.",
+  ),
+  (
+    key: "multi-controller",
+    short: "multi-controller dynamics",
+    description: [Scenarios where multiple agents ${A_1, ..., A_n}$ simultaneously influence a single responder $B$, requiring analysis of joint action profiles $bold(w) = (w_1, ..., w_n)$.],
+  ),
+  (
+    key: "scope-limitation",
+    short: "scope limitation",
+    description: [Dahlian power's inability to compare power across different response variables (e.g., power over policy $A$ versus power over policy $B$), limiting cross-domain power analysis.],
+  ),
+  (
+    key: "utility-alignment",
+    short: "utility alignment",
+    description: [When agents have proportional utility functions: $U_A(s) prop U_B(s) space forall s in cal(S)$. Under perfect alignment, power becomes behaviorally irrelevant.],
+  ),
+  (
+    key: "behavioral-alignment",
+    short: "behavioral alignment",
+    description: "When agents choose similar actions despite potentially different underlying utilities. Distinct from utility alignment and more relevant for power analysis.",
+  ),
+  (
+    key: "relevant-state-space",
+    short: "relevant state space",
+    description: [The subset of states $cal(S)_A := {s in cal(S) : partial U_A \/ partial s != 0}$ where agent $A$'s utility function has non-zero gradient. Power analysis must be defined over relevant rather than complete state spaces.],
+  ),
+)
 
-#set quote(block: true, quotes: true)
+#register-glossary(entry-list)
+
+#let agent-fill = gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%)
+#let env-fill = gradient.radial(green.lighten(80%), green.lighten(40%), center: (30%, 20%), radius: 80%)
+#let z-stroke = (thickness: 0.5pt, paint: gray)
+#let z-fill = gray.lighten(60%)
+#let agent-radius = 1em
+#let z-radius = 0.7em
+#let env-boundary = (paint: green.darken(30%), thickness: 2pt, dash: "dashed")
+#let action-stroke = (thickness: 0.8pt, paint: blue.darken(20%))
+#let z-interaction-stroke = (thickness: 0.6pt, paint: purple.darken(10%))
 
 #let comment-text = text.with(fill: blue.darken(20%).transparentize(40%))
 #let todo-text = text.with(fill: red.darken(20%).transparentize(40%))
@@ -38,34 +132,6 @@
     todo-text[📋 #content]
   }
 }
-
-#let theorem(title, body) = {
-  block(fill: rgb("#f0f0f0"), inset: 10pt, radius: 4pt, [
-    *Theorem #title.* #body
-  ])
-}
-
-#let definition(title, body) = {
-  block(fill: rgb("#e8f4f8"), inset: 10pt, radius: 4pt, [
-    *Definition #title.* #body
-  ])
-}
-
-#let claim(body) = {
-  block(inset: (left: 20pt), [
-    *Claim.* #body
-  ])
-}
-
-#let agent-fill = gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%)
-#let env-fill = gradient.radial(green.lighten(80%), green.lighten(40%), center: (30%, 20%), radius: 80%)
-#let z-stroke = (thickness: 0.5pt, paint: gray)
-#let z-fill = gray.lighten(60%)
-#let agent-radius = 1em
-#let z-radius = 0.7em
-#let env-boundary = (paint: green.darken(30%), thickness: 2pt, dash: "dashed")
-#let action-stroke = (thickness: 0.8pt, paint: blue.darken(20%))
-#let z-interaction-stroke = (thickness: 0.6pt, paint: purple.darken(10%))
 
 
 #let affls = (
@@ -102,7 +168,9 @@
 
 // Humanity's Security?
 #show: icml2025.with(
-  title: [Power-Centric Model of Risk\ &\ Disambiguating Societal Power-Dynamics with\ Concrete Economic and Mathematical Models],
+  title: [
+    // Power-Centric Model of Risk\ &\
+    Mathematical Foundations for Power Analysis in Complex Systems],
   authors: (authors, affls),
   keywords: (
     "AI safety",
@@ -115,14 +183,17 @@
     "AI alignment",
   ),
   abstract: [
-    *Power-Centric Framework of Risk.* I propose a power-centric framework for understanding AI risks, arguing that catastrophic outcomes -- from gradual disempowerment to authoritarian control -- stem from common power-transfer mechanisms rather than purely technical failures. Using evolutionary game theory, I formalize how AI creates self-reinforcing dynamics that: (1) incentivize initial participation, (2) generate collective harm, (3) erect high exit barriers, and (4) ossify power structures.\
-    *Formalization of Power.* The motivation here is being able to describe and aggregate dangerous power dynamics between populations with complicated relationships including ones that can't quite be assigned a utility function over long periods of time where people perhaps aren't acting rationally. Starting from basic models of power and continue breaking things to demonstrate the required mathematical properties a model of power must have.
+    *Mathematical Framework for Power Analysis.* Understanding societal risks—from institutional capture to AI-enabled power concentration—requires rigorous models of how power operates between agents with complex, evolving relationships. I develop a formal mathematical framework for power dynamics by extending Dahl's influential 1957 theory, addressing its fundamental limitations through game-theoretic foundations.\
+    *Key Contributions.* First, I demonstrate why absolute power models are insufficient, proving that relational power frameworks form a proper superset of absolute ones. Second, I show that Dahlian power cannot handle influence chains or compare power across different domains—critical limitations for analyzing complex systems. Third, I establish that utility functions are necessary for coherent power analysis, formalizing when power becomes behaviorally meaningful. This framework provides theoretical foundations for analyzing dangerous power dynamics in contexts where agents may lack clear utility functions or act irrationally over extended periods.
   ],
   bibliography: bibliography("literature-review.bib"),
-  header: [AI Power Destabilization: Mechanisms Enabling Dangerous Power Dynamics],
+  header: [Mathematical Foundations for Power Analysis in Complex Systems],
   appendix: [
-    = Test
-    == Generalizing Dahl to Markov Nets, HMMs, and MDPs
+    = Glossary
+    #print-glossary(
+      entry-list,
+    )
+    = Generalizing Dahl to Markov Nets, HMMs, and MDPs
 
     // MDPs later
 
@@ -147,6 +218,7 @@
   accepted: none,
 )
 
+
 #show: word-count
 #show: lemmify // Theorems, propositions, definitions, etc.
 
@@ -154,7 +226,10 @@
 
 #let url(uri) = link(uri, raw(uri))
 
-// #set-margin-note-defaults(hidden: false)
+
+#set figure(placement: none)
+#set quote(block: true, quotes: true)
+
 #let comment-text = text.with(fill: blue.darken(20%).transparentize(40%))
 #let todo-text = text.with(fill: red.darken(20%).transparentize(40%))
 #let comment(content, hide: false) = {
@@ -168,39 +243,59 @@
   }
 }
 
-= Logic of Catastrophe
+// #let theorem(title, body) = {
+//   block(fill: rgb("#f0f0f0"), inset: 10pt, radius: 4pt, [
+//     *Theorem #title.* #body
+//   ])
+// }
 
-#todo[Not remotely started, need to build from scratch. Might be better to bring into scope after power.]
+// #let definition(title, body) = {
+//   block(fill: rgb("#e8f4f8"), inset: 10pt, radius: 4pt, [
+//     *Definition #title.* #body
+//   ])
+// }
+
+#let claim(body) = {
+  block(inset: (left: 20pt), [
+    *Claim.* #body
+  ])
+}
+
+// #set-margin-note-defaults(hidden: false)
+
+// = Logic of Catastrophe
+
+// #todo[Not remotely started, need to build from scratch. Might be better to bring into scope after power.]
 
 // https://docs.google.com/document/d/1NwKtkjn2vFRpE3Qqt-dmG1bse5U00ekGyignlqV07aY/edit?tab=t.0#heading=h.yt8mh4gegk22
-== Modeling States/Actors/Environment
-$
-  s in S"tates"
-$
-$
-  x in X "(actors = people, inanimate object, environment)"
-$
-$
-  "environment", e in X \ "(One actor, essentially representing 'everything else')"
-$
-$
-  forall s in S, exists x, y. \
-  x != y and x, y in s "(ie: All states have two unique actors)"
-$
-$
-  forall s in S. e in s "(ie: Environment is in all states)"
-$
+// == Modeling States/Actors/Environment
+// $
+//   s in S"tates"
+// $
+// $
+//   x in X "(actors = people, inanimate object, environment)"
+// $
+// $
+//   "environment", e in X \ "(One actor, essentially representing 'everything else')"
+// $
+// $
+//   forall s in S, exists x, y. \
+//   x != y and x, y in s "(ie: All states have two unique actors)"
+// $
+// $
+//   forall s in S. e in s "(ie: Environment is in all states)"
+// $
 
 
-Logical Relationships & Progression of Claims
-Power Volume and Danger
-- Little power $=>$ little effects $=>$ localized & manageable danger
-- Large danger => large power
+// Logical Relationships & Progression of Claims
+// Power Volume and Danger
+// - Little power $=>$ little effects $=>$ localized & manageable danger
+// - Large danger => large power
 
-Dynamics
-- Balance of power $and$ agents $=>$ equilibrium
-- Equilibrium $!=>$ no danger
-- Equilibrium $and$ something(?) $=>$ no danger
+// Dynamics
+// - Balance of power $and$ agents $=>$ equilibrium
+// - Equilibrium $!=>$ no danger
+// - Equilibrium $and$ something(?) $=>$ no danger
 
 // == Types of Conflict
 // - Person v Person
@@ -211,46 +306,41 @@ Dynamics
 // https://en.wikipedia.org/wiki/Potential_theory
 
 
-#pagebreak()
-= Sociological Definition of Power
+// #pagebreak()
 
-- Dahlian/Pluralist Power ($M$) -- $A$ can get $B$ to do something that $B$ would not otherwise do (more rooted in the ability to get some boolean event to happen when they do/don't take some action.)
-  - Capability (Could plausibly do it)
-  - Control (Would do it, utility based)
-- French and Raven
-  - Reward Power -- $A$’s perception that $B$ has the ability to mediate rewards for him
-  - Coercive Power -- $A$’s perception that $B$ has ability to mediate punishments for him (do something against their will)
-- Luke's dimensions of power (more studying how decisions get made than any formal definitions of power.)
+// Combining the above, we will say:
+// - *Power* of $A$ over $B$ is the ability for $A$ to determine the rewards/punishments of $B$ (Independent of recognition which is dissimilar to French/Raven)
 
-Combining the above, we will say:
-- *Power* of $A$ over $B$ is the ability for $A$ to determine the rewards/punishments of $B$ (Independent of recognition which is dissimilar to French/Raven)
+// #todo[Talk about in more detail. Just general background on power. This should perhaps come first in the paper.]
 
-#todo[Talk about in more detail. Just general background on power. This should perhaps come first in the paper.]
+= Introduction
+
+Understanding #gls("power") dynamics is critical for analyzing societal risks, from institutional capture to AI-enabled concentration of control. Yet despite decades of research across sociology, political science, and economics, we lack rigorous mathematical frameworks for modeling how #gls("power") operates in complex multi-agent systems.
+
+Consider these scenarios: A social media algorithm subtly shapes millions of political opinions through content curation. A powerful corporation influences regulatory policy through a web of lobbying relationships. An AI system gradually assumes decision-making authority across critical infrastructure. Each involves intricate #gls("power") relationships that existing theories struggle to model precisely.
+
+*The Challenge.* Current approaches to #gls("power") analysis suffer from fundamental limitations. Sociological theories offer rich conceptual frameworks but lack mathematical precision needed for quantitative analysis. Game-theoretic models provide formal rigor but assume rational #glspl("agent") with well-defined utility functions—assumptions that often fail in real-world #gls("power") dynamics where #glspl("agent") act irrationally, preferences evolve, or utility functions remain unclear.
+
+*Our Approach.* This paper develops a formal mathematical framework for #gls("power") analysis by extending Dahl's seminal 1957 theory of #gls("power"). Dahl's framework -- "A has #gls("power") over B to the extent that A can get B to do something B would not otherwise do"—provides an intuitive starting point but faces severe limitations when analyzing complex systems.
+
+*Contributions.* We make three key theoretical contributions. First, we prove that models of #gls("relative-power") form a proper superset of #gls("absolute-power") models, establishing why relational frameworks are necessary. Second, we demonstrate that #gls("dahlian-power") cannot handle influence chains or enable cross-domain #gls("power") comparisons -- critical limitations for analyzing modern #gls("power") structures. Third, we establish formal conditions under which utility functions become necessary for coherent #gls("power") analysis.
+
+*Roadmap.* §2 introduces our formal modeling approach and contextualizes it within existing #gls("power") literature. §3 formalizes and extends Dahl's framework, revealing its structural limitations. §4 proves the inadequacy of #gls("absolute-power") models. §5 demonstrates why utility functions are essential for meaningful #gls("power") analysis. Together, these results provide theoretical foundations for analyzing dangerous #gls("power") dynamics in complex systems.
 
 #pagebreak()
 = Towards a Formal Model of Power
 
-*Motivation.* There are many definitions of power across sociological, economic, political, and anthropological literature. However, almost none of these definitions were formalized, each disagreeing with and pointing out flaws in the definitions of power offered by their predecessors, offering new ones in their place. However, many of these definitions of power can be related to one another. If we are able to distinguish between these different types of power and cut through the different assumptions their usages have, we can have a much clearer conversation on the topic, potentially clear the way towards empirically measuring the potential and manifest power at large in our society, and design mechanisms to avoid harmful power dynamics.#footnote[Existing theories of power are either loosely connected and non-rigorously defined OR rigorously mathematically defined in the context of a particular limited model -- for example, Cooperative Game Theory has multiple indices of power, but these cannot be easily extended outside the realm of these models. Leaving out details you don't care about is a feature not a bug. However, it can make your models brittle when moved outside the topic.]
+*The Literature Landscape.* #Gls("power") theory suffers from conceptual fragmentation. Existing approaches fall into two problematic categories: either loosely connected sociological definitions that resist formalization, or rigorous mathematical models confined to narrow domains (e.g., cooperative game theory's #gls("power") indices).#footnote[This reflects a common trade-off in formal modeling: rigor versus generality. Cooperative game theory's power indices (Shapley, Banzhaf, etc.) provide precise mathematical definitions but only apply within specific institutional contexts like weighted voting games #todo[confirm]. Conversely, sociological theories achieve broad applicability by sacrificing mathematical precision. The challenge is developing frameworks that maintain both formal rigor and sufficient generality to analyze diverse power structures across different domains.] Each theoretical tradition critiques its predecessors while offering new definitions, creating a tower of competing frameworks rather than cumulative progress.#footnote[These sociological approaches capture different but related aspects of power, yet lack mathematical precision needed for quantitative analysis: Dahl's behavioral definition focuses on observable influence over actions but cannot handle indirect influence chains or enable cross-domain power comparisons. French and Raven's taxonomy (reward, coercive, legitimate, referent, expert power) describes power sources but provides no framework for measuring or comparing power magnitudes -- it remains unclear whether these categories are irreducible or whether some (e.g., legitimate power) can be decomposed into others (reward/coercive mechanisms). Lukes' three dimensions examine different levels of decision-making processes (overt conflict, covert agenda-setting, ideational preference-shaping) but offer descriptive taxonomies rather than predictive models. Actor-Network Theory treats power as emergent from network relationships but explicitly resists formal quantification, limiting its predictive capacity. While each tradition illuminates important facets—behavioral outcomes, psychological bases, structural processes, relational emergence—none provides the mathematical foundations necessary for rigorous analysis of complex, multi-level power dynamics.]
 
-// There's interest in studying this across RL (Jason), Game Theory, and Others.
+*Contemporary Applications.* Formal #gls("power") modeling has gained urgency across multiple domains. In reinforcement learning, researchers need to determine when #glspl("agent") pursue aligned objectives despite different behaviors and capabilities.#footnote[See Jason X, PhD student at Cambridge University] AI governance researchers seek to formalize how labor-replacing AI disrupts social contracts and how economic #gls("power") converts to political influence.#footnote[See Liam Patell at GovAI] While my framework may not immediately solve these challenges, it establishes necessary theoretical foundations.
 
-*Practicality.* Far from being just a philosophical exercise, there is interest in modelling power, values, and alignment between agents in other domains. Two examples: (a) In Reinforcement Learning, a core subdomain of AI research, there is interest in understanding whether two agents are pursuing the same goals even when pursuing different actions. (b) Researchers at the Centre for the Governance for AI are interested in formalizing how the social contract can break down when labor replacing AI is introduced in addition to interest in formalizing the conversion of economic power into political power and vice versa. While this work may not bring us quite that far, it at least lays the groundwork for what can hopefully be a larger framework.
-// Ex: Jason. Also did not relate strongly to power.
+*Methodological Approach.* Rather than proposing yet another universal "Theory of #Gls("power")," we develop rigorous mathematical foundations for one influential perspective -- Dahl's concept of #gls("power") from 1957 -- then systematically extend it. This approach allows us to either: (a) formally relate competing definitions to our framework, (b) demonstrate their mathematical incoherence, (c) identify behaviorally irrelevant distinctions, or (d) establish approximation boundaries for complex realities.
 
-*Scope.* Rather than create a universal "Theory of Power" encompassing all definitions, I begin by developing a concrete mathematical framework for one specific perspective on power. We will either:
-- (a) Formally relate other definitions to this framework
-- (b) Demonstrate their incoherence
-- (c) Identify behaviorally irrelevant aspects (philosophical rather than practical#footnote[Akin to philosophy of quantum mechanics])
-- (d) Show where our model reasonably approximates complex realities
+As Dahl himself anticipated, we may never achieve "a single, consistent, coherent 'Theory of Power'" but instead must develop "theories of limited scope" that prove useful within specific research contexts.#footnote[Dahl's Concept of Power 1957: "Thus we are not likely to produce certainly not for some considerable time to come anything like a single, consistent, coherent 'Theory of Power.' We are much more likely to produce a variety of theories of limited scope, each of which employs some definition of power that is useful in the context of the particular piece of research or theory but different in important respects from the definitions of other studies."]
 
-*Goal.* Although this aims to develop a general theory of power, the shape this will take will inevitably be influenced by context in which it was developed. This formalism was developed in the context of understanding and predicting dangerous power dynamics by describing and comparing power dynamics between populations with complex relationships -- without assuming rationality and sometimes without clear utility functions -- over a long period of time.
+*The Value of Mathematical Formalization.* Formal models provide conceptual precision beyond their mathematical machinery. When researchers invoke "prisoner's dilemmas" or "principal-#gls("agent") problems," they rarely solve explicit equations -- instead, they leverage rigorous conceptual frameworks that clarify otherwise murky situations. Similarly, our formal #gls("power") framework aims to provide precise analytical tools for recognizing and categorizing #gls("power") dynamics across diverse contexts. The mathematics enables conceptual clarity, not computational solutions.
 
-#quote(attribution: "Dahl's Concept of Power 1957")[
-  Thus we are not likely to produce certainly not for some considerable time to come anything like a single, consistent, coherent 'Theory of Power.' We are much more likely to produce a variety of theories of limited scope, each of which employs some definition of power that is useful in the context of the particular piece of research or theory but different in important respects from the definitions of other studies.
-]
-// I should look into behavioral game theory and evolutionary games.
-
-*Methodology.* I start with one of the original general formalisms of power in literature -- Dahl's influential essay on the Concept of Power from 1957. I attempt to generalize this even further, point out some of the issues of it, demonstrate the mathematical properties a model of power must have, and continue adding components until we are closer to modeling what we care about.
+*Our Strategy.* We begin with Dahl's 1957 formalization -- "$A$ has #gls("power") over $B$ to the extent that $A$ can get $B$ to do something $B$ would not otherwise do" -- because it offers both intuitive appeal and mathematical tractability. We then systematically identify its limitations, demonstrate required extensions, and establish what mathematical properties any complete #gls("power") theory must satisfy. This constructive approach reveals not just Dahl's shortcomings, but fundamental constraints on #gls("power") modeling itself.
 
 // _Note: State space may disappear and instead become the "behavior" of the environment which itself can be influenced via evolutionary game theory. This will come up later._
 
@@ -260,178 +350,203 @@ Combining the above, we will say:
 
 == Defining Dahlian Power
 
-#align(center)[
-  #diagram(
-    node-stroke: .1em,
-    node-fill: agent-fill,
-    spacing: 4em,
-    node((0, 0), [$A$], radius: 2em),
-    edge([$W$], "-|>"),
-    node((1, 0), [$B$], radius: 2em),
-    edge([$x$], "-|>"),
-  )
-]
+#figure(
+  caption: [Basic Dahlian Power relationship: Agent A uses means W to influence Agent B's response x.],
+)[
+  #align(center)[
+    #diagram(
+      node-stroke: .1em,
+      node-fill: agent-fill,
+      spacing: 4em,
+      node((0, 0), [$A$], radius: 2em),
+      edge([$W$], "-|>"),
+      node((1, 0), [$B$], radius: 2em),
+      edge([$x$], "-|>"),
+    )
+  ]
+] <dahlian-power-rel>
 
-I start with Dahl's influential concept, which I term *Dahlian Power* to distinguish it from other power definitions we'll encounter.
+I start with Dahl's influential concept, which I term *#gls("dahlian-power")* to distinguish it from other #gls("power") definitions we'll encounter (@dahlian-power-rel).
 
 // We will start from Dahl's concept of power. However, since we define power differently, we will call Dahl's power "*control*". Instead of defining "People", they will be called "Players" to fit in with the later game theory formulations.
 
-*Dahl's Intuition.* Consider two scenarios from the original essay #footnote[
-  The full quote:
-  #quote[
-    Suppose I stand on a street corner and say to myself, “I command all automobile drivers on this street to drive on the right side of the road”; suppose further that all the drivers actually do as I “command” them to do; still, most people will regard me as mentally ill if I insist that I have enough power over automobile drivers to compel them to use the right side of the road. On the other hand, suppose a policeman is standing in the middle of an intersection a t which most traffic ordinarily moves ahead; he orders all traffic to turn right or left; the traffic moves as he orders it to do. Then it accords with what I conceive to be the bedrock idea of power to say that the policeman acting in this particular role evidently has the power to make automobile drivers turn right or left rather than go ahead. My intuitive idea of power, then, is something like this: A has power over B to the extent that he can get B to do something that B would not otherwise do. -- Dahl 1957
-  ]]
+#remark(name: "Dahl's Intuition")[
+  Consider two scenarios from the original essay #footnote[
+    The full quote:
+    #quote[
+      Suppose I stand on a street corner and say to myself, "I command all automobile drivers on this street to drive on the right side of the road"; suppose further that all the drivers actually do as I "command" them to do; still, most people will regard me as mentally ill if I insist that I have enough power over automobile drivers to compel them to use the right side of the road. On the other hand, suppose a policeman is standing in the middle of an intersection a t which most traffic ordinarily moves ahead; he orders all traffic to turn right or left; the traffic moves as he orders it to do. Then it accords with what I conceive to be the bedrock idea of power to say that the policeman acting in this particular role evidently has the power to make automobile drivers turn right or left rather than go ahead. My intuitive idea of power, then, is something like this: A has power over B to the extent that he can get B to do something that B would not otherwise do. -- Dahl 1957
+    ]]
 
-1. A person on a street corner "commanding" drivers to use the right side (which they already do)
-2. A police officer directing traffic to turn when it would normally go straight.
+  1. A person on a street corner "commanding" drivers to use the right side (which they already do)
+  2. A police officer directing traffic to turn when it would normally go straight.
 
-Only the second demonstrates genuine power -- the ability to cause behavior that wouldn't otherwise occur.
+  Only the second demonstrates genuine #gls("power") -- the ability to cause behavior that wouldn't otherwise occur.
+]
 
-*Formal Definition*: Dahlian Power of agent $A$'s control over $B$ with respect to the response $x$ by means $w$:
-$
-  M(A/B : W, x) := Pr(B, x &| A, w) \
-                                    & - Pr(B, x | A, overline(w))
-$
-Where:
-- $Pr(B, x &| A, w)$ is the probability that $B$ takes action $x$ given $A$ took action $w$.
-- $overline(w)$ is $A$ not taking action $w$
+#definition(name: "Dahlian Power")[
+  #Gls("agent") $A$'s #gls("dahlian-power") over $B$ with respect to the response $x$ by means $w$ is:
+  $
+    M(A/B : W, x) := Pr(B, x &| A, w) - Pr(B, x | A, overline(w))
+  $
+  Where:
+  - $Pr(B, x &| A, w)$ is the probability that $B$ takes action $x$ given $A$ took action $w$.
+  - $overline(w)$ is $A$ not taking action $w$
+]
 
-*Key Components.* Dahl's model is made up of the following components:
-1. *Agents.* At least two agents each of which have binary *actions* (e.g. take action $w$ or not)
-2. *Connection.* Some mechanism $cal(I)$ linking agents (unspecified)
-3. *Probability.* Distribution over agent-action pairs
+#remark(name: "Key Components")[
+  Dahl's model is made up of the following components:
+  1. *#Glspl("agent").* At least two #glspl("agent") each of which have binary *actions* (e.g. take action $w$ or not)
+  2. *Connection.* Some mechanism $cal(I)$ linking #glspl("agent") (unspecified)
+  3. *Probability.* Distribution over #gls("agent")-action pairs
 
-What this doesn't require:
-1. *Utility.* Doesn't say what either agent prefers.
-2. *Causal Relationship.* Dahl explicitly avoids requiring causal traces -- only observable behavioral differences matter. However, does note causality is required for real power, hence the means must precede the response temporally.
-3. *Practicality.* Doesn't say whether the controller actually would or would not take action $w$ in practice.
+  What this doesn't require:
+  1. *Utility.* Doesn't say what either #gls("agent") prefers.
+  2. *Causal Relationship.* Dahl explicitly avoids requiring causal traces -- only observable behavioral differences matter. However, does note causality is required for real #gls("power"), hence the means must precede the response temporally.
+  3. *Practicality.* Doesn't say whether the #gls("controller") actually would or would not take action $w$ in practice.
+]
 
 
 == Generalizing Beyond Binary Actions
 
-Dahl's binary framework (action taken or not) is limiting. Real agents choose from multiple options.
+Dahl's binary framework (action taken or not) is limiting. Real #glspl("agent") choose from multiple options.
 
-*Extension to n actions.* Let $cal(W) := {w_1, ..., w_n | n in NN^+}$. Then:
-$
-  M(A/B : W, x) := max_(w^+ in cal(W)) & Pr(B, x | A, w^+) \
-                                       & - max_(w^- in cal(W)) Pr(B, x | A, w^-)
-$
-This measures $A$'s maximum influence over $B$'s likelihood of taking action $x$.
+#definition(name: "Extension to n Actions")[
+  Let $#gls("action-space") := {w_1, ..., w_n | n in NN^+}$. Then:
+  $
+    M(A/B : W, x) := max_(w^+ in cal(W)) & Pr(B, x | A, w^+) \
+                                         & - max_(w^- in cal(W)) Pr(B, x | A, w^-)
+  $
+  This measures $A$'s maximum influence over $B$'s likelihood of taking action $x$.
+]
 
-*Boundary Case.* When $|cal(W)| = 1$ (no choice), Dahlian Power $M = 0$, fitting our intuition that power requires agency.
+#lemma[When $|cal(W)| = 1$ (no choice), #gls("dahlian-power") $M = 0$, fitting our intuition that #gls("power") requires agency.]
 
 #comment[I think Dahl actually notes that you need similar means as well. Look back into this.]
 
 == Beyond Two-Controller Dynamics
 
-Real power dynamics rarely involve just two controllers. Consider the example from Dahl's original paper where multiple legislators influence the outcome of a policy being passed or not:
+Real #gls("power") dynamics rarely involve just two #glspl("controller"). Consider the example from Dahl's original paper where multiple legislators influence the outcome of a policy being passed or not (@fig-multi-controller):
 
-#align(center)[
-  #diagram(
-    node-stroke: .1em,
-    node-fill: agent-fill,
-    spacing: 4em,
-    node((0, 1), [$A_n$], radius: 2em),
-    node((0, 0.5), [$dots.v$]),
-    edge((0, 1), (1, 0.5), [$W_n$], "-|>"),
-    node((0, 0), [$A_1$], radius: 2em),
-    edge([$W_1$], "-|>"),
-    node((1, 0.5), [$B$], radius: 2em),
-    edge([x], "-|>"),
-    // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
-  )
-]
+#figure(
+  caption: [Multi-controller dynamics: Multiple agents $A_1, ..., A_n$ simultaneously influence responder B.],
+)[
+  #align(center)[
+    #diagram(
+      node-stroke: .1em,
+      node-fill: agent-fill,
+      spacing: 4em,
+      node((0, 1), [$A_n$], radius: 2em),
+      node((0, 0.5), [$dots.v$]),
+      edge((0, 1), (1, 0.5), [$W_n$], "-|>"),
+      node((0, 0), [$A_1$], radius: 2em),
+      edge([$W_1$], "-|>"),
+      node((1, 0.5), [$B$], radius: 2em),
+      edge([x], "-|>"),
+      // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
+    )
+  ]
+] <fig-multi-controller>
 
-When multiple controllers ${A_1, ..., A_n}$ simultaneously influence the responder $B$, we need to extend our framework. Each agent $A_i$ can take actions from their action set $cal(W)_i$, creating a joint action profile $bold(w) = (w_1, ..., w_n)$.
+When multiple #glspl("controller") ${A_1, ..., A_n}$ simultaneously influence the #gls("responder") $B$, we need to extend our framework. Each #gls("agent") $A_i$ can take actions from their #gls("action-space") $cal(W)_i$, creating a joint action profile $bold(w) = (w_1, ..., w_n)$.
 
-*Comparative Dahlian Power.* To assess individual contributions within multi-controller influence, Dahl introduced comparative measures (Referred to as $M''$ and did not formalize). For controller $A_i$ within controllers $A$:
+*Comparative #gls("dahlian-power").* To assess individual contributions within #gls("multi-controller") influence, Dahl introduced comparative measures (Referred to as $M''$ and did not formalize). For #gls("controller") $A_i$ within #glspl("controller") $A$:
 
 #todo[Finish, not super important.]
 $
   M_i (A/B : cal(W), x) := max_(bold(w) in product cal(W)_j) ...
 $
 
-*Combined Power.* We can aggregate any combination of these controllers into a virtual single controller coalition $A' subset.eq {A_1, ..., A_n}$ and define the power of the coalition in a similar way. This new coalition $A'$ will have an action space constructed from actions spaces of it's members $cal(W)' = cal(W)_1 times cal(W)_2 times ... times cal(W_m)$ where $A_1, ..., A_m$ are the controllers in the coalition.
+*Combined #Gls("power").* We can aggregate any combination of these #glspl("controller") into a virtual single #gls("controller") coalition $A' subset.eq {A_1, ..., A_n}$ and define the #gls("power") of the coalition in a similar way. This new coalition $A'$ will have an #gls("action-space") constructed from actions spaces of its members $cal(W)' = cal(W)_1 times cal(W)_2 times ... times cal(W_m)$ where $A_1, ..., A_m$ are the #glspl("controller") in the coalition.
 #todo[Better written def, (not necessarily referring to the indices of the original ordering)]
 
 == The Environment as a Black Box
 
-#align(center)[#diagram(
-    node-stroke: .1em,
-    node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
-    spacing: 4em,
-    node((0, 1), [$A_n$], radius: 2em),
-    node((0, 0.5), [$dots.v$]),
-    edge((0, 1), (1, 0.5), [$W_n$], "-|>"),
-    node((0, 0), [$A_1$], radius: 2em),
-    edge([$W_1$], "-|>"),
-    node((1, 0.5), [Env.], radius: 2em, fill: env-fill),
-    edge([x], "-|>"),
-    // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
-  )]
+#figure(
+  caption: [Environment as black box: Multiple agents influence environmental outcomes directly.],
+  placement: bottom,
+)[
+  #align(center)[
+    #diagram(
+      node-stroke: .1em,
+      node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
+      spacing: 4em,
+      node((0, 1), [$A_n$], radius: 2em),
+      node((0, 0.5), [$dots.v$]),
+      edge((0, 1), (1, 0.5), [$W_n$], "-|>"),
+      node((0, 0), [$A_1$], radius: 2em),
+      edge([$W_1$], "-|>"),
+      node((1, 0.5), [Env.], radius: 2em, fill: env-fill),
+      edge([x], "-|>"),
+      // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
+    )
+  ]
+] <environment-blackbox>
 
-*Abstracting Away Agency.* Dahl's framework doesn't require the influenced party to be an agent. By treating $B$'s decision-making as a black box -- encoded entirely in the probability function $Pr$ -- we can extend Dahlian Power to environmental outcomes. Not only is this possible, but it may actually be more proper because Dahl doesn't model $B$ as an agent taking actions at all. Letting $E := "environment"$
+#definition(name: "Environmental Power")[
+  Dahl's framework doesn't require the influenced party to be an #gls("agent"). By treating $B$'s decision-making as a #gls("black-box-abstraction") -- encoded entirely in the probability function $Pr$ -- we can extend #gls("dahlian-power") to environmental outcomes (@environment-blackbox). Letting $E := "environment"$:
 
-$
-  M(A/E : W, x) := max_(w^+ in cal(W)) & Pr(E = x | A, w^+) \
-                                       & - max_(w^- in cal(W)) Pr(E = x | A, w^-)
-$
+  $
+    M(A/E : W, x) := max_(w^+ in cal(W)) & Pr(E = x | A, w^+) \
+                                         & - max_(w^- in cal(W)) Pr(E = x | A, w^-)
+  $
+]
 
 // Mentioned that comparisons can only be made when referring to a similar scope, etc.
 
 // I think it's also possible you can actually just model this as taking one of 2^n possible actions and comparing the control any two offer you or something.
 
-*Reverse Environmental Influence.*
+*Reverse Environmental Influence.* Can #glspl("environment") exert "#gls("power")"? While #glspl("environment") don't take deliberate actions, environmental states do influence #gls("agent") behavior (@reverse-environmental):
 
-#align(center)[
-  #diagram(
-    node-stroke: .1em,
-    node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
-    spacing: 4em,
-    node((0, 0), [Env.], radius: 2em, fill: gradient.radial(
-      green.lighten(80%),
-      green.lighten(40%),
-      center: (30%, 20%),
-      radius: 80%,
-    )),
-    edge([$W$], "-|>"),
-    node((1, 0), [$B$], radius: 2em),
-    edge([$x$], "-|>"),
-    // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
-  )]
+#figure(
+  caption: [Reverse environmental influence: Environment affects agent behavior through probabilistic states.],
+)[
+  #align(center)[
+    #diagram(
+      node-stroke: .1em,
+      node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
+      spacing: 4em,
+      node((0, 0), [Env.], radius: 2em, fill: gradient.radial(
+        green.lighten(80%),
+        green.lighten(40%),
+        center: (30%, 20%),
+        radius: 80%,
+      )),
+      edge([$W$], "-|>"),
+      node((1, 0), [$B$], radius: 2em),
+      edge([$x$], "-|>"),
+      // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
+    )
+  ]
+] <reverse-environmental>
 
-Can environments exert "power"? While environments don't take deliberate actions, environmental states do influence agent behavior:
 
-*Example.* Weather "determines" whether others will attend your picnic -- rain reduces attendance probability. While this stretches our definition of power depending on how you view the environment, it may still sensible to develop analogues:
-- Possible Environmental States = Action Space
 
-*The Agency Question.* Dahlian power doesn't require desires or utility functions -- only the ability to select from multiple actions. This creates a philosophical tension:
-- Deterministic view: If environments (or agents) have no genuine choice, then $∣ cal(W) | = 1$, yielding zero Dahlian power
-- Probabilistic view: We assign probabilities to environmental states due to our uncertainty, treating nature as if it "chooses" stochastically
+*Example.* Weather "determines" whether others will attend your picnic -- rain reduces attendance probability. While this stretches our definition of #gls("power") depending on how you view the #gls("environment"), it may still be sensible to develop analogues:
+- Possible Environmental States = #gls("action-space")
 
-*Practical Resolution.* Whether discussing weather patterns or legislative decisions, we model both agents and environments probabilistically because:
-- Complete determinism is computationally intractable
-- Uncertainty is inherent to our observations
-- Probabilistic models yield useful predictions
+#remark(name: "The Agency Question")[
+  #Gls("dahlian-power") doesn't require desires or utility functions -- only the ability to select from multiple actions. This creates a philosophical tension:
+  - Deterministic view: If #glspl("environment") (or #glspl("agent")) have no genuine choice, then $∣ cal(W) | = 1$, yielding zero #gls("dahlian-power")
+  - Probabilistic view: We assign probabilities to environmental states due to our uncertainty, treating nature as if it "chooses" stochastically
+]
 
-*This is a methodological choice, not an ontological claim about free will or determinism.* We use whichever representation -- agent or environment -- best serves our analytical goals.
+#remark(name: "Practical Resolution")[
+  Whether discussing weather patterns or legislative decisions, we model both #glspl("agent") and #glspl("environment") probabilistically because:
+  - Complete determinism is computationally intractable
+  - Uncertainty is inherent to our observations
+  - Probabilistic models yield useful predictions
+]
 
-== Means-Response Chains
-
-// *Legal Responsibility Assessment.* The legal concept you're describing involves several related doctrines that courts use to determine criminal liability when someone commits an act under external pressure or coercion.
-
-// *Duress Defense Framework.* The primary legal framework is the *duress* defense, which recognizes that individuals may not be fully culpable for criminal acts committed under sufficient threat or coercion. Courts apply an objective standard -- would a reasonable person of ordinary firmness have been unable to resist the coercion? Your examples illustrate this spectrum perfectly: a death threat would likely constitute sufficient duress for most crimes, while threatening to destroy a bobblehead would not meet the legal threshold.
-
-// *Mens Rea Analysis.* Courts also examine *mens rea* (criminal intent) to determine whether the defendant possessed the requisite mental state for the crime. Coercion can negate the voluntary nature of criminal intent, though this varies by jurisdiction and specific circumstances. The degree of coercion directly impacts whether the defendant formed the necessary criminal intent.
-
-// *Proportionality Assessment.* Legal systems typically require proportionality between the threatened harm and the criminal act. The threatened harm must be imminent, serious, and comparable to or greater than the harm caused by the criminal act. This explains why your death threat example would carry more legal weight than the bobblehead scenario.
-
-// *Culpability Gradation.* Rather than a binary guilty/not guilty determination, many jurisdictions allow for graduated culpability -- recognizing that coercion may reduce rather than eliminate criminal responsibility. This might result in lesser charges, reduced sentences, or mitigation during sentencing rather than complete exoneration.
+#remark(name: "Methodological Choice")[
+  *Whether you model #gls("environment")/people as probabilistic behavior or an #gls("agent") is a methodological choice, not an ontological claim about free will or determinism.* We use whichever representation -- #gls("agent") or #gls("environment") -- best serves our analytical goals.
+]
 
 == Means-Response Chains and the Limits of Dahlian Power
 
-Consider a chain of influence where $A$ influences $B$, who influences $C$, and so on:
-#[
+Consider a #gls("means-response-chain") where $A$ influences $B$, who influences $C$, and so on (@fig-means-response-chain):
+#figure(
+  caption: [Means-response chain: Sequential influence propagation through intermediate agents.],
+)[
   #set text(size: 7pt)
   #diagram(
     node-stroke: .1em,
@@ -446,35 +561,49 @@ Consider a chain of influence where $A$ influences $B$, who influences $C$, and 
     node((3, 0), [$A^((N))$], radius: 2em),
     edge([$x$], "-|>"),
   )
+] <fig-means-response-chain>
+
+#proposition(name: "The Attribution Problem")[
+  #Gls("dahlian-power") fundamentally cannot handle indirect influence chains. To see why, consider:
+  - $A^((0))$ has #gls("dahlian-power") over $A^((1))$'s action $W^((1))$
+  - $A^((1))$ has #gls("dahlian-power") over $A^((2))$'s action $W^((2))$
+  - But what is $A^((0))$'s #gls("power") over $A^((2))$'s action? This could theoretically be determined, yet bears no real relationship to the metrics above. For example: If $A^((2))$ has complete ($M = 1$) #gls("power") over $x$, then what does any non-zero measure of #gls("power") over $x$ from $A^((0))$ or $A^((1))$ mean? #footnote[This issue has some semblance to the issue of committing a crime under duress in law.]
 ]
 
-*The Attribution Problem.* Dahlian power fundamentally cannot handle indirect influence chains. To see why, consider:
-- $A^((0))$ has Dahlian power over $A^((1))$'s action $W^((1))$
-- $A^((1))$ has Dahlian power over $A^((2))$'s action $W^((2))$
-- But what is $A^((0))$'s power over $A^((2))$'s action? This could theoretically be determined, yet bears no real relationship to the metrics above. For example: If $A^((2))$ is has complete ($M = 1$) power over $x$, then what does any non-zero measure of power over $x$ from $A^((0))$ or $A^((1))$ mean? #footnote[This issue has some semblance to the issue of committing a crime under duress in law.]
+#proposition(name: "The Black-Box Abstraction Necessity")[
+  To analyze $A^((0))$'s influence on the final outcome $x$, Dahl's framework forces us to collapse the entire intermediate chain into an environmental #gls("black-box-abstraction") (@blackbox-abstraction).
+]
+#figure(
+  caption: [Black-box abstraction: Intermediate chain collapsed into environmental probability function.],
+)[
+  #align(center)[
+    #diagram(
+      node-stroke: .1em,
+      node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
+      spacing: 4em,
+      node((0, 0), [$A^((0))$], radius: 2em),
+      edge([$W^((0))$], "-|>"),
+      node((1, 0), [Environment], radius: 3em, fill: env-fill),
+      edge([$x$], "-|>"),
+    )
+  ]
+] <blackbox-abstraction>
 
-*The Black-Box Necessity.* To analyze $A^((0))$'s influence on the final outcome $x$, Dahl's framework forces us to collapse the entire intermediate chain into an environmental black box:
-#align(center)[
-  #diagram(
-    node-stroke: .1em,
-    node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
-    spacing: 4em,
-    node((0, 0), [$A^((0))$], radius: 2em),
-    edge([$W^((0))$], "-|>"),
-    node((1, 0), [Environment], radius: 3em, fill: env-fill),
-    edge([$x$], "-|>"),
-  )
+#remark(name: "Information Loss")[
+  This abstraction loses all structural information about:
+  - How influence propagates through the network
+  - Which intermediate #glspl("agent") have veto #gls("power")
+  - Where bottlenecks or amplifications occur
+  - How #gls("power") dissipates or concentrates along the chain
 ]
 
-This abstraction loses all structural information about:
-- How influence propagates through the network
-- Which intermediate agents have veto power
-- Where bottlenecks or amplifications occur
-- How power dissipates or concentrates along the chain
+#theorem(name: "Lukes' Critique Formalized")[
+  While Lukes' full critique goes beyond just this issue, this limitation forms one of Lukes' criticisms of #gls("dahlian-power"). In studying legislative #gls("power"), Dahl focused on observable voting behavior, missing upstream influences (@lukes-critique).
+]
 
-*Lukes' Critique Formalized.* While Lukes' full critique goes beyond just this issue, this limitation forms one of Lukes' criticism of Dahlian Power. In studying legislative power, Dahl focused on observable voting behavior, missing upstream influences:
-
-#[
+#figure(
+  caption: [Lukes' critique: Upstream power influences that Dahlian analysis misses in legislative contexts.],
+)[
   #set text(size: 7pt)
   #diagram(
     node-stroke: .1em,
@@ -489,52 +618,66 @@ This abstraction loses all structural information about:
     node((3, 0), [Env.], radius: 2.5em, fill: env-fill),
     edge([Policy\ Passes], "-|>"),
   )
+] <lukes-critique>
+
+#remark(name: "Power Types Missing from Dahl")[
+  Lukes identified two types of #gls("power") Dahl's framework cannot capture:
+  1. *Bargaining #Gls("power")*: Shaping which policies reach the legislative floor
+  2. *Ideational #Gls("power")*: Determining which ideas are even consciously considered
+
+  These operate through influence chains that #gls("dahlian-power") must either ignore or compress into an opaque probability function.
 ]
-
-Lukes identified two types of power Dahl's framework cannot capture:
-1. *Bargaining Power*: Shaping which policies reach the legislative floor
-2. *Ideational Power*: Determining which ideas are even consciously considered
-
-These operate through influence chains that Dahlian power must either ignore or compress into an opaque probability function.
 
 // Lukes criticizes Dahl and the pluralists for being too empirical, only examining the political power of observable direct decision making, whereas there are plenty of soft-power leading up to that direct decision making that play a part in both (a) Shaping the preferences of voting and policies brought to the table prior to receiving the policy (bargaining power) (b) A more cultural notion of which ideas are even consciously considered (ideational power)  #todo[check + understand better]
 // #todo[Perhaps fun to dig up Dahl's New Haven data and demonstrate some type of this modeling.] This categorization is extremely helpful for analyzing power and it will be returned to. However, can demonstrate mathematically what Luke's criticism is -- ie: Doesn't really tell you who has the final say.
 
-*Multiple Controllers as Partial Solution.* We could remodel the chain as multiple simultaneous controllers:
-
-#align(center)[
-  #diagram(
-    node-stroke: .1em,
-    node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
-    spacing: 4em,
-    node((0, 1), [$A^((n-1))$], radius: 2em),
-    node((0, 0.5), [$dots.v$]),
-    edge((0, 1), (1, 0.5), [$W^((n-1))$], "-|>"),
-    node((0, 0), [$A^((1))$], radius: 2em),
-    edge([$W^((1))$], "-|>"),
-    node((1, 0.5), [Env.], radius: 2em, fill: gradient.radial(
-      green.lighten(80%),
-      green.lighten(40%),
-      center: (30%, 20%),
-      radius: 80%,
-    )),
-    edge([x], "-|>"),
-    // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
-  )
+#proposition(name: "Multiple Controllers as Partial Solution")[
+  We could remodel the chain as multiple simultaneous #glspl("controller") (@flattened-chain).
 ]
+
+#figure(
+  caption: [Flattened chain representation: Sequential chain modeled as simultaneous multiple controllers.],
+)[
+  #align(center)[
+    #diagram(
+      node-stroke: .1em,
+      node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
+      spacing: 4em,
+      node((0, 1), [$A^((n-1))$], radius: 2em),
+      node((0, 0.5), [$dots.v$]),
+      edge((0, 1), (1, 0.5), [$W^((n-1))$], "-|>"),
+      node((0, 0), [$A^((1))$], radius: 2em),
+      edge([$W^((1))$], "-|>"),
+      node((1, 0.5), [Env.], radius: 2em, fill: gradient.radial(
+        green.lighten(80%),
+        green.lighten(40%),
+        center: (30%, 20%),
+        radius: 80%,
+      )),
+      edge([x], "-|>"),
+      // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
+    )
+  ]
+] <flattened-chain>
 // TODO: Add the society/powerful actors/legislators effect in this same way.
 
-But this flattening assumes all agents directly influence the outcome, ignoring:
-- Hierarchical relationships (who influences whom)
-- Sequential dependencies (temporal ordering matters)
-- Conditional influences (power activated only under certain conditions)
+#remark(name: "Limitations of Flattening")[
+  This flattening assumes all #glspl("agent") directly influence the outcome, ignoring:
+  - Hierarchical relationships (who influences whom)
+  - Sequential dependencies (temporal ordering matters)
+  - Conditional influences (#gls("power") activated only under certain conditions)
 
-The incapability to model these complex relationships is a serious limitation of the model. In Lukes' complaint of Dahl's empirical approach is in part a complaint that Dahl's power *lacks so much predictive power* by this inability as to be nearly useless. Any serious model of power must move beyond the limitations of this model.
+  The incapability to model these complex relationships is a serious limitation of the model. Lukes' complaint of Dahl's empirical approach is, in part, a complaint that Dahl's #gls("power") *lacks so much predictive #gls("power")* by this inability as to be nearly useless. Any serious model of #gls("power") must move beyond the limitations of this model.
+]
 
-*The Technical vs. Structural Distinction.* This limitation isn't fundamentally about computational complexity. Computer scientists have developed sophisticated inference algorithms for modeling intricate probabilistic relationships -- Bayesian networks, Markov networks, loopy belief propagation, and variational inference can handle arbitrary dependency structures within the environmental "black box."
+#theorem(name: "The Technical vs. Structural Distinction")[
+  This limitation isn't fundamentally about computational complexity. Computer scientists have developed sophisticated inference algorithms for modeling intricate probabilistic relationships -- Bayesian networks, Markov networks, loopy belief propagation, and variational inference can handle arbitrary dependency structures within the environmental "#gls("black-box-abstraction")." See @bayesian-network for an illustration of how a bayes net, starting from each #gls("agent")'s influences on latent variables (which can be thought of as "chains-of-effect"), could model how a final response changes due to some action by a #gls("controller").
+]
 
 
-#[
+#figure(
+  caption: [Complex probabilistic structure: Bayesian network showing latent variables and dependencies hidden within Dahl's environmental abstraction.],
+)[
   #set text(size: 8pt)
   #set align(center)
   #diagram(
@@ -590,95 +733,117 @@ The incapability to model these complex relationships is a serious limitation of
       node(enclose: (<z1>, <z2>, <z3>, <z4>, <z5>, <z6>), ..env-tint(green.darken(20%)), name: <environment>)
     },
   )
+] <bayesian-network>
+
+
+#theorem(name: "The Dual Role Problem")[
+  The deeper issue is *structural*: #gls("dahlian-power")'s foundational assumption that root #glspl("agent") make decisions independently creates an irreconcilable tension with influence chains. In #glspl("means-response-chain"), intermediate #glspl("agent") are simultaneously:
+  - *#Glspl("responder")* to upstream influence (requiring dependent decision-making)
+  - *#Glspl("controller")* in their own right (requiring independent decision-making)
+
+  This dual role cannot be coherently modeled within Dahl's framework without either:
+  1. Abandoning the independence assumption (breaking the foundational logic)
+  2. Collapsing the chain structure (losing predictive information)
 ]
-
-
-The deeper issue is *structural*: Dahlian power's foundational assumption that root agents make decisions independently creates an irreconcilable tension with influence chains. In means-response chains, intermediate agents are simultaneously:
-- *Responders* to upstream influence (requiring dependent decision-making)
-- *Controllers* in their own right (requiring independent decision-making)
-
-This dual role cannot be coherently modeled within Dahl's framework without either:
-1. Abandoning the independence assumption (breaking the foundational logic)
-2. Collapsing the chain structure (losing predictive information)
-
-*Hidden Complexity Within the Environment.* To illustrate what gets obscured, consider the probabilistic structure that could exist within Dahl's environmental abstraction:
-
 
 #comment[Also modeling causality seems pretty difficult.]
 
-#todo[Add figure subtitles to each of the diagrams.]
 
 
-== General Modeling Difficulties
-
-Dahlian Power has some modeling difficulties that exist across many domains but are nonetheless worth mentioning:
-- *Action Space Selection* -- Dahlian Power doesn't explain why some actions are included or excluded from the action space, offsetting difficulties to the modeler. E.g. If a legislator can burn down the legislative building instead of voting, guaranteeing the policy doesn't get passed, does the legislator have lots of power? In one sense (the Dahlian sense), they do, but in another sense they don't have more power than they did before because the probability they make this decision is essentially $0$ -- it's up to the modeler to leave this out.
-  - Additionally, it's important to determine which actions are actually available. Partly from Lukes' response, covert bargaining happens before reaching the voting floor. These actions over time and ability to bargain need to be added to the action/strategy space (ex: By defining tuples of actions indicating actions over time, $("bargain for", "vote for")$)
-// TODO: Add temporal decision making to "the means" as a strategy profile.
-- *Controller Selection* -- Partially from Lukes' response, it's important to consider every source of influence that influences the final variable. Ie: It's not just the legislators that determine whether a policy passes, they're also influenced by society, their family, and others to different degrees.
-// The field of "Critical Theory" feels related
 
 == Scope Selection and Limitations
 
-#align(center)[
-  #diagram(
-    node-stroke: .1em,
-    node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
-    spacing: 4em,
-    node((0, 1), [$A^((n-1))$], radius: 2em),
-    node((0, 0.5), [$dots.v$]),
-    edge((0, 1), (1, 0.5), [$W^((n-1))$], "-|>"),
-    node((0, 0), [$A^((1))$], radius: 2em),
-    edge([$W^((1))$], "-|>"),
-    node((1, 0.5), [Env.], radius: 2em, fill: gradient.radial(
-      green.lighten(80%),
-      green.lighten(40%),
-      center: (30%, 20%),
-      radius: 80%,
-    )),
-    edge((1, 0.5), (2, 0.3), [x], "-|>"),
-    edge((1, 0.5), (2, 0.7), [y], "-|>"),
-    // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
-  )
-]
+#figure(
+  caption: [Scope selection limitation: Dahlian Power cannot meaningfully compare power across different response variables.],
+)[
+  #align(center)[
+    #diagram(
+      node-stroke: .1em,
+      node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
+      spacing: 4em,
+      node((0, 1), [$A^((n-1))$], radius: 2em),
+      node((0, 0.5), [$dots.v$]),
+      edge((0, 1), (1, 0.5), [$W^((n-1))$], "-|>"),
+      node((0, 0), [$A^((1))$], radius: 2em),
+      edge([$W^((1))$], "-|>"),
+      node((1, 0.5), [Env.], radius: 2em, fill: gradient.radial(
+        green.lighten(80%),
+        green.lighten(40%),
+        center: (30%, 20%),
+        radius: 80%,
+      )),
+      edge((1, 0.5), (2, 0.3), [x], "-|>"),
+      edge((1, 0.5), (2, 0.7), [y], "-|>"),
+      // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
+    )
+  ]
+] <scope-selection>
 // TODO: UDPATE, SHOULD BE TWO PEOPLE.
 
-As discussed in the original essay, Dahlian Power is limited by scope -- ie: the response that you're trying to measure. There is not a very sensible way of comparing the power between some outcome $x$ and some outcome $y$
+#theorem(name: "Scope Limitation")[
+  As discussed in the original essay, #gls("dahlian-power") is limited by #gls("scope-limitation") -- ie: the response that you're trying to measure (@scope-selection). There is not a very sensible way of comparing the #gls("power") between some response $x$ and some response $y$.
+]
+
+*Example.*
+From Dahl's original essay:
 #quote(attribution: "Dahl's Concept of Power 1957")[
   With an average probability approaching one, I can induce each of 10 students to come to class for an examination on a Friday afternoon when they would otherwise prefer to make off for New York or Northampton. With its existing resources and techniques, the New Haven Police Department can prevent about half the students who park along the streets near my office from staying beyond the legal time limit. Which of us has the more power?
 ]
 
-For a general theory of power, this is extremely limiting. This example was brought up to demonstrate the difficulty of comparing, but in some cases, its clear that some variation of power is being expressed
+#remark(name: "The Importance Dimension")[
+  For a general theory of #gls("power"), it is extremely limiting to lack the ability to compare #gls("power") in two separate contexts. While the quote from above was meant to point out how comparing #gls("power") is difficult and perhaps arbitrary, there are situations for which there is a clear distinction between who has more #gls("power") in an intuitive sense.
 
+  Imagine legislators have different #gls("dahlian-power") when voting on two distinct topics: (A) Whether a social welfare program will be approved and (B) Whether town hall's bike shed will be painted green or blue.
+
+  Intuitively, if legislator Alice has considerably more #gls("dahlian-power") over (A) than legislator Bob, no matter what Bob's #gls("dahlian-power") over (B) is, we would still say that Alice has more #gls("power"). _Our intuitive sense of #gls("power") relies not only on the ability to influence outcomes, but also how much we care about those outcomes._ This will be revisited later, but for now will be left as a limitation of #gls("dahlian-power").
+]
+
+== General Modeling Difficulties
+
+#remark(name: "Practical Modeling Challenges")[
+  #Gls("dahlian-power") has some modeling difficulties that exist across many domains but are nonetheless worth mentioning:
+]
+
+#remark(name: "Action Space Selection Problem")[
+  #gls("dahlian-power") doesn't explain why some actions are included or excluded from the #gls("action-space"), offsetting difficulties to the modeler. E.g. If a legislator can burn down the legislative building instead of voting, guaranteeing the policy doesn't get passed, does the legislator have lots of #gls("power")? In one sense (the #gls("dahlian-power") sense), they do, but in another sense they don't have more #gls("power") than they did before because the probability they make this decision is essentially $0$ -- it's up to the modeler to leave this out.
+
+  Additionally, it's important to determine which actions are actually available. Partly from Lukes' response, covert bargaining happens before reaching the voting floor. These actions over time and ability to bargain need to be added to the action/strategy space (ex: By defining tuples of actions indicating actions over time, $("bargain for", "vote for")$).
+]
+
+#remark(name: "Controller Selection Problem")[
+  Partially from Lukes' response, it's important to consider every source of influence that influences the final variable. Ie: It's not just the legislators that determine whether a policy passes, they're also influenced by society, their family, and others to different degrees.
+]
+// TODO: Add temporal decision making to "the means" as a  strategy profile.
+// The field of "Critical Theory" feels related
 
 // == Complexity of Dahl and Need For Compact Representations
 
 // In this formalism of power, for $N$ controlling player and a max of $M$ actions for each, there are $N dot M$ action profiles $w = (w_1, ..., w_n)$. Each of which interact through some mechanism modeled by $Pr$ to affect the response $x$.
 
-== Connecting Dahl to Game Theory
+// == Connecting Dahl to Game Theory
 
-What Dahl's theory of power does not say is HOW the players in this scenario determine their actions, keeping the probability function $Pr$ doing a lot of work here.
+// What Dahl's theory of power does not say is HOW the players in this scenario determine their actions, keeping the probability function $Pr$ doing a lot of work here.
 
 #pagebreak()
-= Why Actions are Necessary for Power Analysis
+// = Why Actions are Necessary for Power Analysis
 
-== The Inseparability Thesis
+// == The Inseparability Thesis
 
-#claim[Power is meaningless without considering available actions -- these elements are fundamentally inseparable in any coherent power framework.]
-
-
-=== Behavioral Power
-
-*Insight 1.* Power is a function of available actions.
-
-*Insight 2.* Power is a function of optimal actions assuming rationality.
+// #claim[Power is meaningless without considering available actions -- these elements are fundamentally inseparable in any coherent power framework.]
 
 
-I might name this control.
+// === Behavioral Power
 
-#todo[Finish.]
+// *Insight 1.* Power is a function of available actions.
 
-= Why Absolute Power Fails to Model Power Dynamics
+// *Insight 2.* Power is a function of optimal actions assuming rationality.
+
+
+// I might name this control.
+
+// #todo[Finish.]
+
+= Why #gls("absolute-power") Fails to Model #gls("power") Dynamics
 
 #todo[Should this only be possible once utility is introduced?]
 
@@ -687,13 +852,13 @@ I might name this control.
 == The Modeling Asymmetry Thesis
 
 
-#claim[Models of relative power ($cal(R)$) form a proper superset of models of absolute power ($cal(A)$), establishing that $cal(R)$ is more expressive than $cal(A)$ in modeling capacity.]
+#proposition[Models of relative power ($cal(R)$) form a proper superset of models of absolute power ($cal(A)$), establishing that $cal(R)$ is more expressive than $cal(A)$ in modeling capacity.]
 
 _Dahl says that there must be a "connection" for there to be a power dynamic._
 
 === Formal Statement
 
-#definition[(Power Model Spaces)][
+#definition(name: "Power Model Spaces")[
   Let:
   - $cal(A) = {M :\ M "models power as properties of agents"}$
   - $cal(R) = {M :\ M "models power as relational"\ "properties between agents"}$
@@ -705,7 +870,7 @@ _Dahl says that there must be a "connection" for there to be a power dynamic._
 
 ==== Absolute Power as Special Case of Relative Power ($cal(A) subset.eq cal(R)$)
 
-#theorem[(Reduction Principle)][
+#theorem(name: "Reduction Principle")[
   Any absolute power model can be reformulated as a relative power model by introducing an environmental baseline.
 ]
 
@@ -720,7 +885,7 @@ $ V_"rel" = V_"abs" - V_"ground" $
 
 *Incompleteness of Absolute Power Models ($cal(A) subset.neq cal(R)$).*
 
-#theorem[(Limitation Theorem)][
+#theorem(name: "Limitation Theorem")[
   Absolute power models cannot capture essential relational dynamics without introducing factors outside their framework.
 ]
 
@@ -761,7 +926,7 @@ _Note: This does NOT tell us that relative power is sufficient, only that it may
 
 == The Inseparability Thesis
 
-#claim[Power is meaningless without considering agent utilities -- these elements are fundamentally inseparable in any coherent power framework.]
+#proposition[Power is meaningless without considering agent utilities -- these elements are fundamentally inseparable in any coherent power framework.]
 
 _NOTE: Will likely replace this utility statement._
 
@@ -769,7 +934,7 @@ _NOTE: Will likely replace this utility statement._
 
 *Core Insight.* Power is an incoherent concept under complete alignment of utilities.
 
-#definition[(Utility Alignment)][
+#definition(name: "Utility Alignment")[
   Let:
   - $U_A, U_B : cal(S) -> RR$ be utility functions for agents $A$ and $B$
   - $cal(S)$ be the state space
@@ -791,7 +956,7 @@ The mere existence of this action is meaningless without considering whether it 
 
 === Agent Boundary Definition
 
-#theorem[(Aggregation Principle)][
+#theorem(name: "Aggregation Principle")[
   Alignment relationships determine when individual power can be meaningfully aggregated into a single coherent agent:
   $ [P_"collective" = sum_i P_i] <=> [U_i approx U_j space forall i, j] $
 ]
@@ -829,7 +994,7 @@ Note that this relevant state space is inherently chosen in reference to some ag
 
 == Synthesis
 
-#theorem[(Completeness Requirement)][
+#theorem(name: "Completeness Requirement")[
   A complete theory of power requires (although may be insufficient):
   + Relational framework ($cal(R) supset cal(A)$)
   + Behavioral specifications for all agents (possibly without explicit utilities)
@@ -842,3 +1007,13 @@ Note that this relevant state space is inherently chosen in reference to some ag
 #todo[Power of signaling. US vs Japan and communicating the existence of the nuclear bomb. US in some way doesn't have power over Japan if it doesn't benefit from either (A) Annihilating it or (B) Communicating its Annihilation.]
 
 #pagebreak()
+
+// *Legal Responsibility Assessment.* The legal concept you're describing involves several related doctrines that courts use to determine criminal liability when someone commits an act under external pressure or coercion.
+
+// *Duress Defense Framework.* The primary legal framework is the *duress* defense, which recognizes that individuals may not be fully culpable for criminal acts committed under sufficient threat or coercion. Courts apply an objective standard -- would a reasonable person of ordinary firmness have been unable to resist the coercion? Your examples illustrate this spectrum perfectly: a death threat would likely constitute sufficient duress for most crimes, while threatening to destroy a bobblehead would not meet the legal threshold.
+
+// *Mens Rea Analysis.* Courts also examine *mens rea* (criminal intent) to determine whether the defendant possessed the requisite mental state for the crime. Coercion can negate the voluntary nature of criminal intent, though this varies by jurisdiction and specific circumstances. The degree of coercion directly impacts whether the defendant formed the necessary criminal intent.
+
+// *Proportionality Assessment.* Legal systems typically require proportionality between the threatened harm and the criminal act. The threatened harm must be imminent, serious, and comparable to or greater than the harm caused by the criminal act. This explains why your death threat example would carry more legal weight than the bobblehead scenario.
+
+// *Culpability Gradation.* Rather than a binary guilty/not guilty determination, many jurisdictions allow for graduated culpability -- recognizing that coercion may reduce rather than eliminate criminal responsibility. This might result in lesser charges, reduced sentences, or mitigation during sentencing rather than complete exoneration.
