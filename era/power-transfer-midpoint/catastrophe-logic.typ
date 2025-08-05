@@ -18,6 +18,7 @@
   remark,
   theorem,
 )
+#import "@preview/lemmify:0.1.8": thm-selector
 #import "./logo.typ": LaTeX, LaTeXe
 // #import "@preview/drafting:0.2.2": margin-note, set-margin-note-defaults
 #import "@preview/wordometer:0.1.4": total-words, word-count
@@ -222,6 +223,16 @@
 #show: word-count
 #show: lemmify // Theorems, propositions, definitions, etc.
 
+// Add styled blocks for definitions only
+#show thm-selector("thm-group", subgroup: "definition"): it => block(
+  fill: rgb("#f8f9fa"),
+  stroke: (left: rgb("#007acc") + 3pt),
+  inset: (left: 15pt, right: 10pt, top: 8pt, bottom: 8pt),
+  radius: (right: 4pt),
+  breakable: false,
+  it,
+)
+
 #vruler(offset: -1.7in)
 
 #let url(uri) = link(uri, raw(uri))
@@ -254,12 +265,6 @@
 //     *Definition #title.* #body
 //   ])
 // }
-
-#let claim(body) = {
-  block(inset: (left: 20pt), [
-    *Claim.* #body
-  ])
-}
 
 // #set-margin-note-defaults(hidden: false)
 
