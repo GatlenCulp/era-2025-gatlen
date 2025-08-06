@@ -113,6 +113,7 @@
 
 #let agent-fill = gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%)
 #let env-fill = gradient.radial(green.lighten(80%), green.lighten(40%), center: (30%, 20%), radius: 80%)
+#let adv-fill = gradient.radial(red.lighten(80%), red.lighten(40%), center: (30%, 20%), radius: 80%)
 #let z-stroke = (thickness: 0.5pt, paint: gray)
 #let z-fill = gray.lighten(60%)
 #let agent-radius = 1em
@@ -237,7 +238,7 @@
 
 #let url(uri) = link(uri, raw(uri))
 
-
+#set math.equation(numbering: none)
 #set figure(placement: none)
 #set quote(block: true, quotes: true)
 
@@ -355,32 +356,14 @@ As Dahl himself anticipated, we may never achieve "a single, consistent, coheren
 
 == Defining Dahlian Power
 
-#figure(
-  caption: [Basic Dahlian Power relationship: Agent A uses means W to influence Agent B's response x.],
-)[
-  #align(center)[
-    #diagram(
-      node-stroke: .1em,
-      node-fill: agent-fill,
-      spacing: 4em,
-      node((0, 0), [$A$], radius: 2em),
-      edge([$W$], "-|>"),
-      node((1, 0), [$B$], radius: 2em),
-      edge([$x$], "-|>"),
-    )
-  ]
-] <dahlian-power-rel>
-
 I start with Dahl's influential concept, which I term *#gls("dahlian-power")* to distinguish it from other #gls("power") definitions we'll encounter (@dahlian-power-rel).
 
 // We will start from Dahl's concept of power. However, since we define power differently, we will call Dahl's power "*control*". Instead of defining "People", they will be called "Players" to fit in with the later game theory formulations.
 
 #remark(name: "Dahl's Intuition")[
   Consider two scenarios from the original essay #footnote[
-    The full quote:
-    #quote[
-      Suppose I stand on a street corner and say to myself, "I command all automobile drivers on this street to drive on the right side of the road"; suppose further that all the drivers actually do as I "command" them to do; still, most people will regard me as mentally ill if I insist that I have enough power over automobile drivers to compel them to use the right side of the road. On the other hand, suppose a policeman is standing in the middle of an intersection a t which most traffic ordinarily moves ahead; he orders all traffic to turn right or left; the traffic moves as he orders it to do. Then it accords with what I conceive to be the bedrock idea of power to say that the policeman acting in this particular role evidently has the power to make automobile drivers turn right or left rather than go ahead. My intuitive idea of power, then, is something like this: A has power over B to the extent that he can get B to do something that B would not otherwise do. -- Dahl 1957
-    ]]
+    The full quote from the Concept of Power (Dahl 1957): "Suppose I stand on a street corner and say to myself, "I command all automobile drivers on this street to drive on the right side of the road"; suppose further that all the drivers actually do as I "command" them to do; still, most people will regard me as mentally ill if I insist that I have enough power over automobile drivers to compel them to use the right side of the road. On the other hand, suppose a policeman is standing in the middle of an intersection a t which most traffic ordinarily moves ahead; he orders all traffic to turn right or left; the traffic moves as he orders it to do. Then it accords with what I conceive to be the bedrock idea of power to say that the policeman acting in this particular role evidently has the power to make automobile drivers turn right or left rather than go ahead. My intuitive idea of power, then, is something like this: A has power over B to the extent that he can get B to do something that B would not otherwise do."
+  ]
 
   1. A person on a street corner "commanding" drivers to use the right side (which they already do)
   2. A police officer directing traffic to turn when it would normally go straight.
@@ -388,14 +371,29 @@ I start with Dahl's influential concept, which I term *#gls("dahlian-power")* to
   Only the second demonstrates genuine #gls("power") -- the ability to cause behavior that wouldn't otherwise occur.
 ]
 
-#definition(name: "Dahlian Power")[
+#definition(name: "Dahlian Power w/ 2-means")[
+  #figure(
+    caption: [Basic Dahlian Power relationship: Agent A uses means W to influence Agent B's response x.],
+  )[
+    #align(center)[
+      #diagram(
+        node-stroke: .1em,
+        node-fill: agent-fill,
+        spacing: 4em,
+        node((0, 0), [$A$], radius: 2em),
+        edge([$W$], "-|>"),
+        node((1, 0), [$B$], radius: 2em),
+        edge([$x$], "-|>"),
+      )
+    ]
+  ] <dahlian-power-rel>
   #Gls("agent") $A$'s #gls("dahlian-power") over $B$ with respect to the response $x$ by means $w$ is:
   $
     M(A/B : W, x) := Pr(B, x &| A, w) - Pr(B, x | A, overline(w))
   $
   Where:
   - $Pr(B, x &| A, w)$ is the probability that $B$ takes action $x$ given $A$ took action $w$.
-  - $overline(w)$ is $A$ not taking action $w$
+  - $overline(w)$ is $A$ not taking action $w$ and $W$ is the unresolved action
 ]
 
 #remark(name: "Key Components")[
@@ -410,13 +408,44 @@ I start with Dahl's influential concept, which I term *#gls("dahlian-power")* to
   3. *Practicality.* Doesn't say whether the #gls("controller") actually would or would not take action $w$ in practice.
 ]
 
+#remark(name: "Dahlian Power Over Environment")[
+  Dahl's framework extends naturally beyond human responders. Since the mathematical formalism only requires probabilistic responses $Pr(x | A, w)$, we can analyze agent power over environmental outcomes.(@environment-blackbox).
 
-== Generalizing Beyond Binary Actions
+  Letting $E := "environment"$:
+
+  $
+    M(A/E : W, x) := max_(w^+ in cal(W)) & Pr(E = x | A, w^+) \
+                                         & - max_(w^- in cal(W)) Pr(E = x | A, w^-)
+  $
+
+  #figure(
+    caption: [Environmental power: Agent actions influence environmental states or outcomes.],
+    placement: bottom,
+  )[
+    #align(center)[
+      #diagram(
+        node-stroke: .1em,
+        node-fill: agent-fill,
+        spacing: 4em,
+        node((0, 0), [$A$], radius: 2em, name: <agent>),
+        edge(<agent>, (1, 0), [$W$], "-|>"),
+        node((1, 0), [Env.], radius: 2em, fill: env-fill, name: <env>),
+        edge(<env>, (2, 0), [$x$], "-|>"),
+      )
+    ]
+  ] <environment-blackbox>
+
+  *Example:* A company's carbon emissions policy $W$ influences climate outcomes $x$ (temperature rise).
+
+  This captures intuitive notions of "environmental power" while maintaining Dahl's rigorous probabilistic foundation.
+]
+
+== Generalizing Beyond Binary Means
 
 Dahl's binary framework (action taken or not) is limiting. Real #glspl("agent") choose from multiple options.
 
-#definition(name: "Extension to n Actions")[
-  Let $#gls("action-space") := {w_1, ..., w_n | n in NN^+}$. Then:
+#definition(name: "Dahlian Power w/ n-means")[
+  Let $#gls("action-space") cal(W) := {w_1, ..., w_n | n in NN^+}$. Then:
   $
     M(A/B : W, x) := max_(w^+ in cal(W)) & Pr(B, x | A, w^+) \
                                          & - max_(w^- in cal(W)) Pr(B, x | A, w^-)
@@ -428,9 +457,7 @@ Dahl's binary framework (action taken or not) is limiting. Real #glspl("agent") 
 
 #comment[I think Dahl actually notes that you need similar means as well. Look back into this.]
 
-== Beyond Two-Controller Dynamics
-
-Real #gls("power") dynamics rarely involve just two #glspl("controller"). Consider the example from Dahl's original paper where multiple legislators influence the outcome of a policy being passed or not (@fig-multi-controller):
+== Multi-Agent Dahlian-Power
 
 #figure(
   caption: [Multi-controller dynamics: Multiple agents $A_1, ..., A_n$ simultaneously influence responder B.],
@@ -441,7 +468,7 @@ Real #gls("power") dynamics rarely involve just two #glspl("controller"). Consid
       node-fill: agent-fill,
       spacing: 4em,
       node((0, 1), [$A_n$], radius: 2em),
-      node((0, 0.5), [$dots.v$]),
+      node((0, 0.5), [$dots.v$], fill: none, stroke: none),
       edge((0, 1), (1, 0.5), [$W_n$], "-|>"),
       node((0, 0), [$A_1$], radius: 2em),
       edge([$W_1$], "-|>"),
@@ -452,123 +479,228 @@ Real #gls("power") dynamics rarely involve just two #glspl("controller"). Consid
   ]
 ] <fig-multi-controller>
 
+
+Real #gls("power") dynamics rarely involve just one #gls("controller"). Consider the example from Dahl's original paper where multiple legislators influence the outcome of a policy being passed or not (@fig-multi-controller):
+
+
 When multiple #glspl("controller") ${A_1, ..., A_n}$ simultaneously influence the #gls("responder") $B$, we need to extend our framework. Each #gls("agent") $A_i$ can take actions from their #gls("action-space") $cal(W)_i$, creating a joint action profile $bold(w) = (w_1, ..., w_n)$.
 
-*Comparative #gls("dahlian-power").* To assess individual contributions within #gls("multi-controller") influence, Dahl introduced comparative measures (Referred to as $M''$ and did not formalize). For #gls("controller") $A_i$ within #glspl("controller") $A$:
+Dahl provides two comparative measures for ranking #glspl("controller") with respect to a specific outcome $x$:
 
-#todo[Finish, not super important.]
-$
-  M_i (A/B : cal(W), x) := max_(bold(w) in product cal(W)_j) ...
-$
-
-*Combined #Gls("power").* We can aggregate any combination of these #glspl("controller") into a virtual single #gls("controller") coalition $A' subset.eq {A_1, ..., A_n}$ and define the #gls("power") of the coalition in a similar way. This new coalition $A'$ will have an #gls("action-space") constructed from actions spaces of its members $cal(W)' = cal(W)_1 times cal(W)_2 times ... times cal(W_m)$ where $A_1, ..., A_m$ are the #glspl("controller") in the coalition.
-#todo[Better written def, (not necessarily referring to the indices of the original ordering)]
-
-== The Environment as a Black Box
-
-#figure(
-  caption: [Environment as black box: Multiple agents influence environmental outcomes directly.],
-  placement: bottom,
+#definition(
+  name: "Marginal Dahlian Power",
 )[
-  #align(center)[
-    #diagram(
-      node-stroke: .1em,
-      node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
-      spacing: 4em,
-      node((0, 1), [$A_n$], radius: 2em),
-      node((0, 0.5), [$dots.v$]),
-      edge((0, 1), (1, 0.5), [$W_n$], "-|>"),
-      node((0, 0), [$A_1$], radius: 2em),
-      edge([$W_1$], "-|>"),
-      node((1, 0.5), [Env.], radius: 2em, fill: env-fill),
-      edge([x], "-|>"),
-      // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
-    )
-  ]
-] <environment-blackbox>
+  #figure(
+    caption: [Marginal power analysis: Agent $A_1$ is focal (blue), while other agents $A_2, ..., A_n$ are marginalized (gray).],
+  )[
+    #align(center)[
+      #diagram(
+        node-stroke: .1em,
+        node-fill: agent-fill,
+        spacing: 4em,
+        // Agents arranged vertically on left
+        node((0, -0.6), [$A_1$], radius: 2em, name: <a1>),
+        node((0, 0), [$A_2$], radius: 2em, fill: gray, name: <a2>),
+        node((0, 0.4), [$dots.v$], fill: none, stroke: none, name: <dots>),
+        node((0, 0.8), [$A_n$], radius: 2em, fill: gray, name: <an>),
+        // Responder on right
+        node((1, 0), [$B$], radius: 2em, name: <b>),
+        // Edges from agents to responder
+        edge(<a1>, <b>, [$W_1$], "-|>"),
+        edge(<a2>, <b>, [$W_2$], "-|>"),
+        edge(<an>, <b>, [$W_n$], "-|>"),
+        // Edge from responder to outcome
+        edge(<b>, (2, 0), [x], "-|>"),
+      )
+    ]
+  ] <fig-marginal-dahlian-power>
 
-#definition(name: "Environmental Power")[
-  Dahl's framework doesn't require the influenced party to be an #gls("agent"). By treating $B$'s decision-making as a #gls("black-box-abstraction") -- encoded entirely in the probability function $Pr$ -- we can extend #gls("dahlian-power") to environmental outcomes (@environment-blackbox). Letting $E := "environment"$:
+  Let $cal(X) := "Set of possible responses"$, then:
 
+  The marginal power of $A_i$ in optimizing for a specific response $x in cal(X)$ relative to a control condition $w_i^0$ (baseline action) is obtained by marginalizing over the expected actions of other controllers:#footnote[This is not the exact definition that Dahl provides, but a more general one.]
   $
-    M(A/E : W, x) := max_(w^+ in cal(W)) & Pr(E = x | A, w^+) \
-                                         & - max_(w^- in cal(W)) Pr(E = x | A, w^-)
+    M_+(A_i) & := max_(w_i in cal(W)_i) EE_(bold(w)_(-i) ~ pi_(-i)) [Pr(x | A_i, w_i, bold(w)_(-i))] \
+             & - EE_(bold(w)_(-i) ~ pi_(-i)) [Pr(x | A_i, w_i^0, bold(w)_(-i))] \
+    M_-(A_i) & := max_(w_i in cal(W)_i) EE_(bold(w)_(-i) ~ pi_(-i)) [Pr(overline(x) | A_i, w_i, bold(w)_(-i))] \
+             & - EE_(bold(w)_(-i) ~ pi_(-i)) [Pr(overline(x) | A_i, w_i^0, bold(w)_(-i))] \
+    M^*(A_i) & := M_+(A_i) + M_-(A_i)
   $
+
+  where $pi_(-i)$ represents the distribution over other agents' action profiles $bold(w)_(-i) = (w_1, ..., w_(i-1), w_(i+1), ..., w_n)$, and $w_i^0$ is agent $A_i$'s baseline or "do nothing" action that serves as the control condition.#footnote[If you don't care about $M_-$ or $M_+$, it may make more sense to omit a control action and just focus on $M^*$. This may as well be the case if only two actions are available and a control isn't well defined.]
+
+  This measures agent $A_i$'s maximum influence over outcome $x$ when accounting for uncertainty in other agents' behavior. #footnote[Dahl mentions the *Problem of the Chameleon* in his original paper to describe the effect that $A_i$ exerts the most power when they take the actions maximizing/minimizing $Pr(x | A_i, w_i)$. This was called the problem of the chameleon because, in Dahl's original problem, he was looking at senators and passing legislation -- senators could maximize their measured power by mirroring how everyone else voted. There is an emperical problem he encountered with collecting data in this way, but the theoretical issue with comparative Dahlian Power and its indifference towards preferences will be adjusted later.]
 ]
+
+#definition(
+  name: "Pairwise-Conflict Dahlian Power",
+)[
+  #figure(
+    caption: [Pairwise-conflict power analysis: Agent $A_1$ is focal (blue), $A_2$ is adversarial (red), while other agents $A_3, ..., A_n$ are marginalized (gray).],
+  )[
+    #align(center)[
+      #diagram(
+        node-stroke: .1em,
+        node-fill: agent-fill,
+        spacing: 4em,
+        // Agents arranged vertically on left
+        node((0, -0.6), [$A_1$], radius: 2em, name: <a1>),
+        node((0, 0), [$A_2$], radius: 2em, fill: adv-fill, name: <a2>),
+        node((0, 0.6), [$A_3$], radius: 2em, fill: gray, name: <a3>),
+        node((0, 1), [$dots.v$], fill: none, stroke: none, name: <dots>),
+        node((0, 1.5), [$A_n$], radius: 2em, fill: gray, name: <an>),
+        // Responder on right
+        node((1, 0), [$B$], radius: 2em, name: <b>),
+        // Edges from agents to responder
+        edge(<a1>, <b>, [$W_1$], "-|>"),
+        edge(<a2>, <b>, [$W_2$], "-|>"),
+        edge(<a3>, <b>, [$W_3$], "-|>"),
+        edge(<an>, <b>, [$W_n$], "-|>"),
+        // Edge from responder to outcome
+        edge(<b>, (2, 0), [x], "-|>"),
+      )
+    ]
+  ] <fig-conflict-dahlian-power>
+  For pairwise comparison between agents $A_i$ and $A_j$ regarding outcome $x$, where $A_j$ optimizes against $A_i$ while marginalizing over all other agents:
+  $
+    M_+ ''(A_i) & := max_(w_i in cal(W)_i) min_(w_j in cal(W)_j) EE_(bold(w)_(-i,-j) ~ pi_(-i,-j)) [ \
+                & Pr(x | A_i, w_i, A_j, w_j, bold(w)_(-i,-j)) \
+              ] \
+    M_- ''(A_i) & := max_(w_i in cal(W)_i) min_(w_j in cal(W)_j) EE_(bold(w)_(-i,-j) ~ pi_(-i,-j)) [ \
+                & Pr(overline(x) | A_i, w_i, A_j, w_j, bold(w)_(-i,-j)) \
+              ] \
+       M''(A_i) & := M_+ ''(A_i) + M_- ''(A_i)
+  $
+  where $pi_(-i,-j)$ represents the distribution over all other agents' action profiles, and agent $A_i$ maximizes their influence while agent $A_j$ minimizes it.
+
+  Agent $A_i$ has greater adversarial power than $A_j$ if:
+  $
+    M''(A_i) > M''(A_j)
+  $
+
+  This measures agent $A_i$'s maximum sway over outcome $x$ when facing optimal opposition from agent $A_j$.#footnote[Dahl used this pairwise power to form a rough ranking of power among legislators from limited voting data.]
+]
+
+It's reasonable to assume coalitions could form between our controllers, expanding their power beyond just a single agent. We can replace the original controllers with the new coalition as a singular controller, redefining the means of the coalition to be a combination of the original means.
+
+#definition(name: "Combined Dahlian Power")[
+  #figure(
+    caption: [Coalition power analysis: Agents $A_1, A_2$ collaborate (matching blue), while $A_3, ..., A_n$ remain independent (gray).],
+  )[
+    #align(center)[
+      #diagram(
+        node-stroke: .1em,
+        node-fill: agent-fill,
+        spacing: 4em,
+        // Coalition members
+        node((0, -0.6), [$A_1$], radius: 2em, name: <a1>),
+        node((0, 0), [$A_2$], radius: 2em, name: <a2>),
+        // Independent agents
+        node((0, 0.6), [$A_3$], radius: 2em, fill: gray, name: <a3>),
+        node((0, 1), [$dots.v$], fill: none, stroke: none, name: <dots>),
+        node((0, 1.4), [$A_n$], radius: 2em, fill: gray, name: <an>),
+        // Responder
+        node((1, 0.4), [$B$], radius: 2em, name: <b>),
+        // Coalition edges (grouped)
+        edge(<a1>, <b>, [$bold(W)_C$], "-|>"),
+        edge(<a2>, <b>, "-|>"),
+        // Independent edges
+        edge(<a3>, <b>, [$W_3$], "-|>"),
+        edge(<an>, <b>, [$W_n$], "-|>"),
+        // Outcome
+        edge(<b>, (2, 0.4), [$x$], "-|>"),
+      )
+    ]
+  ] <fig-combined-dahlian-power>
+
+  For coalition of controllers (referring to their indices) $C subset.eq {1, ..., n}$ with joint action space $cal(W)_C = times.big_(i in C) cal(W)_i$:
+  $
+    M_+(C) & := max_(bold(w)_C in cal(W)_C) EE_(bold(w)_(-C) ~ pi_(-C)) [Pr(x | C, bold(w)_C, bold(w)_(-C))] \
+    M_-(C) & := max_(bold(w)_C in cal(W)_C) EE_(bold(w)_(-C) ~ pi_(-C)) [Pr(overline(x) | C, bold(w)_C, bold(w)_(-C))] \
+    M^*(C) & := M_+(C) + M_-(C)
+  $
+
+  where $bold(w)_C = (w_i | forall i in C)$ is the coalition's joint action and $pi_(-C)$ represents the distribution over non-coalition agents' actions.
+
+  This measures the collective power of coordinating agents when they can synchronize their actions optimally.#footnote[This formulation has many similarities with Cooperative Game Theory.]
+]
+
+#theorem(name: "Combinatorial Complexity of Power Comparisons")[
+  For $n$ controllers, each can be assigned to: (1) coalition $C_1$, (2) coalition $C_2$, or (3) marginalized. This yields $(3^n - 1)/(2)$ distinct power comparisons.
+
+  *Proof:* Each controller has 3 assignments, giving $3^n$ total configurations. We subtract 1 degenerate case (all marginalized). The grand coalition (all in $C_1$ or all in $C_2$) is valid. Since $C_1$ vs $C_2$ comparisons are symmetric, we divide by 2. Note: $(3^n - 1)$ is always even since $3^n$ is odd for all $n$, ensuring integer results.
+
+  *Example:* For $n = 3$ controllers: $(3^3 - 1)/(2) = 26/2 = 13$ comparisons, including grand coalition $A_1, A_2, A_3$.
+]
+
+== Environmental Power
 
 // Mentioned that comparisons can only be made when referring to a similar scope, etc.
 
 // I think it's also possible you can actually just model this as taking one of 2^n possible actions and comparing the control any two offer you or something.
 
-*Reverse Environmental Influence.* Can #glspl("environment") exert "#gls("power")"? While #glspl("environment") don't take deliberate actions, environmental states do influence #gls("agent") behavior (@reverse-environmental):
+#remark(name: "The Environment as Controller")[
+  Can #glspl("environment") exert "#gls("power")"? While #glspl("environment") don't take deliberate actions, environmental states do influence #gls("agent") behavior (@reverse-environmental):
+  #figure(
+    caption: [Reverse environmental influence: Environment affects agent behavior through probabilistic states.],
+  )[
+    #align(center)[
+      #diagram(
+        node-stroke: .1em,
+        node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
+        spacing: 4em,
+        node((0, 0), [Env.], radius: 2em, fill: env-fill),
+        edge([$W$], "-|>"),
+        node((1, 0), [$B$], radius: 2em),
+        edge([$x$], "-|>"),
+        // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
+      )
+    ]
+  ] <reverse-environmental>
 
-#figure(
-  caption: [Reverse environmental influence: Environment affects agent behavior through probabilistic states.],
-)[
-  #align(center)[
-    #diagram(
-      node-stroke: .1em,
-      node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
-      spacing: 4em,
-      node((0, 0), [Env.], radius: 2em, fill: gradient.radial(
-        green.lighten(80%),
-        green.lighten(40%),
-        center: (30%, 20%),
-        radius: 80%,
-      )),
-      edge([$W$], "-|>"),
-      node((1, 0), [$B$], radius: 2em),
-      edge([$x$], "-|>"),
-      // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
-    )
-  ]
-] <reverse-environmental>
+  *Example.* Weather "determines" whether others will attend your picnic -- rain reduces attendance probability.
 
+  While this stretches our definition of #gls("power") depending on how you view the #gls("environment"), it may still be sensible to define the environment as a virtual agent where possible environmental states become the #gls("action-space").
+]
 
-
-*Example.* Weather "determines" whether others will attend your picnic -- rain reduces attendance probability. While this stretches our definition of #gls("power") depending on how you view the #gls("environment"), it may still be sensible to develop analogues:
-- Possible Environmental States = #gls("action-space")
-
-#remark(name: "The Agency Question")[
+#remark(name: "Modeling Agency as a Methodological Choice")[
   #Gls("dahlian-power") doesn't require desires or utility functions -- only the ability to select from multiple actions. This creates a philosophical tension:
   - Deterministic view: If #glspl("environment") (or #glspl("agent")) have no genuine choice, then $∣ cal(W) | = 1$, yielding zero #gls("dahlian-power")
   - Probabilistic view: We assign probabilities to environmental states due to our uncertainty, treating nature as if it "chooses" stochastically
-]
 
-#remark(name: "Practical Resolution")[
-  Whether discussing weather patterns or legislative decisions, we model both #glspl("agent") and #glspl("environment") probabilistically because:
+
+  *Practical Resolution.* Whether discussing weather patterns or legislative decisions, we model both #glspl("agent") and #glspl("environment") probabilistically because:
   - Complete determinism is computationally intractable
   - Uncertainty is inherent to our observations
   - Probabilistic models yield useful predictions
-]
 
-#remark(name: "Methodological Choice")[
   *Whether you model #gls("environment")/people as probabilistic behavior or an #gls("agent") is a methodological choice, not an ontological claim about free will or determinism.* We use whichever representation -- #gls("agent") or #gls("environment") -- best serves our analytical goals.
 ]
 
 == Means-Response Chains and the Limits of Dahlian Power
 
-Consider a #gls("means-response-chain") where $A$ influences $B$, who influences $C$, and so on (@fig-means-response-chain):
-#figure(
-  caption: [Means-response chain: Sequential influence propagation through intermediate agents.],
-)[
-  #set text(size: 7pt)
-  #diagram(
-    node-stroke: .1em,
-    node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
-    spacing: 4em,
-    node((0, 0), [$A^((0))$], radius: 2em),
-    edge([$W^((0))$], "-|>"),
-    node((1, 0), [$A^((1))$], radius: 2em),
-    edge([$W^((1))$], "-|>"),
-    node((2, 0), [$...$]),
-    edge([$W^((N-1))$], "-|>"),
-    node((3, 0), [$A^((N))$], radius: 2em),
-    edge([$x$], "-|>"),
-  )
-] <fig-means-response-chain>
+#remark(name: "Means-Response Chains")[
+  Consider a #gls("means-response-chain") where $A$ influences $B$, who influences $C$, and so on (@fig-means-response-chain):
+  #figure(
+    caption: [Means-response chain: Sequential influence propagation through intermediate agents.],
+  )[
+    #set text(size: 7pt)
+    #diagram(
+      node-stroke: .1em,
+      node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
+      spacing: 4em,
+      node((0, 0), [$A^((0))$], radius: 2em),
+      edge([$W^((0))$], "-|>"),
+      node((1, 0), [$A^((1))$], radius: 2em),
+      edge([$W^((1))$], "-|>"),
+      node((2, 0), [$...$], fill: none),
+      edge([$W^((N-1))$], "-|>"),
+      node((3, 0), [$A^((N))$], radius: 2em),
+      edge([$x$], "-|>"),
+    )
+  ] <fig-means-response-chain>
+]
 
-#proposition(name: "The Attribution Problem")[
+#remark(name: "The Attribution Problem")[
   #Gls("dahlian-power") fundamentally cannot handle indirect influence chains. To see why, consider:
   - $A^((0))$ has #gls("dahlian-power") over $A^((1))$'s action $W^((1))$
   - $A^((1))$ has #gls("dahlian-power") over $A^((2))$'s action $W^((2))$
@@ -576,23 +708,24 @@ Consider a #gls("means-response-chain") where $A$ influences $B$, who influences
 ]
 
 #proposition(name: "The Black-Box Abstraction Necessity")[
-  To analyze $A^((0))$'s influence on the final outcome $x$, Dahl's framework forces us to collapse the entire intermediate chain into an environmental #gls("black-box-abstraction") (@blackbox-abstraction).
+  To analyze $A^((0))$'s influence on the final outcome $x$, Dahl's framework forces us to collapse the entire intermediate chain into an environmental #gls("black-box-abstraction") -- ie: assuming that $A^((0))$ is a kind of "initial mover", the only one capable of independent action while the subsequent agents take actions dependent on $A^((0))$ (@blackbox-abstraction).
+
+  #figure(
+    caption: [Black-box abstraction: Intermediate chain collapsed into environmental probability function.],
+  )[
+    #align(center)[
+      #diagram(
+        node-stroke: .1em,
+        node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
+        spacing: 4em,
+        node((0, 0), [$A^((0))$], radius: 2em),
+        edge([$W^((0))$], "-|>"),
+        node((1, 0), [Environment], radius: 3em, fill: env-fill),
+        edge([$x$], "-|>"),
+      )
+    ]
+  ] <blackbox-abstraction>
 ]
-#figure(
-  caption: [Black-box abstraction: Intermediate chain collapsed into environmental probability function.],
-)[
-  #align(center)[
-    #diagram(
-      node-stroke: .1em,
-      node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
-      spacing: 4em,
-      node((0, 0), [$A^((0))$], radius: 2em),
-      edge([$W^((0))$], "-|>"),
-      node((1, 0), [Environment], radius: 3em, fill: env-fill),
-      edge([$x$], "-|>"),
-    )
-  ]
-] <blackbox-abstraction>
 
 #remark(name: "Information Loss")[
   This abstraction loses all structural information about:
@@ -602,28 +735,28 @@ Consider a #gls("means-response-chain") where $A$ influences $B$, who influences
   - How #gls("power") dissipates or concentrates along the chain
 ]
 
-#theorem(name: "Lukes' Critique Formalized")[
+#remark(name: "Lukes' Critique Formalized")[
   While Lukes' full critique goes beyond just this issue, this limitation forms one of Lukes' criticisms of #gls("dahlian-power"). In studying legislative #gls("power"), Dahl focused on observable voting behavior, missing upstream influences (@lukes-critique).
+  #figure(
+    caption: [Lukes' critique: Upstream power influences that Dahlian analysis misses in legislative contexts.],
+  )[
+    #set text(size: 7pt)
+    #diagram(
+      node-stroke: .1em,
+      node-fill: agent-fill,
+      spacing: 4em,
+      node((0, 0), [Society], radius: 2.5em),
+      edge([Ideational\ Power], "-|>"),
+      node((1, 0), [Powerful\ Actors], radius: 2.5em),
+      edge([Bargaining\ Power], "-|>"),
+      node((2, 0), [Legislators], radius: 2.5em),
+      edge([Material\ Power], "-|>"),
+      node((3, 0), [Env.], radius: 2.5em, fill: env-fill),
+      edge([Policy\ Passes], "-|>"),
+    )
+  ] <lukes-critique>
 ]
 
-#figure(
-  caption: [Lukes' critique: Upstream power influences that Dahlian analysis misses in legislative contexts.],
-)[
-  #set text(size: 7pt)
-  #diagram(
-    node-stroke: .1em,
-    node-fill: agent-fill,
-    spacing: 4em,
-    node((0, 0), [Society], radius: 2.5em),
-    edge([Ideational\ Power], "-|>"),
-    node((1, 0), [Powerful\ Actors], radius: 2.5em),
-    edge([Bargaining\ Power], "-|>"),
-    node((2, 0), [Legislators], radius: 2.5em),
-    edge([Material\ Power], "-|>"),
-    node((3, 0), [Env.], radius: 2.5em, fill: env-fill),
-    edge([Policy\ Passes], "-|>"),
-  )
-] <lukes-critique>
 
 #remark(name: "Power Types Missing from Dahl")[
   Lukes identified two types of #gls("power") Dahl's framework cannot capture:
@@ -638,33 +771,27 @@ Consider a #gls("means-response-chain") where $A$ influences $B$, who influences
 
 #proposition(name: "Multiple Controllers as Partial Solution")[
   We could remodel the chain as multiple simultaneous #glspl("controller") (@flattened-chain).
-]
 
-#figure(
-  caption: [Flattened chain representation: Sequential chain modeled as simultaneous multiple controllers.],
-)[
-  #align(center)[
-    #diagram(
-      node-stroke: .1em,
-      node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
-      spacing: 4em,
-      node((0, 1), [$A^((n-1))$], radius: 2em),
-      node((0, 0.5), [$dots.v$]),
-      edge((0, 1), (1, 0.5), [$W^((n-1))$], "-|>"),
-      node((0, 0), [$A^((1))$], radius: 2em),
-      edge([$W^((1))$], "-|>"),
-      node((1, 0.5), [Env.], radius: 2em, fill: gradient.radial(
-        green.lighten(80%),
-        green.lighten(40%),
-        center: (30%, 20%),
-        radius: 80%,
-      )),
-      edge([x], "-|>"),
-      // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
-    )
-  ]
-] <flattened-chain>
-// TODO: Add the society/powerful actors/legislators effect in this same way.
+  #figure(
+    caption: [Flattened chain representation: Sequential chain modeled as simultaneous multiple controllers.],
+  )[
+    #align(center)[
+      #diagram(
+        node-stroke: .1em,
+        node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
+        spacing: 4em,
+        node((0, 1), [$A^((n-1))$], radius: 2em),
+        node((0, 0.5), [$dots.v$], fill: none, stroke: none),
+        edge((0, 1), (1, 0.5), [$W^((n-1))$], "-|>"),
+        node((0, 0), [$A^((1))$], radius: 2em),
+        edge([$W^((1))$], "-|>"),
+        node((1, 0.5), [Env.], radius: 2em, fill: env-fill),
+        edge([x], "-|>"),
+      )
+    ]
+  ] <flattened-chain>
+  // TODO: Add the society/powerful actors/legislators effect in this same way.
+]
 
 #remark(name: "Limitations of Flattening")[
   This flattening assumes all #glspl("agent") directly influence the outcome, ignoring:
@@ -675,73 +802,74 @@ Consider a #gls("means-response-chain") where $A$ influences $B$, who influences
   The incapability to model these complex relationships is a serious limitation of the model. Lukes' complaint of Dahl's empirical approach is, in part, a complaint that Dahl's #gls("power") *lacks so much predictive #gls("power")* by this inability as to be nearly useless. Any serious model of #gls("power") must move beyond the limitations of this model.
 ]
 
-#theorem(name: "The Technical vs. Structural Distinction")[
+#remark(name: "The Technical vs. Structural Distinction")[
   This limitation isn't fundamentally about computational complexity. Computer scientists have developed sophisticated inference algorithms for modeling intricate probabilistic relationships -- Bayesian networks, Markov networks, loopy belief propagation, and variational inference can handle arbitrary dependency structures within the environmental "#gls("black-box-abstraction")." See @bayesian-network for an illustration of how a bayes net, starting from each #gls("agent")'s influences on latent variables (which can be thought of as "chains-of-effect"), could model how a final response changes due to some action by a #gls("controller").
+
+
+
+  #figure(
+    caption: [Complex probabilistic structure: Bayesian network showing latent variables and dependencies hidden within Dahl's environmental abstraction.],
+  )[
+    #set text(size: 8pt)
+    #set align(center)
+    #diagram(
+      node-corner-radius: 4pt,
+      spacing: (2.5em, 1.5em),
+
+      // External agents - organized in a single column (only 3 agents)
+      node((0, 0), [$A^((0))$], radius: agent-radius, fill: agent-fill, name: <a0>),
+      node((0, 1), [$A^((1))$], radius: agent-radius, fill: agent-fill, name: <a1>),
+      node((0, 2), [$A^((2))$], radius: agent-radius, fill: agent-fill, name: <a2>),
+
+      // Latent variables - left to right progression (low to high level)
+      // Left side: Direct agent effects
+      node((2.5, 0), [$Z_1$], radius: z-radius, fill: z-fill, name: <z1>),
+      node((2.5, 1), [$Z_2$], radius: z-radius, fill: z-fill, name: <z2>),
+      node((2.5, 2), [$Z_3$], radius: z-radius, fill: z-fill, name: <z3>),
+
+      // Middle: Intermediate effects
+      node((4, 0.5), [$Z_4$], radius: z-radius, fill: z-fill, name: <z4>),
+      node((4, 1.5), [$Z_5$], radius: z-radius, fill: z-fill, name: <z5>),
+
+      // Right side: Higher-level aggregate effects
+      node((5.5, 1), [$Z_6$], radius: z-radius, fill: z-fill, name: <z6>),
+      node((4, 2.5), [$Z_7$], radius: z-radius, fill: z-fill, name: <z7>),
+
+      // Direct output from highest-level latent variable
+      node((7, 1), [$x$], radius: 0.5em, fill: gray.lighten(80%), name: <output>),
+
+      // Agent actions only to left-side latent variables
+      edge(<a0>, <z1>, [$W^((0))$], "->", stroke: action-stroke),
+      edge(<a0>, <z2>, [], "->", stroke: action-stroke),
+      edge(<a1>, <z2>, [$W^((1))$], "->", stroke: action-stroke),
+      edge(<a2>, <z3>, [$W^((2))$], "->", stroke: action-stroke),
+
+      // Left-to-right progression of effects
+      edge(<z1>, <z4>, [], "->", stroke: z-interaction-stroke),
+      edge(<z2>, <z4>, [], "->", stroke: z-interaction-stroke),
+      edge(<z2>, <z5>, [], "->", stroke: z-interaction-stroke),
+      edge(<z3>, <z5>, [], "->", stroke: z-interaction-stroke),
+      edge(<z4>, <z6>, [], "->", stroke: z-interaction-stroke),
+      edge(<z5>, <z6>, [], "->", stroke: z-interaction-stroke),
+      edge(<z7>, <z6>, [], "->", stroke: z-interaction-stroke),
+
+      // Direct output from highest-level latent variable
+      edge(<z6>, <output>, [], "-|>"),
+
+      // Visual groupings with enclosures
+      {
+        let agent-tint(c) = (stroke: c, fill: rgb(..c.components().slice(0, 3), 8%), inset: 12pt)
+        let env-tint(c) = (stroke: c, fill: rgb(..c.components().slice(0, 3), 5%), inset: 16pt)
+
+        node(enclose: (<a0>, <a2>), ..agent-tint(blue.darken(20%)), name: <agents>)
+        node(enclose: (<z1>, <z2>, <z3>, <z4>, <z5>, <z6>), ..env-tint(green.darken(20%)), name: <environment>)
+      },
+    )
+  ] <bayesian-network>
 ]
 
 
-#figure(
-  caption: [Complex probabilistic structure: Bayesian network showing latent variables and dependencies hidden within Dahl's environmental abstraction.],
-)[
-  #set text(size: 8pt)
-  #set align(center)
-  #diagram(
-    node-corner-radius: 4pt,
-    spacing: (2.5em, 1.5em),
-
-    // External agents - organized in a single column (only 3 agents)
-    node((0, 0), [$A^((0))$], radius: agent-radius, fill: agent-fill, name: <a0>),
-    node((0, 1), [$A^((1))$], radius: agent-radius, fill: agent-fill, name: <a1>),
-    node((0, 2), [$A^((2))$], radius: agent-radius, fill: agent-fill, name: <a2>),
-
-    // Latent variables - left to right progression (low to high level)
-    // Left side: Direct agent effects
-    node((2.5, 0), [$Z_1$], radius: z-radius, fill: z-fill, name: <z1>),
-    node((2.5, 1), [$Z_2$], radius: z-radius, fill: z-fill, name: <z2>),
-    node((2.5, 2), [$Z_3$], radius: z-radius, fill: z-fill, name: <z3>),
-
-    // Middle: Intermediate effects
-    node((4, 0.5), [$Z_4$], radius: z-radius, fill: z-fill, name: <z4>),
-    node((4, 1.5), [$Z_5$], radius: z-radius, fill: z-fill, name: <z5>),
-
-    // Right side: Higher-level aggregate effects
-    node((5.5, 1), [$Z_6$], radius: z-radius, fill: z-fill, name: <z6>),
-    node((4, 2.5), [$Z_7$], radius: z-radius, fill: z-fill, name: <z7>),
-
-    // Direct output from highest-level latent variable
-    node((7, 1), [$x$], radius: 0.5em, fill: gray.lighten(80%), name: <output>),
-
-    // Agent actions only to left-side latent variables
-    edge(<a0>, <z1>, [$W^((0))$], "->", stroke: action-stroke),
-    edge(<a0>, <z2>, [], "->", stroke: action-stroke),
-    edge(<a1>, <z2>, [$W^((1))$], "->", stroke: action-stroke),
-    edge(<a2>, <z3>, [$W^((2))$], "->", stroke: action-stroke),
-
-    // Left-to-right progression of effects
-    edge(<z1>, <z4>, [], "->", stroke: z-interaction-stroke),
-    edge(<z2>, <z4>, [], "->", stroke: z-interaction-stroke),
-    edge(<z2>, <z5>, [], "->", stroke: z-interaction-stroke),
-    edge(<z3>, <z5>, [], "->", stroke: z-interaction-stroke),
-    edge(<z4>, <z6>, [], "->", stroke: z-interaction-stroke),
-    edge(<z5>, <z6>, [], "->", stroke: z-interaction-stroke),
-    edge(<z7>, <z6>, [], "->", stroke: z-interaction-stroke),
-
-    // Direct output from highest-level latent variable
-    edge(<z6>, <output>, [], "-|>"),
-
-    // Visual groupings with enclosures
-    {
-      let agent-tint(c) = (stroke: c, fill: rgb(..c.components().slice(0, 3), 8%), inset: 12pt)
-      let env-tint(c) = (stroke: c, fill: rgb(..c.components().slice(0, 3), 5%), inset: 16pt)
-
-      node(enclose: (<a0>, <a2>), ..agent-tint(blue.darken(20%)), name: <agents>)
-      node(enclose: (<z1>, <z2>, <z3>, <z4>, <z5>, <z6>), ..env-tint(green.darken(20%)), name: <environment>)
-    },
-  )
-] <bayesian-network>
-
-
-#theorem(name: "The Dual Role Problem")[
+#remark(name: "The Dual Role Problem")[
   The deeper issue is *structural*: #gls("dahlian-power")'s foundational assumption that root #glspl("agent") make decisions independently creates an irreconcilable tension with influence chains. In #glspl("means-response-chain"), intermediate #glspl("agent") are simultaneously:
   - *#Glspl("responder")* to upstream influence (requiring dependent decision-making)
   - *#Glspl("controller")* in their own right (requiring independent decision-making)
@@ -751,48 +879,43 @@ Consider a #gls("means-response-chain") where $A$ influences $B$, who influences
   2. Collapsing the chain structure (losing predictive information)
 ]
 
-#comment[Also modeling causality seems pretty difficult.]
+// #comment[Also modeling causality seems pretty difficult.]
 
 
 
 
 == Scope Selection and Limitations
 
-#figure(
-  caption: [Scope selection limitation: Dahlian Power cannot meaningfully compare power across different response variables.],
-)[
-  #align(center)[
-    #diagram(
-      node-stroke: .1em,
-      node-fill: gradient.radial(blue.lighten(80%), blue.lighten(40%), center: (30%, 20%), radius: 80%),
-      spacing: 4em,
-      node((0, 1), [$A^((n-1))$], radius: 2em),
-      node((0, 0.5), [$dots.v$]),
-      edge((0, 1), (1, 0.5), [$W^((n-1))$], "-|>"),
-      node((0, 0), [$A^((1))$], radius: 2em),
-      edge([$W^((1))$], "-|>"),
-      node((1, 0.5), [Env.], radius: 2em, fill: gradient.radial(
-        green.lighten(80%),
-        green.lighten(40%),
-        center: (30%, 20%),
-        radius: 80%,
-      )),
-      edge((1, 0.5), (2, 0.3), [x], "-|>"),
-      edge((1, 0.5), (2, 0.7), [y], "-|>"),
-      // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
-    )
-  ]
-] <scope-selection>
-// TODO: UDPATE, SHOULD BE TWO PEOPLE.
+#remark(name: "Scope Limitation")[
+  #figure(
+    caption: [Scope selection limitation: Dahlian Power cannot meaningfully compare power across different response variables.],
+  )[
+    #align(center)[
+      #diagram(
+        node-stroke: .1em,
+        node-fill: agent-fill,
+        spacing: 4em,
+        node((0, 1), [$A^((n-1))$], radius: 2em),
+        node((0, 0.5), [$dots.v$], fill: none, stroke: none),
+        edge((0, 1), (1, 0.5), [$W^((n-1))$], "-|>"),
+        node((0, 0), [$A^((1))$], radius: 2em),
+        edge([$W^((1))$], "-|>"),
+        node((1, 0.5), [Env.], radius: 2em, fill: env-fill),
+        edge((1, 0.5), (2, 0.3), [x], "-|>"),
+        edge((1, 0.5), (2, 0.7), [y], "-|>"),
+        // edge((0, 0), (0, 0), `read()`, "--|>", bend: 130deg),
+      )
+    ]
+  ] <scope-selection>
+  // TODO: UDPATE, SHOULD BE TWO PEOPLE.
 
-#theorem(name: "Scope Limitation")[
+
   As discussed in the original essay, #gls("dahlian-power") is limited by #gls("scope-limitation") -- ie: the response that you're trying to measure (@scope-selection). There is not a very sensible way of comparing the #gls("power") between some response $x$ and some response $y$.
-]
 
-*Example.*
-From Dahl's original essay:
-#quote(attribution: "Dahl's Concept of Power 1957")[
-  With an average probability approaching one, I can induce each of 10 students to come to class for an examination on a Friday afternoon when they would otherwise prefer to make off for New York or Northampton. With its existing resources and techniques, the New Haven Police Department can prevent about half the students who park along the streets near my office from staying beyond the legal time limit. Which of us has the more power?
+  *Example.* From Dahl's original essay:
+  #quote(attribution: "Dahl's Concept of Power 1957")[
+    With an average probability approaching one, I can induce each of 10 students to come to class for an examination on a Friday afternoon when they would otherwise prefer to make off for New York or Northampton. With its existing resources and techniques, the New Haven Police Department can prevent about half the students who park along the streets near my office from staying beyond the legal time limit. Which of us has the more power?
+  ]
 ]
 
 #remark(name: "The Importance Dimension")[
@@ -805,18 +928,16 @@ From Dahl's original essay:
 
 == General Modeling Difficulties
 
-#remark(name: "Practical Modeling Challenges")[
-  #Gls("dahlian-power") has some modeling difficulties that exist across many domains but are nonetheless worth mentioning:
-]
+*Practical Modeling Challenges.* #Gls("dahlian-power") has some modeling difficulties that exist across many domains but are nonetheless worth mentioning:
 
 #remark(name: "Action Space Selection Problem")[
-  #gls("dahlian-power") doesn't explain why some actions are included or excluded from the #gls("action-space"), offsetting difficulties to the modeler. E.g. If a legislator can burn down the legislative building instead of voting, guaranteeing the policy doesn't get passed, does the legislator have lots of #gls("power")? In one sense (the #gls("dahlian-power") sense), they do, but in another sense they don't have more #gls("power") than they did before because the probability they make this decision is essentially $0$ -- it's up to the modeler to leave this out.
+  #gls("dahlian-power") doesn't explain why some actions are included or excluded from the #gls("action-space"), offsetting difficulties to the modeler. E.g. If a legislator can burn down the legislative building instead of voting, guaranteeing the policy doesn't get passed, does the legislator have lots of #gls("power")? In one sense (the #gls("dahlian-power") sense), they do, but in another sense they don't have more #gls("power") than they did before because the probability they make this decision is essentially $0$ -- it's up to the modeler to recognize this possibility and leave it out.
 
-  Additionally, it's important to determine which actions are actually available. Partly from Lukes' response, covert bargaining happens before reaching the voting floor. These actions over time and ability to bargain need to be added to the action/strategy space (ex: By defining tuples of actions indicating actions over time, $("bargain for", "vote for")$).
+  Additionally, it's important to determine which actions are available. Partly from Lukes' response, covert bargaining happens before reaching the voting floor. These actions over time and ability to bargain need to be added to the action/strategy space (e.g. By defining tuples of actions indicating actions over time, $("bargain for", "vote for")$).
 ]
 
 #remark(name: "Controller Selection Problem")[
-  Partially from Lukes' response, it's important to consider every source of influence that influences the final variable. Ie: It's not just the legislators that determine whether a policy passes, they're also influenced by society, their family, and others to different degrees.
+  Partially from Lukes' response, it's important to consider every source of influence that influences the final variable. i.e. It's not just the legislators that determine whether a policy passes, they're also influenced by society, their family, and others to different degrees.
 ]
 // TODO: Add temporal decision making to "the means" as a  strategy profile.
 // The field of "Critical Theory" feels related
@@ -828,6 +949,18 @@ From Dahl's original essay:
 // == Connecting Dahl to Game Theory
 
 // What Dahl's theory of power does not say is HOW the players in this scenario determine their actions, keeping the probability function $Pr$ doing a lot of work here.
+
+== Conclusion On Dahlian Power
+
+*Summary.* #Gls("dahlian-power") provides a rigorous probabilistic foundation for analyzing influence relationships. At its core, Dahl's framework measures #gls("power") as the difference in probability: $M(A/B : W, x) := Pr(B, x | A, w) - Pr(B, x | A, overline(w))$. This captures the intuitive notion that A has #gls("power") over B when A can make B do something B wouldn't otherwise do.
+
+*Requirements.* This newly generalized framework requires: (1) At least one #gls("controller") with defined #glspl("action-space"), (2) probabilistic relationships between means and responses, and (3) observable behavioral differences. Notably, #gls("dahlian-power") does *not* require utility functions, causal mechanisms, or rational decision-making -- only that #glspl("controller") (or environment) can choose between alternatives ($|cal(W_i)| > 1$).
+
+*Utility.* #Gls("dahlian-power") proves most valuable in contexts with: simultaneous decision-making by multiple #glspl("controller"), well-defined response variables, and direct influence relationships. The framework works well with emperical data as Dahl originally used it -- ranking #glspl("agent") by their influence over specific outcomes through marginal, pairwise-conflict, and coalition #gls("power") measures.
+
+*Fundamental Limitations.* Despite its elegance, #gls("dahlian-power") faces four critical constraints: (1) *#Gls("means-response-chain") incompatibility* -- indirect influence through intermediate #glspl("agent") cannot be coherently modeled without collapsing chains into environmental black boxes, losing structural information; (2) *#Gls("scope-limitation")* -- no mechanism exists for comparing #gls("power") across different response variables, preventing holistic #gls("power") assessment; (3) *Action space arbitrariness* -- the framework provides no guidance for determining which actions to include or exclude; (4) *Controller selection ambiguity* -- no systematic method for identifying all relevant sources of influence.
+
+These limitations point toward the necessity of utility-based frameworks that can handle preference-weighted cross-domain comparisons and structured influence networks -- topics we explore in subsequent sections.
 
 #pagebreak()
 // = Why Actions are Necessary for Power Analysis
