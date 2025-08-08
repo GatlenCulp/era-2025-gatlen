@@ -146,33 +146,33 @@
     name: "Gatlen Culp",
     affl: ("era",),
     email: "GatlenCulp@gmail.com",
-    equal: true,
+    // equal: true,
   ),
   (
     name: "Hamza Chaudhry",
     affl: ("fli",),
-    email: "hamza@futureoflife.org",
-    equal: false,
+    // email: "hamza@futureoflife.org",
+    // equal: false,
   ),
   (
     name: "Herbie Bradley",
     affl: ("era",),
-    email: "mail@herbiebradley.com",
-    equal: false,
+    // email: "mail@herbiebradley.com",
+    // equal: false,
   ),
   (
     name: "Nandini Shiralkar",
     affl: ("era",),
-    email: "nandini@erafellowship.org",
-    equal: false,
+    // email: "nandini@erafellowship.org",
+    // equal: false,
   ),
 )
 
-// Humanity's Security?
+
 #show: icml2025.with(
-  title: [
-    // Power-Centric Model of Risk\ &\
-    Mathematical Foundations for Power Analysis in Complex Systems],
+  title: [Mathematical Foundations for Power Analysis:\
+    Dahlian Power, Power-Preference Connection, Absolute-vs-Relative Power],
+  // title: [Formalizing Dahl's Concept of Power],
   authors: (authors, affls),
   keywords: (
     "AI safety",
@@ -185,8 +185,7 @@
     "AI alignment",
   ),
   abstract: [
-    *Mathematical Framework for Power Analysis.* Understanding societal risks—from institutional capture to AI-enabled power concentration—requires rigorous models of how power operates between agents with complex, evolving relationships. I develop a formal mathematical framework for power dynamics by extending Dahl's influential 1957 theory, addressing its fundamental limitations through game-theoretic foundations.\
-    *Key Contributions.* First, I demonstrate why absolute power models are insufficient, proving that relational power frameworks form a proper superset of absolute ones. Second, I show that Dahlian power cannot handle influence chains or compare power across different domains—critical limitations for analyzing complex systems. Third, I establish that utility functions are necessary for coherent power analysis, formalizing when power becomes behaviorally meaningful. This framework provides theoretical foundations for analyzing dangerous power dynamics in contexts where agents may lack clear utility functions or act irrationally over extended periods.
+    I formalize and extend Dahl’s 1957 concept of power #cite(<dahlConceptPower1957>) for complex, pseudo-multi-agent systems. The framework (i) generalizes from binary to multi-valued means, (ii) models pseudo-multi-controller settings and environmental outcomes, and (iii) introduces comparative measures (marginal, adversarial pairwise, and coalition power) with accompanying diagrams. I then make explicit three structural limitations of Dahlian power: the inability to represent means–response chains without information loss, the lack of principled cross-domain scope comparisons, and ambiguity in action-space and controller selection. On the broader topic of power, I argue that modeling power as relational instead absolute is necessary. I describe why utility-based formulations of power (relevant state spaces, alignment/aggregation) are prerequisites for complete power analysis.
   ],
   bibliography: bibliography("literature-review.bib"),
   header: [Mathematical Foundations for Power Analysis in Complex Systems],
@@ -195,193 +194,191 @@
     #print-glossary(
       entry-list,
     )
-    = Generalizing Dahl to Markov Nets, HMMs, and MDPs
+    // = Generalizing Dahl to Markov Nets, HMMs, and MDPs
 
-    // MDPs later
+    // // MDPs later
 
-    // #image("./figs/markov-net.png")
-    // #image("./figs/mdp.png")
+    // // #image("./figs/markov-net.png")
+    // // #image("./figs/mdp.png")
 
-    In broad strokes, Dahl's theory of power is similar to the rich literature of markov nets in computer science literature. With a few differences:
-    - Taken from the perspective of actions that players take. (However these can be mapped onto priors in a markov net so long as there are no loops, which of course there are. Might not actually be an issue.)
-    - Control must be causal. Since this is near-impossible to prove in-full, it suffices to say that it's certainly not causal if the response happens before the action.
 
-    A few nice properties and intuitions can however can be carried over:
-    - Markov blankets (You can isolate control by)
-    - Can be mapped to time-series HMMs.
+    // A few nice properties and intuitions can however can be carried over:
+    // - Markov blankets (You can isolate control by)
+    // - Can be mapped to time-series HMMs.
 
-    Notoriously very difficult. #todo[Maybe also show some existing CS problem to apply control in a new context.] #todo[Also maybe see what other studies of power exist out there that looked at causal relationships in this way. Certainly not a new understanding of power, just one that wasn't looked at broadly.]
+    // Notoriously very difficult. #todo[Maybe also show some existing CS problem to apply control in a new context.] #todo[Also maybe see what other studies of power exist out there that looked at causal relationships in this way. Certainly not a new understanding of power, just one that wasn't looked at broadly.]
 
-    Already we are at a point where we can define control in MDPs, one of the most fundamental structures in reinforcement learning and applicable to many scenarios. #todo[Can we apply this to some textbook MDP scenario?] #todo[Not sure I should transition to MDPs without bringing in utility as a pre-requisite of power.]
+    // Already we are at a point where we can define control in MDPs, one of the most fundamental structures in reinforcement learning and applicable to many scenarios.
+    // #todo[Can we apply this to some textbook MDP scenario?] #todo[Not sure I should transition to MDPs without bringing in utility as a pre-requisite of power.]
 
     // Might require multi-agent MDPs
 
 
-    = Infrastructure attack analysis
+    // = Infrastructure attack analysis
 
-    // Define shared styles for consistency
-    #let gov-fill = gradient.radial(blue.darken(10%), blue.lighten(30%), center: (30%, 20%), radius: 80%)
-    #let infra-fill = gradient.radial(green.darken(10%), green.lighten(30%), center: (30%, 20%), radius: 80%)
-    #let adversary-fill = gradient.radial(red.darken(10%), red.lighten(30%), center: (30%, 20%), radius: 80%)
-    #let civilian-fill = gradient.radial(purple.darken(10%), purple.lighten(30%), center: (30%, 20%), radius: 80%)
+    // // Define shared styles for consistency
+    // #let gov-fill = gradient.radial(blue.darken(10%), blue.lighten(30%), center: (30%, 20%), radius: 80%)
+    // #let infra-fill = gradient.radial(green.darken(10%), green.lighten(30%), center: (30%, 20%), radius: 80%)
+    // #let adversary-fill = gradient.radial(red.darken(10%), red.lighten(30%), center: (30%, 20%), radius: 80%)
+    // #let civilian-fill = gradient.radial(purple.darken(10%), purple.lighten(30%), center: (30%, 20%), radius: 80%)
 
-    #let power-edge = (thickness: 1.5pt, paint: red.darken(20%))
-    #let coerce-edge = (thickness: 1.2pt, paint: orange.darken(20%))
-    #let depend-edge = (thickness: 1pt, paint: blue.darken(20%), dash: "dashed")
-    #let money-edge = (thickness: 1.5pt, paint: green.darken(20%))
+    // #let power-edge = (thickness: 1.5pt, paint: red.darken(20%))
+    // #let coerce-edge = (thickness: 1.2pt, paint: orange.darken(20%))
+    // #let depend-edge = (thickness: 1pt, paint: blue.darken(20%), dash: "dashed")
+    // #let money-edge = (thickness: 1.5pt, paint: green.darken(20%))
 
-    *Node Legend:*
-    #table(
-      columns: (1fr, 2fr, 1fr, 2fr),
-      stroke: 0.5pt,
-      [🏛️], [Foreign Government], [🇺🇸], [US Government],
-      [🎭], [Cyber Unit/APT], [💀], [Criminal Group],
-      [⚡], [Energy Infrastructure], [⛽], [Pipeline/Oil],
-      [🚨], [Emergency Services], [🏥], [Healthcare],
-      [🏢], [Gov Operations], [👥], [Citizens],
-    )
+    // *Node Legend:*
+    // #table(
+    //   columns: (1fr, 2fr, 1fr, 2fr),
+    //   stroke: 0.5pt,
+    //   [🏛️], [Foreign Government], [🇺🇸], [US Government],
+    //   [🎭], [Cyber Unit/APT], [💀], [Criminal Group],
+    //   [⚡], [Energy Infrastructure], [⛽], [Pipeline/Oil],
+    //   [🚨], [Emergency Services], [🏥], [Healthcare],
+    //   [🏢], [Gov Operations], [👥], [Citizens],
+    // )
 
-    == Nation-State Infrastructure Attack Power Dynamics
+    // == Nation-State Infrastructure Attack Power Dynamics
 
-    #figure(
-      caption: [Nation-state actor power dynamics: Foreign government uses cyber capabilities to coerce, weaken, and deter through critical infrastructure manipulation.],
-    )[
-      #set text(size: 8pt)
-      #diagram(
-        spacing: (5em, 4em),
-        node-stroke: 1pt,
+    // #figure(
+    //   caption: [Nation-state actor power dynamics: Foreign government uses cyber capabilities to coerce, weaken, and deter through critical infrastructure manipulation.],
+    // )[
+    //   #set text(size: 8pt)
+    //   #diagram(
+    //     spacing: (5em, 4em),
+    //     node-stroke: 1pt,
 
-        // Foreign Government (top)
-        node((2, 0), [🏛️], radius: 1.8em, fill: adversary-fill, name: <foreign-gov>),
+    //     // Foreign Government (top)
+    //     node((2, 0), [🏛️], radius: 1.8em, fill: adversary-fill, name: <foreign-gov>),
 
-        // Adversarial Group (cyber unit)
-        node((2, 1), [🎭], radius: 1.5em, fill: adversary-fill, name: <adv-group>),
+    //     // Adversarial Group (cyber unit)
+    //     node((2, 1), [🎭], radius: 1.5em, fill: adversary-fill, name: <adv-group>),
 
-        // US Government (left)
-        node((0, 2), [🇺🇸], radius: 1.8em, fill: gov-fill, name: <us-gov>),
+    //     // US Government (left)
+    //     node((0, 2), [🇺🇸], radius: 1.8em, fill: gov-fill, name: <us-gov>),
 
-        // US Infrastructure (middle layer)
-        node((1, 2), [⚡], radius: 1.3em, fill: infra-fill, name: <energy>),
-        node((2, 2), [🚨], radius: 1.3em, fill: infra-fill, name: <emergency>),
-        node((3, 2), [🏢], radius: 1.3em, fill: infra-fill, name: <gov-ops>),
+    //     // US Infrastructure (middle layer)
+    //     node((1, 2), [⚡], radius: 1.3em, fill: infra-fill, name: <energy>),
+    //     node((2, 2), [🚨], radius: 1.3em, fill: infra-fill, name: <emergency>),
+    //     node((3, 2), [🏢], radius: 1.3em, fill: infra-fill, name: <gov-ops>),
 
-        // US Citizens (bottom)
-        node((2, 3), [👥], radius: 1.5em, fill: civilian-fill, name: <citizens>),
+    //     // US Citizens (bottom)
+    //     node((2, 3), [👥], radius: 1.5em, fill: civilian-fill, name: <citizens>),
 
-        // Foreign Gov controls Cyber Unit
-        edge(<foreign-gov>, <adv-group>, [control], "-|>", stroke: power-edge),
+    //     // Foreign Gov controls Cyber Unit
+    //     edge(<foreign-gov>, <adv-group>, [control], "-|>", stroke: power-edge),
 
-        // Cyber Unit attacks on infrastructure
-        edge(<adv-group>, <energy>, [SCADA], "-|>", stroke: power-edge, bend: -25deg),
-        edge(<adv-group>, <emergency>, [ransomware], "-|>", stroke: power-edge),
-        edge(<adv-group>, <gov-ops>, [exfiltrate], "-|>", stroke: power-edge, bend: 25deg),
+    //     // Cyber Unit attacks on infrastructure
+    //     edge(<adv-group>, <energy>, [SCADA], "-|>", stroke: power-edge, bend: -25deg),
+    //     edge(<adv-group>, <emergency>, [ransomware], "-|>", stroke: power-edge),
+    //     edge(<adv-group>, <gov-ops>, [exfiltrate], "-|>", stroke: power-edge, bend: 25deg),
 
-        // Infrastructure impacts on citizens
-        edge(<energy>, <citizens>, [shortage], "-|>", stroke: coerce-edge, bend: -20deg),
-        edge(<emergency>, <citizens>, [denied], "-|>", stroke: coerce-edge),
-        edge(<gov-ops>, <citizens>, [disrupted], "-|>", stroke: coerce-edge, bend: 20deg),
+    //     // Infrastructure impacts on citizens
+    //     edge(<energy>, <citizens>, [shortage], "-|>", stroke: coerce-edge, bend: -20deg),
+    //     edge(<emergency>, <citizens>, [denied], "-|>", stroke: coerce-edge),
+    //     edge(<gov-ops>, <citizens>, [disrupted], "-|>", stroke: coerce-edge, bend: 20deg),
 
-        // Coercive pressure paths
-        edge(<citizens>, <us-gov>, [pressure], "-|>", stroke: coerce-edge, bend: 35deg),
-        edge(<adv-group>, <us-gov>, [leverage], "-|>", stroke: coerce-edge, bend: -35deg),
+    //     // Coercive pressure paths
+    //     edge(<citizens>, <us-gov>, [pressure], "-|>", stroke: coerce-edge, bend: 35deg),
+    //     edge(<adv-group>, <us-gov>, [leverage], "-|>", stroke: coerce-edge, bend: -35deg),
 
-        // US Gov dependencies
-        edge(<us-gov>, <energy>, "--|>", stroke: depend-edge, bend: 20deg),
-        edge(<us-gov>, <emergency>, "--|>", stroke: depend-edge),
-        edge(<us-gov>, <gov-ops>, "--|>", stroke: depend-edge, bend: -20deg),
+    //     // US Gov dependencies
+    //     edge(<us-gov>, <energy>, "--|>", stroke: depend-edge, bend: 20deg),
+    //     edge(<us-gov>, <emergency>, "--|>", stroke: depend-edge),
+    //     edge(<us-gov>, <gov-ops>, "--|>", stroke: depend-edge, bend: -20deg),
 
-        // Attribution challenge
-        edge(
-          <us-gov>,
-          <foreign-gov>,
-          [?],
-          "..|>",
-          stroke: (thickness: 0.8pt, paint: gray, dash: "dotted"),
-          bend: -50deg,
-        ),
-      )
-    ] <nation-state-attack>
+    //     // Attribution challenge
+    //     edge(
+    //       <us-gov>,
+    //       <foreign-gov>,
+    //       [?],
+    //       "..|>",
+    //       stroke: (thickness: 0.8pt, paint: gray, dash: "dotted"),
+    //       bend: -50deg,
+    //     ),
+    //   )
+    // ] <nation-state-attack>
 
-    == Cybercriminal Infrastructure Attack Power Dynamics
+    // == Cybercriminal Infrastructure Attack Power Dynamics
 
-    #figure(
-      caption: [Cybercriminal power dynamics: Criminal groups exploit critical infrastructure vulnerabilities for financial gain through ransomware and extortion.],
-    )[
-      #set text(size: 8pt)
-      #diagram(
-        spacing: (5em, 4em),
-        node-stroke: 1pt,
+    // #figure(
+    //   caption: [Cybercriminal power dynamics: Criminal groups exploit critical infrastructure vulnerabilities for financial gain through ransomware and extortion.],
+    // )[
+    //   #set text(size: 8pt)
+    //   #diagram(
+    //     spacing: (5em, 4em),
+    //     node-stroke: 1pt,
 
-        // Criminal Group (top)
-        node((2, 0), [💀], radius: 1.8em, fill: adversary-fill, name: <criminal>),
+    //     // Criminal Group (top)
+    //     node((2, 0), [💀], radius: 1.8em, fill: adversary-fill, name: <criminal>),
 
-        // US Government (left)
-        node((0, 2), [🇺🇸], radius: 1.8em, fill: gov-fill, name: <us-gov>),
+    //     // US Government (left)
+    //     node((0, 2), [🇺🇸], radius: 1.8em, fill: gov-fill, name: <us-gov>),
 
-        // US Infrastructure (middle layer)
-        node((1, 2), [⛽], radius: 1.3em, fill: infra-fill, name: <pipeline>),
-        node((2, 2), [🏥], radius: 1.3em, fill: infra-fill, name: <healthcare>),
-        node((3, 2), [🏢], radius: 1.3em, fill: infra-fill, name: <gov-ops>),
+    //     // US Infrastructure (middle layer)
+    //     node((1, 2), [⛽], radius: 1.3em, fill: infra-fill, name: <pipeline>),
+    //     node((2, 2), [🏥], radius: 1.3em, fill: infra-fill, name: <healthcare>),
+    //     node((3, 2), [🏢], radius: 1.3em, fill: infra-fill, name: <gov-ops>),
 
-        // US Citizens (bottom)
-        node((2, 3), [👥], radius: 1.5em, fill: civilian-fill, name: <citizens>),
+    //     // US Citizens (bottom)
+    //     node((2, 3), [👥], radius: 1.5em, fill: civilian-fill, name: <citizens>),
 
-        // Criminal attacks on infrastructure with ransomware
-        edge(<criminal>, <pipeline>, [encrypt], "-|>", stroke: power-edge, bend: -25deg),
-        edge(<criminal>, <healthcare>, [lockout], "-|>", stroke: power-edge, bend: -8deg),
-        edge(<criminal>, <gov-ops>, [exfiltrate], "-|>", stroke: power-edge, bend: 25deg),
+    //     // Criminal attacks on infrastructure with ransomware
+    //     edge(<criminal>, <pipeline>, [encrypt], "-|>", stroke: power-edge, bend: -25deg),
+    //     edge(<criminal>, <healthcare>, [lockout], "-|>", stroke: power-edge, bend: -8deg),
+    //     edge(<criminal>, <gov-ops>, [exfiltrate], "-|>", stroke: power-edge, bend: 25deg),
 
-        // Infrastructure impacts on citizens
-        edge(<pipeline>, <citizens>, [shortage], "-|>", stroke: coerce-edge, bend: -20deg),
-        edge(<healthcare>, <citizens>, [denied], "-|>", stroke: coerce-edge),
-        edge(<gov-ops>, <citizens>, [disrupted], "-|>", stroke: coerce-edge, bend: 20deg),
+    //     // Infrastructure impacts on citizens
+    //     edge(<pipeline>, <citizens>, [shortage], "-|>", stroke: coerce-edge, bend: -20deg),
+    //     edge(<healthcare>, <citizens>, [denied], "-|>", stroke: coerce-edge),
+    //     edge(<gov-ops>, <citizens>, [disrupted], "-|>", stroke: coerce-edge, bend: 20deg),
 
-        // Financial flows (the key difference from nation-state)
-        edge(<pipeline>, <criminal>, [💰 \$4.4M], "-|>", stroke: money-edge, bend: -35deg),
-        edge(<healthcare>, <criminal>, [💰 ransom], "-|>", stroke: money-edge, bend: -12deg),
-        edge(<gov-ops>, <criminal>, [💰 bitcoin], "-|>", stroke: money-edge, bend: 35deg),
+    //     // Financial flows (the key difference from nation-state)
+    //     edge(<pipeline>, <criminal>, [💰 \$4.4M], "-|>", stroke: money-edge, bend: -35deg),
+    //     edge(<healthcare>, <criminal>, [💰 ransom], "-|>", stroke: money-edge, bend: -12deg),
+    //     edge(<gov-ops>, <criminal>, [💰 bitcoin], "-|>", stroke: money-edge, bend: 35deg),
 
-        // Secondary pressure
-        edge(<citizens>, <us-gov>, [pressure], "-|>", stroke: coerce-edge, bend: 35deg),
-        edge(<citizens>, <pipeline>, [pay!], "--|>", stroke: depend-edge, bend: 25deg),
-        edge(<citizens>, <healthcare>, [pay!], "--|>", stroke: depend-edge, bend: 8deg),
+    //     // Secondary pressure
+    //     edge(<citizens>, <us-gov>, [pressure], "-|>", stroke: coerce-edge, bend: 35deg),
+    //     edge(<citizens>, <pipeline>, [pay!], "--|>", stroke: depend-edge, bend: 25deg),
+    //     edge(<citizens>, <healthcare>, [pay!], "--|>", stroke: depend-edge, bend: 8deg),
 
-        // US Gov dependencies
-        edge(<us-gov>, <pipeline>, "--|>", stroke: depend-edge, bend: 20deg),
-        edge(<us-gov>, <healthcare>, "--|>", stroke: depend-edge),
-        edge(<us-gov>, <gov-ops>, "--|>", stroke: depend-edge, bend: -20deg),
+    //     // US Gov dependencies
+    //     edge(<us-gov>, <pipeline>, "--|>", stroke: depend-edge, bend: 20deg),
+    //     edge(<us-gov>, <healthcare>, "--|>", stroke: depend-edge),
+    //     edge(<us-gov>, <gov-ops>, "--|>", stroke: depend-edge, bend: -20deg),
 
-        // Law enforcement attempts
-        edge(
-          <us-gov>,
-          <criminal>,
-          [enforce?],
-          "..|>",
-          stroke: (thickness: 0.8pt, paint: gray, dash: "dotted"),
-          bend: -50deg,
-        ),
-      )
-    ] <cybercriminal-attack>
+    //     // Law enforcement attempts
+    //     edge(
+    //       <us-gov>,
+    //       <criminal>,
+    //       [enforce?],
+    //       "..|>",
+    //       stroke: (thickness: 0.8pt, paint: gray, dash: "dotted"),
+    //       bend: -50deg,
+    //     ),
+    //   )
+    // ] <cybercriminal-attack>
 
-    #remark(name: "Key Power Dynamic Differences")[
-      The two diagrams reveal fundamentally different power structures:
+    // #remark(name: "Key Power Dynamic Differences")[
+    //   The two diagrams reveal fundamentally different power structures:
 
-      *Nation-State Attacks:*
-      - Power flows through *coercion* and *deterrence* mechanisms
-      - Foreign government maintains hierarchical control over cyber units
-      - Attacks serve strategic objectives: weakening adversary capabilities, creating negotiation leverage
-      - Attribution challenges limit response options
-      - No direct financial motivation - infrastructure disruption is the goal itself
+    //   *Nation-State Attacks:*
+    //   - Power flows through *coercion* and *deterrence* mechanisms
+    //   - Foreign government maintains hierarchical control over cyber units
+    //   - Attacks serve strategic objectives: weakening adversary capabilities, creating negotiation leverage
+    //   - Attribution challenges limit response options
+    //   - No direct financial motivation - infrastructure disruption is the goal itself
 
-      *Cybercriminal Attacks:*
-      - Power flows through *financial extraction* mechanisms
-      - Criminal groups operate autonomously without state direction
-      - Attacks serve profit motives: ransomware payments are the primary objective
-      - Infrastructure disruption is merely leverage for payment, not the end goal
-      - Creates secondary power dynamics where victims pressure each other to pay
+    //   *Cybercriminal Attacks:*
+    //   - Power flows through *financial extraction* mechanisms
+    //   - Criminal groups operate autonomously without state direction
+    //   - Attacks serve profit motives: ransomware payments are the primary objective
+    //   - Infrastructure disruption is merely leverage for payment, not the end goal
+    //   - Creates secondary power dynamics where victims pressure each other to pay
 
-      Both exploit the same technical vulnerabilities (SCADA systems, ransomware, data theft) but channel the resulting power through entirely different pathways -- one political, one financial.
-    ]
+    //   Both exploit the same technical vulnerabilities (SCADA systems, ransomware, data theft) but channel the resulting power through entirely different pathways -- one political, one financial.
+    // ]
 
   ],
   accepted: none,
@@ -486,6 +483,10 @@
 
 // #todo[Talk about in more detail. Just general background on power. This should perhaps come first in the paper.]
 
+#comment[
+  Disclaimer: This is an exploratory, partially abandoned line of work. Some characterizations (e.g., Dahl, Lukes), derivations, proofs, or statements may be incomplete, incorrect, or incoherent. I’m sharing this work because it may be useful or inspiring despite underdevelopment. Ideas are my own; I used Claude 4 Sonnet for selective rewriting. Source: #url("https://github.com/GatlenCulp/era-2025-gatlen/tree/main/era/catastrophe-logic")
+]
+
 = Introduction
 
 Understanding #gls("power") dynamics is critical for analyzing societal risks, from institutional capture to AI-enabled concentration of control. Yet despite decades of research across sociology, political science, and economics, we lack rigorous mathematical frameworks for modeling how #gls("power") operates in complex multi-agent systems.
@@ -494,7 +495,7 @@ Consider these scenarios: A social media algorithm subtly shapes millions of pol
 
 *The Challenge.* Current approaches to #gls("power") analysis suffer from fundamental limitations. Sociological theories offer rich conceptual frameworks but lack mathematical precision needed for quantitative analysis. Game-theoretic models provide formal rigor but assume rational #glspl("agent") with well-defined utility functions—assumptions that often fail in real-world #gls("power") dynamics where #glspl("agent") act irrationally, preferences evolve, or utility functions remain unclear.
 
-*Our Approach.* This paper develops a formal mathematical framework for #gls("power") analysis by extending Dahl's seminal 1957 theory of #gls("power"). Dahl's framework -- "A has #gls("power") over B to the extent that A can get B to do something B would not otherwise do"—provides an intuitive starting point but faces severe limitations when analyzing complex systems.
+*Our Approach.* This paper develops a formal mathematical framework for #gls("power") analysis by extending Dahl's seminal 1957 theory of #gls("power") #cite(<dahlConceptPower1957>). Dahl's framework -- "A has #gls("power") over B to the extent that A can get B to do something B would not otherwise do"—provides an intuitive starting point but faces severe limitations when analyzing complex systems.
 
 *Contributions.* We make three key theoretical contributions. First, we prove that models of #gls("relative-power") form a proper superset of #gls("absolute-power") models, establishing why relational frameworks are necessary. Second, we demonstrate that #gls("dahlian-power") cannot handle influence chains or enable cross-domain #gls("power") comparisons -- critical limitations for analyzing modern #gls("power") structures. Third, we establish formal conditions under which utility functions become necessary for coherent #gls("power") analysis.
 
@@ -503,13 +504,15 @@ Consider these scenarios: A social media algorithm subtly shapes millions of pol
 #pagebreak()
 = Towards a Formal Model of Power
 
-*The Literature Landscape.* #Gls("power") theory suffers from conceptual fragmentation. Existing approaches fall into two problematic categories: either loosely connected sociological definitions that resist formalization, or rigorous mathematical models confined to narrow domains (e.g., cooperative game theory's #gls("power") indices).#footnote[This reflects a common trade-off in formal modeling: rigor versus generality. Cooperative game theory's power indices (Shapley, Banzhaf, etc.) provide precise mathematical definitions but only apply within specific institutional contexts like weighted voting games #todo[confirm]. Conversely, sociological theories achieve broad applicability by sacrificing mathematical precision. The challenge is developing frameworks that maintain both formal rigor and sufficient generality to analyze diverse power structures across different domains.] Each theoretical tradition critiques its predecessors while offering new definitions, creating a tower of competing frameworks rather than cumulative progress.#footnote[These sociological approaches capture different but related aspects of power, yet lack mathematical precision needed for quantitative analysis: Dahl's behavioral definition focuses on observable influence over actions but cannot handle indirect influence chains or enable cross-domain power comparisons. French and Raven's taxonomy (reward, coercive, legitimate, referent, expert power) describes power sources but provides no framework for measuring or comparing power magnitudes -- it remains unclear whether these categories are irreducible or whether some (e.g., legitimate power) can be decomposed into others (reward/coercive mechanisms). Lukes' three dimensions examine different levels of decision-making processes (overt conflict, covert agenda-setting, ideational preference-shaping) but offer descriptive taxonomies rather than predictive models. Actor-Network Theory treats power as emergent from network relationships but explicitly resists formal quantification, limiting its predictive capacity. While each tradition illuminates important facets—behavioral outcomes, psychological bases, structural processes, relational emergence—none provides the mathematical foundations necessary for rigorous analysis of complex, multi-level power dynamics.]
+*The Literature Landscape.* #Gls("power") theory suffers from conceptual fragmentation. Existing approaches fall into two problematic categories: either loosely connected sociological definitions that resist formalization, or rigorous mathematical models confined to narrow domains (e.g., cooperative game theory's #gls("power") indices).#footnote[This reflects a common trade-off in formal modeling: rigor versus generality. Cooperative game theory's power indices (Shapley, Banzhaf, etc.) provide precise mathematical definitions but only apply within specific institutional contexts like weighted voting games
+  // #todo[confirm]
+  . Conversely, sociological theories achieve broad applicability by sacrificing mathematical precision. The challenge is developing frameworks that maintain both formal rigor and sufficient generality to analyze diverse power structures across different domains.] Each theoretical tradition critiques its predecessors while offering new definitions, creating a tower of competing frameworks rather than cumulative progress.#footnote[These sociological approaches capture different but related aspects of power, yet lack mathematical precision needed for quantitative analysis: Dahl's behavioral definition focuses on observable influence over actions but cannot handle indirect influence chains or enable cross-domain power comparisons. French and Raven's taxonomy (reward, coercive, legitimate, referent, expert power) describes power sources but provides no framework for measuring or comparing power magnitudes -- it remains unclear whether these categories are irreducible or whether some (e.g., legitimate power) can be decomposed into others (reward/coercive mechanisms). Lukes' three dimensions examine different levels of decision-making processes (overt conflict, covert agenda-setting, ideational preference-shaping) but offer descriptive taxonomies rather than predictive models. Actor-Network Theory treats power as emergent from network relationships but explicitly resists formal quantification, limiting its predictive capacity. While each tradition illuminates important facets—behavioral outcomes, psychological bases, structural processes, relational emergence—none provides the mathematical foundations necessary for rigorous analysis of complex, multi-level power dynamics.]
 
 *Contemporary Applications.* Formal #gls("power") modeling has gained urgency across multiple domains. In reinforcement learning, researchers need to determine when #glspl("agent") pursue aligned objectives despite different behaviors and capabilities.#footnote[See Jason X, PhD student at Cambridge University] AI governance researchers seek to formalize how labor-replacing AI disrupts social contracts and how economic #gls("power") converts to political influence.#footnote[See Liam Patell at GovAI] While my framework may not immediately solve these challenges, it establishes necessary theoretical foundations.
 
-*Methodological Approach.* Rather than proposing yet another universal "Theory of #Gls("power")," we develop rigorous mathematical foundations for one influential perspective -- Dahl's concept of #gls("power") from 1957 -- then systematically extend it. This approach allows us to either: (a) formally relate competing definitions to our framework, (b) demonstrate their mathematical incoherence, (c) identify behaviorally irrelevant distinctions, or (d) establish approximation boundaries for complex realities.
+*Methodological Approach.* Rather than proposing yet another universal "Theory of #Gls("power")," we develop rigorous mathematical foundations for one influential perspective -- Dahl's concept of #gls("power") from 1957 #cite(<dahlConceptPower1957>) -- then systematically extend it. This approach allows us to either: (a) formally relate competing definitions to our framework, (b) demonstrate their mathematical incoherence, (c) identify behaviorally irrelevant distinctions, or (d) establish approximation boundaries for complex realities.
 
-As Dahl himself anticipated, we may never achieve "a single, consistent, coherent 'Theory of Power'" but instead must develop "theories of limited scope" that prove useful within specific research contexts.#footnote[Dahl's Concept of Power 1957: "Thus we are not likely to produce certainly not for some considerable time to come anything like a single, consistent, coherent 'Theory of Power.' We are much more likely to produce a variety of theories of limited scope, each of which employs some definition of power that is useful in the context of the particular piece of research or theory but different in important respects from the definitions of other studies."]
+As Dahl himself anticipated, we may never achieve "a single, consistent, coherent 'Theory of Power'" but instead must develop "theories of limited scope" that prove useful within specific research contexts.#footnote[Dahl's Concept of Power 1957 #cite(<dahlConceptPower1957>): "Thus we are not likely to produce certainly not for some considerable time to come anything like a single, consistent, coherent 'Theory of Power.' We are much more likely to produce a variety of theories of limited scope, each of which employs some definition of power that is useful in the context of the particular piece of research or theory but different in important respects from the definitions of other studies."]
 
 *The Value of Mathematical Formalization.* Formal models provide conceptual precision beyond their mathematical machinery. When researchers invoke "prisoner's dilemmas" or "principal-#gls("agent") problems," they rarely solve explicit equations -- instead, they leverage rigorous conceptual frameworks that clarify otherwise murky situations. Similarly, our formal #gls("power") framework aims to provide precise analytical tools for recognizing and categorizing #gls("power") dynamics across diverse contexts. The mathematics enables conceptual clarity, not computational solutions.
 
@@ -529,7 +532,7 @@ I start with Dahl's influential concept, which I term *#gls("dahlian-power")* to
 
 #remark(name: "Dahl's Intuition")[
   Consider two scenarios from the original essay #footnote[
-    The full quote from the Concept of Power (Dahl 1957): "Suppose I stand on a street corner and say to myself, "I command all automobile drivers on this street to drive on the right side of the road"; suppose further that all the drivers actually do as I "command" them to do; still, most people will regard me as mentally ill if I insist that I have enough power over automobile drivers to compel them to use the right side of the road. On the other hand, suppose a policeman is standing in the middle of an intersection a t which most traffic ordinarily moves ahead; he orders all traffic to turn right or left; the traffic moves as he orders it to do. Then it accords with what I conceive to be the bedrock idea of power to say that the policeman acting in this particular role evidently has the power to make automobile drivers turn right or left rather than go ahead. My intuitive idea of power, then, is something like this: A has power over B to the extent that he can get B to do something that B would not otherwise do."
+    The full quote from the Concept of Power (Dahl 1957 #cite(<dahlConceptPower1957>)): "Suppose I stand on a street corner and say to myself, "I command all automobile drivers on this street to drive on the right side of the road"; suppose further that all the drivers actually do as I "command" them to do; still, most people will regard me as mentally ill if I insist that I have enough power over automobile drivers to compel them to use the right side of the road. On the other hand, suppose a policeman is standing in the middle of an intersection a t which most traffic ordinarily moves ahead; he orders all traffic to turn right or left; the traffic moves as he orders it to do. Then it accords with what I conceive to be the bedrock idea of power to say that the policeman acting in this particular role evidently has the power to make automobile drivers turn right or left rather than go ahead. My intuitive idea of power, then, is something like this: A has power over B to the extent that he can get B to do something that B would not otherwise do."
   ]
 
   1. A person on a street corner "commanding" drivers to use the right side (which they already do)
@@ -647,7 +650,7 @@ Dahl's binary framework (action taken or not) is limiting. Real #glspl("agent") 
 ] <fig-multi-controller>
 
 
-Real #gls("power") dynamics rarely involve just one #gls("controller"). Consider the example from Dahl's original paper where multiple legislators influence the outcome of a policy being passed or not (@fig-multi-controller):
+Real #gls("power") dynamics rarely involve just one #gls("controller"). Consider the example from Dahl's original paper #cite(<dahlConceptPower1957>) where multiple legislators influence the outcome of a policy being passed or not (@fig-multi-controller):
 
 
 When multiple #glspl("controller") ${A_1, ..., A_n}$ simultaneously influence the #gls("responder") $B$, we need to extend our framework. Each #gls("agent") $A_i$ can take actions from their #gls("action-space") $cal(W)_i$, creating a joint action profile $bold(w) = (w_1, ..., w_n)$.
@@ -903,7 +906,7 @@ It's reasonable to assume coalitions could form between our controllers, expandi
 ]
 
 #remark(name: "Lukes' Critique Formalized")[
-  While Lukes' full critique goes beyond just this issue, this limitation forms one of Lukes' criticisms of #gls("dahlian-power"). In studying legislative #gls("power"), Dahl focused on observable voting behavior, missing upstream influences (@lukes-critique).
+  While Lukes' full critique goes beyond just this issue, this limitation forms one of Lukes' criticisms of #gls("dahlian-power") #cite(<digeserStevenLukesPower1974>). In studying legislative #gls("power"), Dahl focused on observable voting behavior, missing upstream influences (@lukes-critique) #cite(<digeserStevenLukesPower1974>).
   #figure(
     caption: [Lukes' critique: Upstream power influences that Dahlian analysis misses in legislative contexts.],
   )[
@@ -926,7 +929,7 @@ It's reasonable to assume coalitions could form between our controllers, expandi
 
 
 #remark(name: "Power Types Missing from Dahl")[
-  Lukes identified two types of #gls("power") Dahl's framework cannot capture:
+  Lukes identified two types of #gls("power") Dahl's framework cannot capture #cite(<digeserStevenLukesPower1974>):
   1. *Bargaining #Gls("power")*: Shaping which policies reach the legislative floor
   2. *Ideational #Gls("power")*: Determining which ideas are even consciously considered
 
@@ -966,7 +969,7 @@ It's reasonable to assume coalitions could form between our controllers, expandi
   - Sequential dependencies (temporal ordering matters)
   - Conditional influences (#gls("power") activated only under certain conditions)
 
-  The incapability to model these complex relationships is a serious limitation of the model. Lukes' complaint of Dahl's empirical approach is, in part, a complaint that Dahl's #gls("power") *lacks so much predictive #gls("power")* by this inability as to be nearly useless. Any serious model of #gls("power") must move beyond the limitations of this model.
+  The incapability to model these complex relationships is a serious limitation of the model. Lukes' complaint of Dahl's empirical approach is, in part, a complaint that Dahl's #gls("power") *lacks so much predictive #gls("power")* by this inability as to be nearly useless #cite(<digeserStevenLukesPower1974>). Any serious model of #gls("power") must move beyond the limitations of this model.
 ]
 
 #remark(name: "The Technical vs. Structural Distinction")[
@@ -1130,29 +1133,12 @@ It's reasonable to assume coalitions could form between our controllers, expandi
 These limitations point toward the necessity of utility-based frameworks that can handle preference-weighted cross-domain comparisons and structured influence networks -- topics we explore in subsequent sections.
 
 #pagebreak()
-// = Why Actions are Necessary for Power Analysis
-
-// == The Inseparability Thesis
-
-// #claim[Power is meaningless without considering available actions -- these elements are fundamentally inseparable in any coherent power framework.]
-
-
-// === Behavioral Power
-
-// *Insight 1.* Power is a function of available actions.
-
-// *Insight 2.* Power is a function of optimal actions assuming rationality.
-
-
-// I might name this control.
-
-// #todo[Finish.]
 
 = Why #gls("absolute-power") Fails to Model #gls("power") Dynamics
 
-#todo[Should this only be possible once utility is introduced?]
+// #todo[Should this only be possible once utility is introduced?]
 
-#todo[From cooperative game theory, we have weighted graphs, rule-based representations, and weighted-voting games.]
+// #todo[From cooperative game theory, we have weighted graphs, rule-based representations, and weighted-voting games.]
 
 == The Modeling Asymmetry Thesis
 
@@ -1183,7 +1169,7 @@ _Dahl says that there must be a "connection" for there to be a power dynamic._
 $ P_"rel"(a, e) = P_"abs"(a) - P_"abs"(e) $
 where $P_"abs"(e)$ serves as a zero-point reference for environment $e$.
 
-#todo[Replace with an actual proof from graph theory]
+// #todo[Replace with an actual proof from graph theory]
 
 *Physical Analogy.* This construction mirrors potential energy in physics, where absolute potential $V$ is meaningless without a reference frame:
 $ V_"rel" = V_"abs" - V_"ground" $
@@ -1194,7 +1180,7 @@ $ V_"rel" = V_"abs" - V_"ground" $
   Absolute power models cannot capture essential relational dynamics without introducing factors outside their framework.
 ]
 
-#todo[Demonstrate some examples like in my original, such as distance as one factor and just other seemingly complex set of environmental interaction factors that seem almost impossible to resolve absolute powers between entities to relative powers in a sensible way. In physics potential can be mapped to potential energy using distance, unlikely we have anything nearly as similar.]
+// #todo[Demonstrate some examples like in my original, such as distance as one factor and just other seemingly complex set of environmental interaction factors that seem almost impossible to resolve absolute powers between entities to relative powers in a sensible way. In physics potential can be mapped to potential energy using distance, unlikely we have anything nearly as similar.]
 
 *Core Problem.* The power relationship between agents $A$ and $B$ cannot be logically derived from their absolute powers alone. Power lacks transitivity -- if $A$ dominates $B$ and $B$ dominates $C$, this does not guarantee $A$ dominates $C$. This non-transitivity demonstrates that power cannot be reduced to a single absolute measure.
 
@@ -1207,7 +1193,7 @@ No absolute power assignment $P_"abs"$ can capture these relationships.
 
 *Conclusion.* Since capturing these dynamics requires factors $in.not cal(A)$, we have $cal(A) != cal(R)$.
 
-#todo[improve]
+// #todo[improve]
 
 === Proof of Proper Subset Relation
 
@@ -1217,7 +1203,7 @@ Therefore: $cal(A) subset cal(R)$ (proper subset) $square$
 
 === Power Over Environment as Logical Encapsulation of What is Meant By "Absolute Power"
 
-#todo[fin]
+// #todo[fin]
 
 === Conclusion
 
@@ -1255,9 +1241,9 @@ _NOTE: Will likely replace this utility statement._
 
 The mere existence of this action is meaningless without considering whether it would ever be exercised.
 
-#todo[Replace with better example.]
+// #todo[Replace with better example.]
 
-#todo[Include behavioral misalignment, ie: power over]
+// #todo[Include behavioral misalignment, ie: power over]
 
 === Agent Boundary Definition
 
@@ -1279,7 +1265,7 @@ The mere existence of this action is meaningless without considering whether it 
 
 Power becomes relevant when agents compete for control over shared environmental factors, even if their ultimate goals don't directly conflict.
 
-#todo[Also could say that their actions are some mixed strategy over a number of actions. Not sure if this is true but not a crucial point.]
+// #todo[Also could say that their actions are some mixed strategy over a number of actions. Not sure if this is true but not a crucial point.]
 
 === Agents in Shared State Space
 
@@ -1309,7 +1295,7 @@ Note that this relevant state space is inherently chosen in reference to some ag
 
 *Implication.* Power analysis without game-theoretic foundations is fundamentally incomplete. $square$
 
-#todo[Power of signaling. US vs Japan and communicating the existence of the nuclear bomb. US in some way doesn't have power over Japan if it doesn't benefit from either (A) Annihilating it or (B) Communicating its Annihilation.]
+// #todo[Power of signaling. US vs Japan and communicating the existence of the nuclear bomb. US in some way doesn't have power over Japan if it doesn't benefit from either (A) Annihilating it or (B) Communicating its Annihilation.]
 
 #pagebreak()
 
