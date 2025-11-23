@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36" version="27.1.6">
+  <diagram name="Page-1" id="iSkJ24-Uzlv5doewgcWq">
+    <mxGraphModel dx="72355" dy="3635" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-75" value="Towards What?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="173" y="-996" width="502" height="372" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-74" value="Sources of Gradual Disempowerment / Wedges in the Cracks" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="-651" y="-601" width="1028" height="507" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-72" value="Sources of Bias / Leveraging Disempowerment&lt;br&gt;&quot;Bias from Whom/What&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="-206" y="-1132" width="337" height="474" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-2" value="Catastrophic AI Risk Reduced" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" vertex="1" parent="1">
+          <mxGeometry x="1565" y="7" width="120" height="212" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-5" value="&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;Best Outcome&lt;/font&gt;&lt;/b&gt;&lt;div&gt;&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;Percentile&lt;/font&gt;&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-220" y="235" width="126" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-6" value="25%" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;movable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+          <mxGeometry x="-70" y="387" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-7" value="50%" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;movable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+          <mxGeometry x="-70" y="244" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-8" value="75%" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;movable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+          <mxGeometry x="-70" y="101" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-11" value="&lt;b&gt;Future Work&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="735" y="-104" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-12" value="Existential AI Risk Reduced" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" vertex="1" parent="1">
+          <mxGeometry x="1565" y="253" width="120" height="214" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-13" value="&lt;b&gt;Rese&lt;br&gt;&lt;/b&gt;&lt;br&gt;This research makes contact with the public, shared among blogs, podcasts, videos, etc." style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="857" y="270" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-14" target="zwVLvU2gcYmJ1tXzipiD-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-14" value="&lt;b&gt;Research&amp;nbsp;&lt;/b&gt;&lt;b&gt;Makes Contact&lt;/b&gt;&lt;b&gt;&amp;nbsp;with Public Social Media&lt;br&gt;&lt;/b&gt;&lt;br&gt;This research makes contact with the public, shared among blogs, podcasts, videos, etc." style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="611" y="219" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-15" target="zwVLvU2gcYmJ1tXzipiD-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-15" target="zwVLvU2gcYmJ1tXzipiD-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-15" value="&lt;b&gt;Research Makes Contact with AIS Community&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="611" y="13" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-22" value="Report on the Effects of &lt;b&gt;Outsourcing Critical Thinking&lt;/b&gt; to LLMs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="-618" y="-463" width="175" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-23" value="&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;Research Directions&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-905" y="-823" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-24" value="" style="endArrow=baseDash;html=1;rounded=0;strokeWidth=4;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;endFill=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="500" as="sourcePoint" />
+            <mxPoint as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-25" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=4;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="500" as="sourcePoint" />
+            <mxPoint x="2000" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-27" value="&lt;div&gt;&lt;font style=&quot;font-size: 14px; color: light-dark(rgb(0, 0, 0), rgb(182, 182, 182));&quot;&gt;Metrics for Gradual Disempowerment&lt;/font&gt;&lt;/div&gt;Theory of Change&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px; color: light-dark(rgb(0, 0, 0), rgb(182, 182, 182));&quot;&gt;e&lt;/font&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="742" y="-353" width="273" height="109" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-29" value="&lt;span style=&quot;font-size: 16px;&quot;&gt;&lt;b&gt;Time&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="497" y="564" width="55" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-38" value="World Outcomes" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1571.5" y="-39" width="107" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-39" value="&lt;b&gt;Personal Knowledge / Gains&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1087" y="189" width="148" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-40" value="Interface / Execution / Application of Research" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="380" y="-89" width="263" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-41" value="Execution / Application of Research" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="788" y="-163" width="207" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-44" value="Parents &amp;amp; educators worry about future of students in face of AI" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="-20.75" width="123" height="64.5" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-45" value="Politicians MAY worry about societal fragility (but might see it as fine seen as automation of these fields?)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="393" y="204" width="171" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-49" value="Measuring Macroscopic influence on culture/media resulting from everyone filtering their thoughts through LLMs and Convergence Towards Similar Values" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="-419" y="-570" width="224.5" height="79" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-81" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-50" target="zwVLvU2gcYmJ1tXzipiD-72">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-787" y="-772" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-50" target="zwVLvU2gcYmJ1tXzipiD-74">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-789" y="-519" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-50" value="Disambiguating/exposing long-run AI automation bias and societal fragility from &quot;economic growing pains&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="-931" y="-742" width="222" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-52" value="Metric measuring the impact of AI on &lt;b&gt;education&lt;/b&gt;&amp;nbsp;-- both losing human expertise (&quot;&lt;b&gt;collective forgetting&lt;/b&gt;&quot;) and primary gen ed&lt;br&gt;&lt;div&gt;&lt;br&gt;All on the level of: Kids learning, curriculum design, personal tutors, etc.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="-605" y="-266" width="282" height="116" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-53" value="&lt;b&gt;Influence&amp;nbsp;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="342" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-54" value="AI in the killchain/military/planning" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="-608" y="-365" width="151" height="51.5" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-153" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-56" target="zwVLvU2gcYmJ1tXzipiD-150">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1675" y="-685" />
+              <mxPoint x="1675" y="-618" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-56" value="TIMELINE&lt;br&gt;&lt;div&gt;There is &lt;b&gt;hard takeover&lt;/b&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;" vertex="1" parent="1">
+          <mxGeometry x="1427" y="-731" width="148" height="73" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-151" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-57" target="zwVLvU2gcYmJ1tXzipiD-150">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1676" y="-585" />
+              <mxPoint x="1676" y="-618" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-57" value="TIMELINE&lt;br&gt;&lt;div&gt;There is no hard takeover, instead there is &lt;b&gt;soft takeover w/&amp;nbsp;gradual disempowerment&lt;/b&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;" vertex="1" parent="1">
+          <mxGeometry x="1420" y="-632" width="171" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-58" value="TIMELINE&lt;div&gt;No takeover, &lt;b&gt;happy utopia&lt;/b&gt; ending (well can also happen if takeover but whatever)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;" vertex="1" parent="1">
+          <mxGeometry x="1792" y="-521" width="177" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-152" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-59" target="zwVLvU2gcYmJ1tXzipiD-150">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1677" y="-438" />
+              <mxPoint x="1677" y="-618" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-59" value="TIMELINE&lt;br&gt;&lt;div&gt;There is no takeover, gradual disempowerment leads to &lt;b&gt;societal fragility&lt;/b&gt; and AI catastrophe generally&lt;br&gt;&lt;br&gt;This and better seem possible if there is corrigibility. Also if AI is more of a tool.&lt;br&gt;&lt;br&gt;In this timeline, possible that AI. Could be used to acquire or gain power.&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;" vertex="1" parent="1">
+          <mxGeometry x="1435" y="-521" width="208" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-61" value="Reiterating over standard bias concerns (gender, race, income, philosophical differences, nationalities, etc.)&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Idk how helpful this is from a catastrophic risk perspective though&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="197" y="-749.5" width="241" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-62" value="Blog Post + Paper Published" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" vertex="1" parent="1">
+          <mxGeometry x="1605" y="-892" width="115" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-63" value="Data Interaction Platform Published" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" vertex="1" parent="1">
+          <mxGeometry x="1407" y="-954" width="131" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-64" value="Meta-Metrics -- Measuring how acceptable delegation to AI is, boiling frog, &lt;b&gt;what people feel are &quot;acceptable&quot; metrics&lt;br&gt;&lt;br&gt;Something something relevance to Brave New World&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="68" y="-301" width="190" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-65" value="Outlining components of our economy and institutions for which AI is embedded" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="-610" y="-564" width="147" height="73" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-67" value="Data Sources Published" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" vertex="1" parent="1">
+          <mxGeometry x="1432" y="-1039" width="131" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-71" target="zwVLvU2gcYmJ1tXzipiD-77">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-71" value="Opportunities for &lt;b&gt;Intentional Human&lt;/b&gt; Sources of Bias to Creep in &lt;br&gt;&lt;br&gt;&quot;He who controls the AI has the power&quot;&lt;br&gt;&lt;br&gt;(Includes individual/company/state/institution)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="-158" y="-965.5" width="268" height="107" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-73" value="Consequences of Disempowerment" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="811" y="-815" width="497" height="368" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-76" value="Meta Metrics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="-19" y="-564" width="349" height="423" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-77" value="Power / Utility of a single person/company/state/institution" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="227.75" y="-935" width="185.5" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-79" target="zwVLvU2gcYmJ1tXzipiD-85">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-79" target="zwVLvU2gcYmJ1tXzipiD-91">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-79" value="Power / Utility of the Model Itself (Maybe explaining why, ie: simulations simulating agents)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="211" y="-847" width="178" height="69.5" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-83" value="There feels like there is some relationship with AI and security/privacy&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;I mean yeah there&#39;s national security/stability or something but also modern internet data privacy things. Even though it&#39;s not really effecting anyone, the potential that it could is deeply uncomfortable.&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-985" y="-174" width="228" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-84" value="There feels like there is some relationship with AI and security/privacy&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;I mean yeah there&#39;s national security/stability or something.&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="95" y="-1369" width="268" height="99" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-85" value="CIS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="425" y="-858" width="69" height="37" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-87" value="This stands in opposition to &quot;AI grabbing power&quot; and instead looks more like &quot;humans dropping power&quot;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-980" y="-264" width="204" height="99" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-88" value="Sources of Bias / Leveraging Disempowerment&lt;br&gt;&quot;Bias from Whom/What&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="712" y="-1473" width="584" height="584" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-89" value="Public Interfaces for my Research" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="1374" y="-1165" width="375" height="368" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-90" value="DISAMBIGUATION: Not from AI as a whole (ex: don&#39;t care about narrow AI), but from the dominance of a specific training regime or a specific LLM/model.&lt;br&gt;&lt;br&gt;Something something: We are converging all of our tools and values into a single entity with vast amounts of influence over society. &quot;tool and value collapse/convergence&quot; or something." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-471" y="-75.5" width="275" height="143.5" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-91" value="Hard optimization towards ANY goal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="425" y="-802" width="115" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-94" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-93" target="zwVLvU2gcYmJ1tXzipiD-79">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-93" value="The Non-Intentional Misalignment Sources" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="-63" y="-844" width="114" height="63.5" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-96" value="Maybe I should write, independently from this project, about narrativizing the values of LLMs as capable simulations acting out an agent, the values here are from simulating an agent." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="446" y="-745" width="215" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-97" value="&lt;b&gt;Personal integration on spectrum&lt;/b&gt;. Some coders can&#39;t live without LLMs, just as we cannot without phones. Any kind of integration (VR, media, direct brain/AI integration, etc.)&lt;br&gt;&lt;br&gt;It&#39;s not safe even for those who want to augment rather than replace humans (but this is also a bad long-term outcome imo)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="-419" y="-454" width="233" height="156" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-98" value="Sneaky values embedding themselves into our institutions. Make us weak and easily influenced." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-975" y="-329" width="212" height="53" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-99" value="Standard Algorithmic Decision Making MOVED to LLMs&lt;br&gt;(maybe recommendation algs)&lt;div&gt;(not all tools created equal)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="-241.5" y="-240" width="199" height="73" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-102" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-100" target="zwVLvU2gcYmJ1tXzipiD-99">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-100" value="Are metrics of automation bias a thing?&lt;br&gt;&lt;br&gt;Maybe there&#39;s some range of ideals tools can be embedded with. Tools have ideals. There&#39;s only a range of things a tool can be used for and influence it can have.&lt;br&gt;&lt;br&gt;Ex: A useless machine. A machine that flies around and autonomously vaporizes an ethnic group.&lt;br&gt;&lt;br&gt;Disambiguating these seem important&lt;br&gt;&lt;br&gt;&quot;Tools aren&#39;t just tools&quot;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-769" y="82" width="240" height="203" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-103" value="Feedback Loops&lt;br&gt;&lt;br&gt;AI R&amp;amp;D -- Same models design a machine and run it. Developing newer models and so on. We kind of lock in our values if we don&#39;t allow humans to edit the AI even once its more powerful than our engineers. We effectively have &quot;one tool&quot; and not multiple." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;fontColor=#ffffff;strokeColor=#005700;" vertex="1" parent="1">
+          <mxGeometry x="-172" y="-548" width="139" height="199" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-108" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-105" target="zwVLvU2gcYmJ1tXzipiD-107">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-109" value="Build" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zwVLvU2gcYmJ1tXzipiD-108">
+          <mxGeometry x="-1416" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-113" value="Build" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zwVLvU2gcYmJ1tXzipiD-108">
+          <mxGeometry x="-0.1224" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-105" value="Devs" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1539" y="-713" width="74" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-106" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;Old Regime&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-1469" y="-802" width="142" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-111" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-107" target="zwVLvU2gcYmJ1tXzipiD-110">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-112" value="Used by" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zwVLvU2gcYmJ1tXzipiD-111">
+          <mxGeometry x="-1245" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-114" value="Used by" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zwVLvU2gcYmJ1tXzipiD-111">
+          <mxGeometry x="-0.4021" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-126" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-107" target="zwVLvU2gcYmJ1tXzipiD-125">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-1330" y="-638" />
+              <mxPoint x="-1242" y="-638" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-107" value="Tools" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1367" y="-713" width="74" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-127" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-110" target="zwVLvU2gcYmJ1tXzipiD-125">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-1159" y="-637" />
+              <mxPoint x="-1242" y="-637" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-128" value="Collectively Determine the influence on" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zwVLvU2gcYmJ1tXzipiD-127">
+          <mxGeometry x="0.5385" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-110" value="Humans" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1196" y="-713" width="74" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-125" value="Humans" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1279" y="-560.5" width="74" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-131" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-134" target="zwVLvU2gcYmJ1tXzipiD-139">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-132" value="Build" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zwVLvU2gcYmJ1tXzipiD-131">
+          <mxGeometry x="-1416" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-133" value="Build Once" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zwVLvU2gcYmJ1tXzipiD-131">
+          <mxGeometry x="-0.1224" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-134" value="Devs" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1616" y="-291.5" width="74" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-135" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-139" target="zwVLvU2gcYmJ1tXzipiD-142">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-136" value="Used by" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zwVLvU2gcYmJ1tXzipiD-135">
+          <mxGeometry x="-1245" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-137" value="Used by" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zwVLvU2gcYmJ1tXzipiD-135">
+          <mxGeometry x="-0.4021" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-138" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-139" target="zwVLvU2gcYmJ1tXzipiD-143">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-1407" y="-216.5" />
+              <mxPoint x="-1319" y="-216.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-139" value="Tools" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1444" y="-291.5" width="74" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-140" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-142" target="zwVLvU2gcYmJ1tXzipiD-143">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-1236" y="-215.5" />
+              <mxPoint x="-1319" y="-215.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-141" value="Collectively Determine the influence on" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zwVLvU2gcYmJ1tXzipiD-140">
+          <mxGeometry x="0.5385" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-144" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-142" target="zwVLvU2gcYmJ1tXzipiD-139">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-1236" y="-350" />
+              <mxPoint x="-1407" y="-350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-145" value="To build" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="zwVLvU2gcYmJ1tXzipiD-144">
+          <mxGeometry x="0.0313" relative="1" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-142" value="Tools" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1273" y="-291.5" width="74" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-143" value="Humans" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1356" y="-139" width="74" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-147" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;b&gt;New Regime&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-1473" y="-420" width="161" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-148" value="Feedback amplifies existing biases here" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-1132" y="-420" width="114" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-149" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;" edge="1" parent="1" source="zwVLvU2gcYmJ1tXzipiD-148">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1092" y="-30" as="sourcePoint" />
+            <mxPoint x="-1236" y="-349" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-150" value="TIMELINE&lt;br&gt;&lt;div&gt;Years/Decades/Centuries of alignment post-AGI and things go horribly wrong after&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;" vertex="1" parent="1">
+          <mxGeometry x="1792" y="-665" width="171" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-155" value="This is starting to look like a progress studies thing(?)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-1444" y="-1030" width="176" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-156" value="The overall impact of this might also reframe the main issue of alignment.&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Sure there&#39;s the &quot;Any hard optimizer means death&quot;.&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;But there&#39;s also &lt;b&gt;&quot;Humanity&#39;s final invention will become our only tool -- independently from CAN we use it (takeover) there&#39;s the question of WILL we use it (disempowerment)&quot;.&lt;/b&gt; Then there&#39;s formalizing value lock-in and other things. To prevent this, we have to focus on initial alignment efforts and corrigibility as a primary goal.&lt;br&gt;&lt;br&gt;Big Yud&#39;s Bankless podcast discussion on how it&#39;s like building a rocket ship but we don&#39;t get to make prototypes and it has to work forever or something.&lt;br&gt;&lt;br&gt;This reframe could be a far larger umbrella for people to unite under, still attending to the critical issues with takeover. Convince even the tech bros and people interested in winning &quot;the race&quot; who still see AI as a tool that could lead us to massive boons as a danger to the same society that uses it.&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-1235" y="-1187" width="346" height="338" as="geometry" />
+        </mxCell>
+        <mxCell id="zwVLvU2gcYmJ1tXzipiD-157" value="There&#39;s also two different kinds of" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-1437" y="13" width="296" height="133" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
